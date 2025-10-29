@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,18 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMPHZ Private Limited - Engineering Tomorrow in Composites</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/M7cR4Zg/emphz-icon.png">
+    <script>
+      // Configure Tailwind CSS for class-based dark mode
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
         
-        /* New Logo-Based Theme Variables */
+        /* Simplified CSS Variables for Global Styles (Light & Dark Mode) */
         :root {
-            --color-primary: #2A2A2A;      /* Charcoal Black from Logo Text */
-            --color-accent: #008C99;       /* Teal/Cyan from Logo Bolt */
-            --color-background: #F4F4F4;   /* Off-White from Logo Background */
-            --color-text-primary: #2A2A2A; /* Charcoal Black */
-            --color-text-secondary: #808080;/* Brushed Metal Gray */
-            --color-border: #DCDCDC;       /* Light Metallic Gray */
+            --color-primary: #2A2A2A;      /* Charcoal Black for headings */
+            --color-accent: #008C99;       /* Teal/Cyan for accents */
+            --color-background: #F4F4F4;   /* Off-White */
+            --color-text-primary: #2A2A2A; /* Charcoal Black for body text */
+        }
+
+        html.dark {
+            color-scheme: dark;
+            --color-primary: #f4f4f4;
+            --color-accent: #00a5b3; /* Slightly brighter for dark mode */
+            --color-background: #18181b; /* zinc-900 */
+            --color-text-primary: #f4f4f4;
         }
 
         html {
@@ -27,6 +40,7 @@
             font-family: 'Inter', sans-serif;
             color: var(--color-text-primary);
             background-color: var(--color-background);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;

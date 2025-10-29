@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { COLOR_PALETTE, SEO_DATA } from '../constants';
+import { SEO_DATA } from '../constants';
 import MetaTags from '../components/MetaTags';
 import Button from '../components/Button';
 
@@ -43,7 +44,7 @@ const AdminPage: React.FC = () => {
     setDatasheetFile(null);
   };
 
-  const formInputStyles = `w-full px-4 py-2 border border-[${COLOR_PALETTE.BORDER}] rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-[${COLOR_PALETTE.TEAL}]/80 focus:border-[${COLOR_PALETTE.TEAL}] bg-white`;
+  const formInputStyles = `w-full px-4 py-2 border border-gray-300 dark:border-zinc-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-teal-500/80 focus:border-teal-500 bg-white dark:bg-zinc-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500`;
 
   return (
     <>
@@ -52,17 +53,17 @@ const AdminPage: React.FC = () => {
         description={SEO_DATA.admin.description}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h1 className={`text-4xl lg:text-5xl font-bold text-[${COLOR_PALETTE.NAVY}] text-center mb-10`}>Admin Portal</h1>
-        <p className={`text-center text-lg text-[${COLOR_PALETTE.TEXT_SECONDARY}] mb-10 max-w-2xl mx-auto`}>
+        <h1 className="text-4xl lg:text-5xl font-bold text-center mb-10">Admin Portal</h1>
+        <p className="text-center text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
           Manage EMPHZ product catalog, specifications, and digital assets.
           This is a client-side placeholder; a real-world application would integrate with a secure backend.
         </p>
 
-        <div className={`max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-[${COLOR_PALETTE.BORDER}]`}>
-          <h2 className={`text-2xl font-semibold text-[${COLOR_PALETTE.NAVY}] mb-6`}>Add/Edit Product</h2>
+        <div className="max-w-4xl mx-auto bg-white dark:bg-zinc-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-zinc-700">
+          <h2 className="text-2xl font-semibold mb-6">Add/Edit Product</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+              <label htmlFor="productName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Product Name</label>
               <input
                 type="text"
                 id="productName"
@@ -73,7 +74,7 @@ const AdminPage: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="productCode" className="block text-sm font-medium text-gray-700 mb-1">Product Code</label>
+              <label htmlFor="productCode" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Product Code</label>
               <input
                 type="text"
                 id="productCode"
@@ -84,7 +85,7 @@ const AdminPage: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Product Category</label>
+              <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Product Category</label>
               <select
                 id="category"
                 value={category}
@@ -102,7 +103,7 @@ const AdminPage: React.FC = () => {
               </select>
             </div>
             <div>
-              <label htmlFor="productDescription" className="block text-sm font-medium text-gray-700 mb-1">Product Description</label>
+              <label htmlFor="productDescription" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Product Description</label>
               <textarea
                 id="productDescription"
                 rows={4}
@@ -113,26 +114,26 @@ const AdminPage: React.FC = () => {
               ></textarea>
             </div>
             <div>
-              <label htmlFor="imageUpload" className="block text-sm font-medium text-gray-700 mb-1">Product Image (e.g., JPEG, PNG)</label>
+              <label htmlFor="imageUpload" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Product Image (e.g., JPEG, PNG)</label>
               <input
                 type="file"
                 id="imageUpload"
                 accept="image/jpeg, image/png"
                 onChange={handleImageChange}
-                className={`w-full text-sm text-[${COLOR_PALETTE.TEXT_SECONDARY}] file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[${COLOR_PALETTE.NAVY}] file:text-white hover:file:bg-opacity-90 file:cursor-pointer`}
+                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-800 file:text-white hover:file:bg-gray-700 file:cursor-pointer dark:file:bg-gray-200 dark:file:text-gray-900 dark:hover:file:bg-white"
               />
-              {imageFile && <p className="mt-2 text-sm text-gray-500">Selected file: {imageFile.name}</p>}
+              {imageFile && <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Selected file: {imageFile.name}</p>}
             </div>
             <div>
-              <label htmlFor="datasheetUpload" className="block text-sm font-medium text-gray-700 mb-1">Technical Datasheet (PDF)</label>
+              <label htmlFor="datasheetUpload" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Technical Datasheet (PDF)</label>
               <input
                 type="file"
                 id="datasheetUpload"
                 accept=".pdf"
                 onChange={handleDatasheetChange}
-                className={`w-full text-sm text-[${COLOR_PALETTE.TEXT_SECONDARY}] file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[${COLOR_PALETTE.NAVY}] file:text-white hover:file:bg-opacity-90 file:cursor-pointer`}
+                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-800 file:text-white hover:file:bg-gray-700 file:cursor-pointer dark:file:bg-gray-200 dark:file:text-gray-900 dark:hover:file:bg-white"
               />
-              {datasheetFile && <p className="mt-2 text-sm text-gray-500">Selected file: {datasheetFile.name}</p>}
+              {datasheetFile && <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Selected file: {datasheetFile.name}</p>}
             </div>
             <Button type="submit" variant="secondary" className="w-full">
               Upload Product

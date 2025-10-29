@@ -10,19 +10,6 @@ import {
   TechnicalStandard
 } from './types';
 
-// --- Color Palette (Derived from EMPHZ Logo) ---
-export const COLOR_PALETTE = {
-  NAVY: '#2A2A2A',          // Charcoal Black from Logo Text (used as primary)
-  TEAL: '#008C99',          // Teal/Cyan from Logo Bolt (used as accent)
-  WHITE: '#FFFFFF',
-  BACKGROUND: '#F4F4F4',      // Off-White from Logo Background
-  TEXT_PRIMARY: '#2A2A2A',     // Charcoal Black
-  TEXT_SECONDARY: '#808080',   // Brushed Metal Gray
-  BORDER: '#DCDCDC',         // Light Metallic Gray
-  SUCCESS: '#28A745',          // Vibrant Green (Standard UI color)
-  NEUTRAL: '#808080',          // Standard Gray (same as secondary text)
-};
-
 // --- Homepage Content ---
 export const HERO_SECTION = {
   headline: "Engineering Tomorrow’s Infrastructure — Today",
@@ -516,10 +503,6 @@ export const INSTALLATION_REQUIREMENTS = [
   "Proper anchoring with chemical bolts",
   "Certified electrical & plumbing points",
 ];
-export const SUPPORT_CONTACT = {
-  phone: "+91 86488 81888",
-  email: "service@emphz.com",
-};
 
 // --- Insights & Knowledge Center ---
 export const BLOG_ARTICLES = [

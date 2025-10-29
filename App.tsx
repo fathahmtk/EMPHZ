@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -16,6 +17,9 @@ import AdminPage from './pages/AdminPage';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import NotFoundPage from './pages/NotFoundPage';
 import SearchModal from './components/SearchModal';
+import QuickViewModal from './components/QuickViewModal';
+import { useUIState } from './UIStateContext';
+import config from './config';
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash, state } = useLocation();
@@ -53,17 +57,20 @@ const ScrollToTop: React.FC = () => {
 
 
 const App: React.FC = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const handleOpenSearch = () => setIsSearchOpen(true);
-  const handleCloseSearch = () => setIsSearchOpen(false);
+  const {
+    isSearchOpen,
+    quickViewProduct,
+    openSearch,
+    closeSearch,
+    closeQuickView,
+  } = useUIState();
 
   // Add keyboard shortcut for search (Ctrl+K or Cmd+K)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
         event.preventDefault();
-        setIsSearchOpen(prev => !prev);
+        isSearchOpen ? closeSearch() : openSearch();
       }
     };
 
@@ -71,13 +78,13 @@ const App: React.FC = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [isSearchOpen, openSearch, closeSearch]);
 
   return (
     <Router>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
-        <Navbar onSearchClick={handleOpenSearch} />
+        <Navbar />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -90,13 +97,14 @@ const App: React.FC = () => {
             <Route path="/support" element={<SupportPage />} />
             <Route path="/knowledge" element={<KnowledgePage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/admin" element={<AdminPage />} />
+            {config.isAdminPortalEnabled && <Route path="/admin" element={<AdminPage />} />}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />
         <ScrollToTopButton />
-        <SearchModal isOpen={isSearchOpen} onClose={handleCloseSearch} />
+        <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
+        <QuickViewModal product={quickViewProduct} onClose={closeQuickView} />
       </div>
     </Router>
   );

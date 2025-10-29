@@ -1,6 +1,6 @@
+
 import React, { useEffect, useCallback } from 'react';
 import { Product } from '../types';
-import { COLOR_PALETTE } from '../constants';
 import Button from './Button';
 
 interface QuickViewModalProps {
@@ -47,12 +47,12 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
       aria-labelledby="quick-view-title"
     >
       <div
-        className="relative bg-white w-full max-w-4xl rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row"
+        className="relative bg-white dark:bg-zinc-800 w-full max-w-4xl rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row"
         onClick={e => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className={`absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-10 p-2 rounded-full hover:bg-gray-100`}
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors z-10 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-700"
           aria-label="Close quick view"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,16 +69,16 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
         </div>
 
         <div className="w-full md:w-1/2 p-8 flex flex-col">
-          <h2 id="quick-view-title" className={`text-2xl lg:text-3xl font-bold text-[${COLOR_PALETTE.NAVY}] mb-2`}>{product.name}</h2>
-          <p className={`text-sm text-[${COLOR_PALETTE.TEXT_SECONDARY}] font-medium mb-4`}>Code: {product.code}</p>
+          <h2 id="quick-view-title" className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">{product.name}</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-4">Code: {product.code}</p>
           
           <div className="flex-grow overflow-y-auto pr-2" style={{ maxHeight: 'calc(80vh - 200px)' }}>
             {descriptionText && (
-              <p className={`text-[${COLOR_PALETTE.TEXT_SECONDARY}] leading-relaxed`}>{descriptionText}</p>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{descriptionText}</p>
             )}
           </div>
           
-          <div className="mt-6 pt-6 border-t border-[${COLOR_PALETTE.BORDER}]">
+          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-zinc-700">
             <Button href={`/products/${product.code}`} onClick={onClose} variant="secondary" className="w-full">
               View Full Details
             </Button>

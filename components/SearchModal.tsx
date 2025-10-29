@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { PRODUCT_CATALOG, COLOR_PALETTE } from '../constants';
+import { useAllProducts } from '../hooks/useAllProducts';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -25,35 +26,45 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
   const searchIndexRef = useRef<SearchResult[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { data: productsData, isLoading: isIndexLoading } = useAllProducts();
 
-  // Build search index only once, now including categoryName for sorting
+  // Build search index when data is loaded
   useEffect(() => {
+    if (isIndexLoading || !productsData) {
+      searchIndexRef.current = [];
+      return;
+    }
+
     const newIndex: SearchResult[] = [];
-    PRODUCT_CATALOG.forEach(category => {
+    productsData.forEach(({ product, category }) => {
+      // Add product to index
+      const descriptionText = product.description || product.useCase || product.innovation || '';
       newIndex.push({
-        type: 'Category',
-        title: category.name,
-        description: category.tagline,
-        link: `/products#${category.code}`,
+        type: 'Product',
+        title: product.name,
+        description: descriptionText,
+        link: `/products/${product.code}`,
         score: 0,
-        code: category.code,
+        code: product.code,
         categoryName: category.name,
       });
-      category.products.forEach(product => {
-        const descriptionText = product.description || product.useCase || product.innovation || '';
+
+      // Add category to index if not already present
+      if (!newIndex.some(item => item.type === 'Category' && item.code === category.code)) {
         newIndex.push({
-          type: 'Product',
-          title: product.name,
-          description: descriptionText,
-          link: `/products/${product.code}`,
+          type: 'Category',
+          title: category.name,
+          description: category.tagline,
+          link: `/products#${category.code}`, // Note: this link won't work with HashRouter for auto-scroll
           score: 0,
-          code: product.code,
+          code: category.code,
           categoryName: category.name,
         });
-      });
+      }
     });
+
     searchIndexRef.current = newIndex;
-  }, []);
+  }, [productsData, isIndexLoading]);
 
   // Effect to handle modal open/close actions
   useEffect(() => {
@@ -89,7 +100,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
         const descriptionLower = item.description.toLowerCase();
         const codeLower = item.code?.toLowerCase() || '';
         
-        // Higher score for more relevant matches
         if (codeLower === lowerCaseQuery) score += 50;
         if (titleLower === lowerCaseQuery) score += 40;
         
@@ -98,7 +108,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
         
         queryWords.forEach(word => {
             if (codeLower.includes(word)) score += 10;
-            if (titleLower.split(/[\s-]+/).includes(word)) score += 5; // Whole word match
+            if (titleLower.split(/[\s-]+/).includes(word)) score += 5;
             if (titleLower.includes(word)) score += 2;
             if (descriptionLower.includes(word)) score += 1;
         });
@@ -108,7 +118,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       .filter(item => item.score > 0);
       
     scoredResults.sort((a, b) => b.score - a.score);
-    setResults(scoredResults.slice(0, 15)); // Show more results
+    setResults(scoredResults.slice(0, 15));
     setActiveIndex(-1);
   }, [query]);
 
@@ -130,7 +140,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
         });
       case 'relevance':
       default:
-        // Already sorted by relevance from the search useEffect
         return sorted;
     }
   }, [results, sortOrder]);
@@ -150,7 +159,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       e.preventDefault();
       const result = sortedResults[activeIndex];
       if (result) {
-        navigate(result.link.replace('/#', ''));
+        navigate(result.link.startsWith('/products#') ? '/products' : result.link);
         onClose();
       }
     }
@@ -174,7 +183,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       aria-modal="true"
     >
       <div
-        className="relative bg-white w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden flex flex-col"
+        className="relative bg-white dark:bg-zinc-800 w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         {/* Search Input */}
@@ -185,28 +194,33 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
             placeholder="Search products, categories, and more..."
             value={query}
             onChange={e => setQuery(e.target.value)}
-            className={`w-full py-4 pl-12 pr-4 text-lg border-b border-[${COLOR_PALETTE.BORDER}] focus:outline-none`}
+            className="w-full py-4 pl-12 pr-4 text-lg border-b border-gray-200 dark:border-zinc-700 focus:outline-none bg-transparent text-gray-800 dark:text-gray-200"
           />
-          <svg className={`absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
         
         {/* Results */}
         <div className="flex-grow overflow-y-auto max-h-[60vh]">
-          {query.trim() && sortedResults.length === 0 && (
-            <div className="p-8 text-center text-gray-500">
+          {isIndexLoading && (
+             <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+                <p>Building search index...</p>
+             </div>
+          )}
+          {!isIndexLoading && query.trim() && sortedResults.length === 0 && (
+            <div className="p-8 text-center text-gray-500 dark:text-gray-400">
               <p>No results found for "{query}".</p>
             </div>
           )}
           {sortedResults.length > 0 && (
             <>
-              <div className={`p-2 bg-gray-50 border-b border-[${COLOR_PALETTE.BORDER}] flex items-center justify-between text-sm sticky top-0`}>
-                <span className="text-gray-500 font-medium px-2">{sortedResults.length} results</span>
+              <div className="p-2 bg-gray-50 dark:bg-zinc-900/50 border-b border-gray-200 dark:border-zinc-700 flex items-center justify-between text-sm sticky top-0">
+                <span className="text-gray-500 dark:text-gray-400 font-medium px-2">{sortedResults.length} results</span>
                 <select
                   value={sortOrder}
                   onChange={e => setSortOrder(e.target.value as any)}
-                  className={`text-sm rounded border-gray-300 focus:ring-2 focus:ring-[${COLOR_PALETTE.TEAL}]/50 focus:border-[${COLOR_PALETTE.TEAL}] p-1 bg-white`}
+                  className="text-sm rounded border-gray-300 dark:border-zinc-600 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 p-1 bg-white dark:bg-zinc-700 dark:text-gray-200"
                 >
                   <option value="relevance">Sort by: Relevance</option>
                   <option value="name-asc">Name (A-Z)</option>
@@ -221,14 +235,14 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                     <Link 
                       to={result.link}
                       onClick={handleResultClick}
-                      className={`block p-4 border-b border-gray-100 transition-colors duration-150 ${activeIndex === index ? `bg-[${COLOR_PALETTE.TEAL}]/10` : 'hover:bg-gray-50'}`}
+                      className={`block p-4 border-b border-gray-100 dark:border-zinc-700/50 transition-colors duration-150 ${activeIndex === index ? 'bg-teal-500/10' : 'hover:bg-gray-50 dark:hover:bg-zinc-700/50'}`}
                     >
                       <div className="flex justify-between items-center">
                         <div>
-                          <h3 className={`font-semibold text-[${COLOR_PALETTE.NAVY}]`}>{result.title}</h3>
-                          <p className={`text-sm text-[${COLOR_PALETTE.TEXT_SECONDARY}] line-clamp-1`}>{result.description}</p>
+                          <h3 className="font-semibold text-gray-800 dark:text-gray-200">{result.title}</h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">{result.description}</p>
                         </div>
-                        <span className={`text-xs font-semibold py-1 px-2 rounded-full flex-shrink-0 ml-4 ${result.type === 'Product' ? `bg-[${COLOR_PALETTE.TEAL}]/20 text-[${COLOR_PALETTE.TEAL}]` : `bg-gray-200 text-gray-600`}`}>
+                        <span className={`text-xs font-semibold py-1 px-2 rounded-full flex-shrink-0 ml-4 ${result.type === 'Product' ? 'bg-teal-500/20 text-teal-700 dark:text-teal-400' : 'bg-gray-200 dark:bg-zinc-700 text-gray-600 dark:text-gray-300'}`}>
                           {result.type}
                         </span>
                       </div>
@@ -239,8 +253,8 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
             </>
           )}
         </div>
-        <div className="text-xs text-center p-2 bg-gray-50 text-gray-400 flex-shrink-0 border-t border-gray-200">
-          Tip: Press <kbd className="font-sans border rounded px-1.5 py-0.5 bg-white shadow-sm">Ctrl+K</kbd> to open search anywhere.
+        <div className="text-xs text-center p-2 bg-gray-50 dark:bg-zinc-900/50 text-gray-400 flex-shrink-0 border-t border-gray-200 dark:border-zinc-700">
+          Tip: Press <kbd className="font-sans border rounded px-1.5 py-0.5 bg-white dark:bg-zinc-700 dark:border-zinc-600 shadow-sm">Ctrl+K</kbd> to open search anywhere.
         </div>
       </div>
     </div>

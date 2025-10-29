@@ -1,69 +1,88 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { PRODUCT_CATALOG, COLOR_PALETTE, TECHNICAL_STANDARD_SUMMARY, SEO_DATA } from '../constants';
-import ProductCategory from '../components/ProductCategory';
+
+import React, { useState, useRef, useMemo, useCallback, useEffect } from 'react';
+import { TECHNICAL_STANDARD_SUMMARY, SEO_DATA } from '../constants';
 import DownloadButtons from '../components/DownloadButtons';
 import MetaTags from '../components/MetaTags';
 import { TechnicalStandard, Product } from '../types';
-import QuickViewModal from '../components/QuickViewModal';
+import ProductCard from '../components/ProductCard';
+import SkeletonProductCard from '../components/SkeletonProductCard';
+import { useUIState } from '../UIStateContext';
+import { useAllProducts } from '../hooks/useAllProducts';
+
+// Extend Product type to include categoryName for display on the card
+interface ProductWithCategoryName extends Product {
+  categoryName: string;
+}
+
+const PAGE_SIZE = 8; // Number of products to load per "page"
 
 const ProductsPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>(PRODUCT_CATALOG[0]?.code || '');
-  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const { openQuickView } = useUIState();
+  const { data: allProductsWithCategory, isLoading: isCatalogLoading } = useAllProducts();
+
+  // 1. Memoize the flattened product list
+  const allProducts: ProductWithCategoryName[] = useMemo(() => {
+    if (isCatalogLoading || !allProductsWithCategory) return [];
+    return allProductsWithCategory.map(({ product, category }) => ({
+      ...product,
+      categoryName: category.name,
+    }));
+  }, [allProductsWithCategory, isCatalogLoading]);
+
+  // 2. State for managing displayed products and loading status for infinite scroll
+  const [displayedProducts, setDisplayedProducts] = useState<ProductWithCategoryName[]>([]);
+  const [loading, setLoading] = useState(false); // For infinite scroll loading
+  const [hasMore, setHasMore] = useState(true);
   
+  // Effect to initialize displayed products once data is loaded
   useEffect(() => {
-    if (observerRef.current) {
-      observerRef.current.disconnect();
+    if (allProducts.length > 0) {
+      setDisplayedProducts(allProducts.slice(0, PAGE_SIZE));
+      setHasMore(allProducts.length > PAGE_SIZE);
     }
+  }, [allProducts]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter(entry => entry.isIntersecting);
-        if (visibleEntries.length > 0) {
-          const topEntry = visibleEntries.reduce((prev, curr) => {
-            return prev.boundingClientRect.top < curr.boundingClientRect.top ? prev : curr;
-          });
-          setActiveCategory(topEntry.target.id);
-        }
-      },
-      {
-        rootMargin: "-120px 0px -50% 0px",
-        threshold: 0,
-      }
-    );
-    observerRef.current = observer;
-
-    PRODUCT_CATALOG.forEach(category => {
-      const element = document.getElementById(category.code);
-      if (element) {
-        observer.observe(element);
+  // 3. Setup IntersectionObserver to trigger loading more products
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastProductElementRef = useCallback((node: HTMLDivElement) => {
+    if (loading) return; // Don't re-trigger if already loading
+    if (observer.current) observer.current.disconnect(); // Disconnect previous observer
+    
+    observer.current = new IntersectionObserver(entries => {
+      // If the last element is visible and there are more products to load
+      if (entries[0].isIntersecting && hasMore) {
+        setLoading(true);
+        // Simulate a network delay for a smoother user experience
+        setTimeout(() => {
+          const currentLength = displayedProducts.length;
+          const nextProducts = allProducts.slice(currentLength, currentLength + PAGE_SIZE);
+          
+          setDisplayedProducts(prevProducts => [...prevProducts, ...nextProducts]);
+          setHasMore(currentLength + PAGE_SIZE < allProducts.length);
+          setLoading(false);
+        }, 800);
       }
     });
+    
+    if (node) observer.current.observe(node); // Observe the new last element
+  }, [loading, hasMore, allProducts, displayedProducts.length]);
 
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, []);
-
-  const handleCategoryClick = (e: React.MouseEvent<HTMLAnchorElement>, categoryCode: string) => {
-    e.preventDefault();
-    document.getElementById(categoryCode)?.scrollIntoView();
-  };
-
-  const handleMobileNavChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const categoryCode = e.target.value;
-    document.getElementById(categoryCode)?.scrollIntoView();
-  };
-  
-  const handleQuickView = (product: Product) => {
-    setQuickViewProduct(product);
-  };
-
-  const handleCloseQuickView = () => {
-    setQuickViewProduct(null);
-  };
+  // Initial loading state UI
+  if (isCatalogLoading) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-16">
+          <div className="h-12 bg-gray-300 dark:bg-zinc-700 rounded-full w-1/2 mx-auto mb-6 animate-pulse"></div>
+          <div className="h-6 bg-gray-200 dark:bg-zinc-600 rounded-full w-3/4 mx-auto animate-pulse"></div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <SkeletonProductCard key={`initial-skeleton-${index}`} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -73,90 +92,71 @@ const ProductsPage: React.FC = () => {
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
-          <h1 className={`text-4xl lg:text-5xl font-bold text-[${COLOR_PALETTE.NAVY}] mb-6`}>
-            Full Product Catalog
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+            Our Full Product Catalog
           </h1>
-          <p className={`text-lg text-[${COLOR_PALETTE.TEXT_SECONDARY}] max-w-3xl mx-auto`}>
-            Pioneering corrosion-proof, high-performance composite products built for power, infrastructure, and sustainability. Use the navigation below to explore our offerings.
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Pioneering corrosion-proof, high-performance composite products built for power, infrastructure, and sustainability. Scroll down to discover our extensive range of solutions.
           </p>
         </div>
 
-        {/* Mobile Dropdown Nav */}
-        <div className="md:hidden mb-8">
-            <label htmlFor="category-select" className="sr-only">Jump to category</label>
-            <select
-                id="category-select"
-                onChange={handleMobileNavChange}
-                value={activeCategory}
-                className={`w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[${COLOR_PALETTE.TEAL}]/80 focus:border-[${COLOR_PALETTE.TEAL}] text-lg font-semibold bg-white border-[${COLOR_PALETTE.BORDER}]`}
-            >
-                {PRODUCT_CATALOG.map(cat => <option key={cat.code} value={cat.code}>{cat.name}</option>)}
-            </select>
-        </div>
-        
-        <div className="flex flex-col md:flex-row gap-12 lg:gap-16">
-          {/* Desktop Sidebar Nav */}
-          <aside className="hidden md:block w-full md:w-1/4 lg:w-1/5">
-              <div className="sticky top-28">
-                  <h3 className={`text-xl font-bold text-[${COLOR_PALETTE.NAVY}] mb-4`}>Product Categories</h3>
-                  <nav>
-                      <ul className="space-y-2">
-                          {PRODUCT_CATALOG.map(cat => (
-                              <li key={cat.code}>
-                                  <a 
-                                      href={`#${cat.code}`}
-                                      onClick={(e) => handleCategoryClick(e, cat.code)}
-                                      className={`block p-2 rounded-md text-sm font-medium transition-all duration-200 border-l-4 ${
-                                          activeCategory === cat.code
-                                          ? `bg-[${COLOR_PALETTE.TEAL}]/10 border-[${COLOR_PALETTE.TEAL}] text-[${COLOR_PALETTE.NAVY}] font-semibold`
-                                          : `border-transparent text-[${COLOR_PALETTE.TEXT_SECONDARY}] hover:bg-gray-100 hover:border-gray-300`
-                                      }`}
-                                  >
-                                      {cat.name}
-                                  </a>
-                              </li>
-                          ))}
-                      </ul>
-                  </nav>
-              </div>
-          </aside>
-          
-          {/* Main Content */}
-          <main className="w-full md:w-3/4 lg:w-4/5">
-            {PRODUCT_CATALOG.length > 0 ? (
-              PRODUCT_CATALOG.map((category) => (
-                <ProductCategory key={category.code} category={category} onQuickViewClick={handleQuickView} />
-              ))
-            ) : (
-              <div className="text-center py-16">
-                <h2 className={`text-2xl font-semibold text-[${COLOR_PALETTE.NAVY}]`}>No Products Found</h2>
-                <p className={`text-[${COLOR_PALETTE.TEXT_SECONDARY}] mt-2`}>The product catalog is currently empty. Please check back later.</p>
-              </div>
-            )}
-          </main>
-        </div>
+        {/* Unified Product Grid */}
+        <main>
+          {displayedProducts.length === 0 && !loading ? (
+            <div className="text-center py-16">
+              <h2 className="text-2xl font-semibold">No Products Found</h2>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">The product catalog is currently empty. Please check back later.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {displayedProducts.map((product, index) => (
+                <div key={product.code} ref={index === displayedProducts.length - 1 ? lastProductElementRef : null}>
+                  <ProductCard
+                    product={product}
+                    onQuickViewClick={() => openQuickView(product)}
+                    categoryName={product.categoryName}
+                  />
+                </div>
+              ))}
+              {/* Skeleton Loader for infinite scroll */}
+              {loading && (
+                <>
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <SkeletonProductCard key={`skeleton-${index}`} />
+                  ))}
+                </>
+              )}
+            </div>
+          )}
 
+          {/* End of List Message */}
+          {!hasMore && !loading && displayedProducts.length > 0 && (
+             <div className="text-center py-10 mt-8 border-t border-gray-200 dark:border-zinc-800">
+               <p className="text-lg font-medium text-gray-500 dark:text-gray-400">You've viewed all products.</p>
+             </div>
+          )}
+        </main>
 
         <section className="mb-16 mt-24">
-          <h3 className={`text-3xl lg:text-4xl font-bold text-[${COLOR_PALETTE.NAVY}] mb-6 text-center`}>Technical Standard Summary</h3>
-          <p className={`text-center text-lg text-[${COLOR_PALETTE.TEXT_SECONDARY}] mb-10 max-w-3xl mx-auto`}>
+          <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-center">Technical Standard Summary</h3>
+          <p className="text-center text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto">
             Our products are rigorously tested and certified to meet the highest international and national standards.
           </p>
-          <div className="overflow-x-auto bg-white rounded-lg shadow-sm p-4 border border-[${COLOR_PALETTE.BORDER}]">
+          <div className="overflow-x-auto bg-white dark:bg-zinc-800 rounded-lg shadow-sm p-4 border border-gray-200 dark:border-zinc-700">
             <table className="min-w-full">
-              <thead className={`bg-[${COLOR_PALETTE.NAVY}] text-white`}>
+              <thead className="bg-gray-800 dark:bg-zinc-900 text-white">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Property</th>
                   <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">EMPHZ Standard</th>
                   <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">International Code</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[${COLOR_PALETTE.BORDER}]">
+              <tbody className="divide-y divide-gray-200 dark:divide-zinc-700">
                 {TECHNICAL_STANDARD_SUMMARY.map((item: TechnicalStandard, index: number) => (
-                  <tr key={index} className={`hover:bg-[${COLOR_PALETTE.BACKGROUND}]`}>
-                    <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium text-[${COLOR_PALETTE.TEXT_PRIMARY}]`}>{item.property}</td>
-                    <td className={`px-6 py-4 whitespace-nowrap text-sm text-[${COLOR_PALETTE.TEXT_SECONDARY}]`}>{item.emphzStandard}</td>
-                    <td className={`px-6 py-4 whitespace-nowrap text-sm text-[${COLOR_PALETTE.TEXT_SECONDARY}]`}>{item.internationalCode}</td>
+                  <tr key={index} className="hover:bg-gray-50 dark:hover:bg-zinc-700/50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{item.property}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">{item.emphzStandard}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">{item.internationalCode}</td>
                   </tr>
                 ))}
               </tbody>
@@ -166,7 +166,6 @@ const ProductsPage: React.FC = () => {
 
         <DownloadButtons />
       </div>
-      <QuickViewModal product={quickViewProduct} onClose={handleCloseQuickView} />
     </>
   );
 };
