@@ -8,6 +8,7 @@ import ProductCard from '../components/ProductCard';
 import SkeletonProductCard from '../components/SkeletonProductCard';
 import { useUIState } from '../UIStateContext';
 import { useAllProducts } from '../hooks/useAllProducts';
+import Button from '../components/Button';
 
 // Extend Product type to include categoryName for display on the card
 interface ProductWithCategoryName extends Product {
@@ -18,7 +19,7 @@ const PAGE_SIZE = 8; // Number of products to load per "page"
 
 const ProductsPage: React.FC = () => {
   const { openQuickView } = useUIState();
-  const { data: allProductsWithCategory, isLoading: isCatalogLoading } = useAllProducts();
+  const { data: allProductsWithCategory, isLoading: isCatalogLoading, error } = useAllProducts();
 
   // 1. Memoize the flattened product list
   const allProducts: ProductWithCategoryName[] = useMemo(() => {
@@ -67,6 +68,21 @@ const ProductsPage: React.FC = () => {
     if (node) observer.current.observe(node); // Observe the new last element
   }, [loading, hasMore, allProducts, displayedProducts.length]);
 
+  // Dedicated Error Component
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center justify-center min-h-[60vh]">
+        <h1 className="text-4xl font-bold text-red-500 dark:text-red-400 mb-4">Failed to Load Products</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+          There was a problem fetching the product catalog. Please check your network connection and try again.
+        </p>
+        <Button onClick={() => window.location.reload()} variant="primary">
+          Reload Page
+        </Button>
+      </div>
+    );
+  }
+
   // Initial loading state UI
   if (isCatalogLoading) {
     return (
@@ -102,7 +118,7 @@ const ProductsPage: React.FC = () => {
 
         {/* Unified Product Grid */}
         <main>
-          {displayedProducts.length === 0 && !loading ? (
+          {displayedProducts.length === 0 && !loading && !isCatalogLoading ? (
             <div className="text-center py-16">
               <h2 className="text-2xl font-semibold">No Products Found</h2>
               <p className="text-gray-600 dark:text-gray-400 mt-2">The product catalog is currently empty. Please check back later.</p>

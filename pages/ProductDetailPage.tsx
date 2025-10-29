@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Product, ProductCategory } from '../types';
 import { useProduct } from '../hooks/useProduct';
 import MetaTags from '../components/MetaTags';
@@ -10,8 +10,9 @@ import { useUIState } from '../UIStateContext';
 
 const ProductDetailPage: React.FC = () => {
   const { productCode } = useParams<{ productCode: string }>();
-  const { data: productData, isLoading } = useProduct(productCode);
+  const { data: productData, isLoading, error } = useProduct(productCode);
   const { openQuickView } = useUIState();
+  const navigate = useNavigate();
 
   // Normalize images to always be an array for easier handling
   const images = React.useMemo(() => {
@@ -55,6 +56,25 @@ const ProductDetailPage: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-40 text-center flex flex-col justify-center items-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-teal-500"></div>
         <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">Loading Product Details...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center justify-center min-h-[60vh]">
+        <h1 className="text-4xl font-bold text-red-500 dark:text-red-400 mb-4">Error Loading Product</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+          There was a problem fetching the details for this product. Please try again.
+        </p>
+        <div className="flex space-x-4">
+          <Button onClick={() => window.location.reload()} variant="primary">
+            Retry
+          </Button>
+          <Button onClick={() => navigate('/products')} variant="outline">
+            Back to Products
+          </Button>
+        </div>
       </div>
     );
   }

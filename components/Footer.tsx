@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_OPTIONS, OFFICE_LOCATIONS } from '../constants';
 import config from '../config';
+import Logo from './Logo';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Company Info */}
         <div className="md:col-span-1">
-          <img src="https://i.ibb.co/hK4B5Q7/emphz-logo.png" alt="EMPHZ Logo" className="h-14 mb-4" />
+          <Logo className="h-12 w-auto mb-4" />
           <p className="text-sm text-gray-400">
             Engineering Tomorrow’s Infrastructure — Today.
           </p>

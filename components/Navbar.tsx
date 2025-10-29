@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../ThemeContext';
 import { useUIState } from '../UIStateContext';
 import config from '../config';
+import Logo from './Logo';
 
 const SunIcon = () => (
   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,8 +42,8 @@ const Navbar: React.FC = () => {
   return (
     <nav className="bg-white/90 dark:bg-zinc-900/80 backdrop-blur-lg sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-gray-200 dark:border-zinc-800">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <img src="https://i.ibb.co/hK4B5Q7/emphz-logo.png" alt="EMPHZ Logo" className="h-12" />
+        <Link to="/" className="flex items-center" aria-label="EMPHZ Homepage">
+          <Logo className="h-10 w-auto" />
         </Link>
 
         {/* Mobile menu button */}

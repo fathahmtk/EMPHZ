@@ -20,6 +20,7 @@ import SearchModal from './components/SearchModal';
 import QuickViewModal from './components/QuickViewModal';
 import { useUIState } from './UIStateContext';
 import config from './config';
+import ToastContainer from './components/ToastContainer';
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash, state } = useLocation();
@@ -105,6 +106,7 @@ const App: React.FC = () => {
         <ScrollToTopButton />
         <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
         <QuickViewModal product={quickViewProduct} onClose={closeQuickView} />
+        <ToastContainer />
       </div>
     </Router>
   );

@@ -26,11 +26,11 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
   const searchIndexRef = useRef<SearchResult[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const { data: productsData, isLoading: isIndexLoading } = useAllProducts();
+  const { data: productsData, isLoading: isIndexLoading, error: indexError } = useAllProducts();
 
   // Build search index when data is loaded
   useEffect(() => {
-    if (isIndexLoading || !productsData) {
+    if (isIndexLoading || indexError || !productsData) {
       searchIndexRef.current = [];
       return;
     }
@@ -64,7 +64,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
     });
 
     searchIndexRef.current = newIndex;
-  }, [productsData, isIndexLoading]);
+  }, [productsData, isIndexLoading, indexError]);
 
   // Effect to handle modal open/close actions
   useEffect(() => {
@@ -85,7 +85,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
   
   // The "fuzzy" search logic
   useEffect(() => {
-    if (!query.trim()) {
+    if (!query.trim() || indexError) {
       setResults([]);
       setActiveIndex(-1);
       return;
@@ -120,7 +120,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
     scoredResults.sort((a, b) => b.score - a.score);
     setResults(scoredResults.slice(0, 15));
     setActiveIndex(-1);
-  }, [query]);
+  }, [query, indexError]);
 
   // Apply sorting to the results
   const sortedResults = useMemo(() => {
@@ -129,7 +129,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       case 'name-asc':
         return sorted.sort((a, b) => a.title.localeCompare(b.title));
       case 'name-desc':
-        return sorted.sort((a, b) => b.title.localeCompare(a.title));
+        return sorted.sort((a, b) => b.title.localeCompare(b.title));
       case 'code-asc':
         return sorted.sort((a, b) => (a.code || '').localeCompare(b.code || ''));
       case 'category':
@@ -208,12 +208,18 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                 <p>Building search index...</p>
              </div>
           )}
-          {!isIndexLoading && query.trim() && sortedResults.length === 0 && (
+          {indexError && (
+             <div className="p-8 text-center text-red-500 dark:text-red-400">
+                <p className="font-semibold">Could not build search index.</p>
+                <p className="text-sm mt-1">{indexError.message}</p>
+             </div>
+          )}
+          {!isIndexLoading && !indexError && query.trim() && sortedResults.length === 0 && (
             <div className="p-8 text-center text-gray-500 dark:text-gray-400">
               <p>No results found for "{query}".</p>
             </div>
           )}
-          {sortedResults.length > 0 && (
+          {!indexError && sortedResults.length > 0 && (
             <>
               <div className="p-2 bg-gray-50 dark:bg-zinc-900/50 border-b border-gray-200 dark:border-zinc-700 flex items-center justify-between text-sm sticky top-0">
                 <span className="text-gray-500 dark:text-gray-400 font-medium px-2">{sortedResults.length} results</span>

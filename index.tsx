@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider } from './ThemeContext';
 import { UIStateProvider } from './UIStateContext';
+import { ToastProvider } from './ToastContext';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
       <UIStateProvider>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </UIStateProvider>
     </ThemeProvider>
   </React.StrictMode>

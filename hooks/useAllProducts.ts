@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { fetchAllProducts } from '../api';
 import { Product, ProductCategory } from '../types';
+import { useToast } from '../ToastContext';
 
 export interface ProductWithCategoryContext {
   product: Product;
@@ -16,6 +17,7 @@ export const useAllProducts = () => {
   const [data, setData] = useState<ProductWithCategoryContext[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const { addToast } = useToast();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -24,14 +26,16 @@ export const useAllProducts = () => {
         const fetchedData = await fetchAllProducts();
         setData(fetchedData);
       } catch (err) {
-        setError(err instanceof Error ? err : new Error('An unknown error occurred'));
+        const error = err instanceof Error ? err : new Error('An unknown error occurred while fetching products.');
+        setError(error);
+        addToast('Failed to load product catalog. Please try again later.', 'error');
       } finally {
         setIsLoading(false);
       }
     };
 
     loadProducts();
-  }, []);
+  }, [addToast]);
 
   return { data, isLoading, error };
 };
