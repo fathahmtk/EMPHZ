@@ -1,4 +1,3 @@
-
 import React, { useEffect, useCallback } from 'react';
 import { Product } from '../types';
 import Button from './Button';
@@ -64,6 +63,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
           <img
             src={imageUrl}
             alt={product.name}
+            loading="lazy"
             className="w-full h-64 md:h-full object-cover"
           />
         </div>

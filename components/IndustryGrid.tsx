@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Button from './Button';
 import { INDUSTRIES } from '../constants';
@@ -17,6 +16,7 @@ const IndustryGrid: React.FC = () => {
               <img
                 src={industry.image}
                 alt={industry.name}
+                loading="lazy"
                 className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-transparent flex items-end p-6">

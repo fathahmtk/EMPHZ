@@ -135,6 +135,7 @@ const ProductDetailPage: React.FC = () => {
               <img
                 src={activeImage}
                 alt={`${product.name} - image ${activeIndex + 1}`}
+                loading="eager"
                 className="block w-full h-full object-cover transition-transform duration-300 ease-out"
                 style={{
                   transform: isZoomed ? 'scale(1.75)' : 'scale(1)',
@@ -185,6 +186,7 @@ const ProductDetailPage: React.FC = () => {
                     <img
                       src={img}
                       alt={`${product.name} thumbnail ${index + 1}`}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </button>

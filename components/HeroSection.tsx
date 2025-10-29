@@ -33,6 +33,7 @@ const HeroSection: React.FC = () => {
             key={src} // Use image src as key for stable identity
             src={src}
             alt={`EMPHZ Background ${index + 1}`}
+            loading={index === 0 ? 'eager' : 'lazy'}
             className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               index === currentIndex ? 'opacity-100 animate-hero-zoom' : 'opacity-0'
             }`}

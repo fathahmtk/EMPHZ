@@ -13,11 +13,13 @@ const QualitySection: React.FC = () => {
             <img
               src="https://picsum.photos/800/600?random=factory-automated"
               alt="Automated SMC presses"
+              loading="lazy"
               className="w-full h-auto rounded-lg shadow-lg object-cover aspect-video"
             />
             <img
               src="https://picsum.photos/800/600?random=factory-qc"
               alt="QC lab in action"
+              loading="lazy"
               className="w-full h-auto rounded-lg shadow-lg object-cover aspect-video"
             />
           </div>

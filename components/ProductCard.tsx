@@ -71,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
         {product.image && (
           <div className="mt-4">
             {/* FIX: Handle case where product.image is an array by taking the first image for the card. */}
-            <img src={Array.isArray(product.image) ? product.image[0] : product.image} alt={product.name} className="w-full h-40 object-cover rounded-md" />
+            <img src={Array.isArray(product.image) ? product.image[0] : product.image} alt={product.name} loading="lazy" className="w-full h-40 object-cover rounded-md" />
           </div>
         )}
       </div>
