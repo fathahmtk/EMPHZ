@@ -17,10 +17,11 @@ export const HERO_SECTION = {
   cta1: "Explore Our Products",
   cta2: "Request a Quote",
   backgroundImages: [
-    "https://picsum.photos/1920/1080?random=factory-cinematic",
-    "https://picsum.photos/1920/1080?random=composite-material",
-    "https://picsum.photos/1920/1080?random=electrical-panel",
-    "https://picsum.photos/1920/1080?random=renewable"
+    "https://www.dropbox.com/scl/fi/3q4zsq0vxb6bscss6j98z/Emphz-GRP-Portable-Toilet.png?rlkey=cjq4lyp3emeqwj7hf0q1cchxe&st=135v3dzm&dl=1",
+    "https://www.dropbox.com/scl/fi/i0r4s035cvcc8v8ykg9ba/Emphz-GRP-Hero-Image-3.png?rlkey=obfwaz3804vodjbnk2rpgmdj9&st=2kcxqe9b&dl=1",
+    "https://www.dropbox.com/scl/fi/p9nv1veh2fxa52ymwtghl/Emphz-GRP-Hero-Image-1.png?rlkey=dxhpiufpindtycgfv0ch48w48&st=14k83l73&dl=1",
+    "https://www.dropbox.com/scl/fi/rdjc4ppeb575uu4jzp9sw/Emphz-GRP-Electrical-Enclosures.png?rlkey=qk70gdenb7dhcxyajkerv4q0o&st=fwzq5iyr&dl=1",
+    "https://www.dropbox.com/scl/fi/i3jblkxsh97yoq6b61i1k/Emphz-GRP-Hero-Image-2.png?rlkey=wudzy7fl1pquzayw3yd2865mt&st=aznaxs17&dl=1",
   ],
 };
 
@@ -69,17 +70,15 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP ELECTRICAL & UTILITY ENCLOSURES',
     slug: 'grp-enclosures',
     tagline: 'Precision protection engineered for reliability and safety.',
-    image: 'https://picsum.photos/800/600?random=enclosure-1a',
+    image: 'https://www.dropbox.com/scl/fi/qw4y5jznrfkjlvrrsu5z3/Emphz-GRP-Single-door-enclosure.png?rlkey=xiy2y9bmobq14losztoeipgcz&st=lpeop70h&dl=1',
     products: [
       {
         code: 'E-101',
         name: 'GRP Single-Door Enclosure',
         description: 'Compact IP66 cabinet for small control panels, CCTV power boxes, and sensors.',
         image: [
-          'https://picsum.photos/800/600?random=enclosure-1a',
-          'https://picsum.photos/800/600?random=enclosure-1b',
-          'https://picsum.photos/800/600?random=enclosure-1c',
-          'https://picsum.photos/800/600?random=enclosure-1d'
+          'https://www.dropbox.com/scl/fi/qw4y5jznrfkjlvrrsu5z3/Emphz-GRP-Single-door-enclosure.png?rlkey=xiy2y9bmobq14losztoeipgcz&st=lpeop70h&dl=1',
+          'https://www.dropbox.com/scl/fi/r42j664ik0qzwgk6b98zy/Emphz-GRP-Single-door-enclosure-Open.png?rlkey=4szqk2rqkbinm2wq4e9zr9288&st=0qicliv1&dl=1'
         ],
       },
       {

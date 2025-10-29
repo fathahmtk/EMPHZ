@@ -47,7 +47,7 @@ const Logo: React.FC<{ className?: string }> = ({ className = 'h-12 w-auto' }) =
 
           {/* Filter for a softer, more realistic drop shadow */}
           <filter id="logo-shadow" x="-25%" y="-25%" width="150%" height="150%">
-            <feDropShadow dx="8" dy="10" stdDeviation="15" floodColor="#000" floodOpacity="0.25" />
+            <feDropShadow dx="6" dy="8" stdDeviation="15" floodColor="#000" floodOpacity="0.4" />
           </filter>
 
           {/* Filter for a tighter, more defined text shadow */}
@@ -57,7 +57,7 @@ const Logo: React.FC<{ className?: string }> = ({ className = 'h-12 w-auto' }) =
         </defs>
 
         {/* --- Icon Group --- */}
-        <g transform="translate(80, 35)" filter="url(#logo-shadow)">
+        <g transform="translate(80, 45)" filter="url(#logo-shadow)">
           <title>EMPHZ Engineering Icon</title>
           
           {/* E-Shape (Extrusion layer) - Decorative */}
