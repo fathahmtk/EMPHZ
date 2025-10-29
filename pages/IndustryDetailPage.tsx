@@ -38,19 +38,19 @@ const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({ industry }) => 
       />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center justify-center text-center text-white overflow-hidden bg-gray-800">
+      <section className="relative h-[60vh] flex items-center justify-center text-center text-white overflow-hidden bg-gray-800">
         <img
           src={industry.image}
           alt={`${industry.name} industry applications`}
           loading="eager"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 hero-overlay"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 animate-fadeInUp text-shadow-strong">
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 animate-fadeInUp">
             Solutions for the {industry.name} Industry
           </h1>
-          <p className="text-lg sm:text-xl font-light animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl font-light animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             {industry.description}
           </p>
         </div>

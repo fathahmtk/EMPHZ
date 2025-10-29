@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
         {images.map((src, index) => (
           <div
             key={src}
-            className={`w-full h-full absolute inset-0 transition-opacity duration-1500 ease-in-out ${
+            className={`w-full h-full absolute inset-0 transition-opacity duration-[2500ms] ease-in-out ${
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
             role="group"
@@ -63,10 +63,10 @@ const HeroSection: React.FC = () => {
           {HERO_SECTION.subline}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          <Button variant="glass" href="/products" className="min-w-[220px] text-lg lg:text-xl lg:py-4">
+          <Button variant="glass" href="/products" className="min-w-[240px] text-lg px-8 py-4">
             {HERO_SECTION.cta1}
           </Button>
-          <Button variant="glass" href="/contact" className="min-w-[220px] text-lg lg:text-xl lg:py-4">
+          <Button variant="glass" href="/contact" className="min-w-[240px] text-lg px-8 py-4">
             {HERO_SECTION.cta2}
           </Button>
         </div>
@@ -98,8 +98,8 @@ const HeroSection: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 ${
-              index === currentIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
+            className={`w-3.5 h-3.5 rounded-full transition-all duration-300 backdrop-blur-md border border-white/40 ${
+              index === currentIndex ? 'bg-white scale-110' : 'bg-white/40 hover:bg-white/70'
             }`}
             aria-label={`Go to slide ${index + 1}`}
             aria-current={index === currentIndex}
