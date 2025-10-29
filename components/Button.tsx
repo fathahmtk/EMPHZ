@@ -39,12 +39,16 @@ const Button: React.FC<ButtonProps> = ({
       break;
   }
 
+  // Centralized logic for disabling and providing tooltips for placeholder links
+  const isDisabled = disabled || href === '#';
+  const tooltip = href === '#' ? 'This feature is coming soon.' : undefined;
+
   const finalClassName = `${baseStyles} ${variantStyles} ${className}`;
 
   if (href) {
     const isExternal = href.startsWith('http');
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-      if (disabled) {
+      if (isDisabled) {
         e.preventDefault();
         return;
       }
@@ -56,12 +60,13 @@ const Button: React.FC<ButtonProps> = ({
     if (isExternal) {
       return (
         <a
-          href={disabled ? undefined : href}
+          href={isDisabled ? undefined : href}
           onClick={handleClick}
           target="_blank"
           rel="noopener noreferrer"
           className={`${finalClassName} text-center`}
-          aria-disabled={disabled}
+          aria-disabled={isDisabled}
+          title={tooltip}
         >
           {children}
         </a>
@@ -72,8 +77,9 @@ const Button: React.FC<ButtonProps> = ({
       <Link
         to={href}
         onClick={handleClick}
-        className={`${finalClassName} text-center ${disabled ? 'pointer-events-none' : ''}`}
-        aria-disabled={disabled}
+        className={`${finalClassName} text-center ${isDisabled ? 'pointer-events-none' : ''}`}
+        aria-disabled={isDisabled}
+        title={tooltip}
       >
         {children}
       </Link>
@@ -84,8 +90,9 @@ const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      disabled={disabled}
+      disabled={isDisabled}
       className={finalClassName}
+      title={tooltip}
     >
       {children}
     </button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import { INDUSTRIES } from '../constants';
 
@@ -9,9 +10,10 @@ const IndustryGrid: React.FC = () => {
         <h2 className="text-3xl lg:text-4xl font-bold mb-16">Across Sectors. Across Continents.</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {INDUSTRIES.map((industry, index) => (
-            <div
+            <Link
               key={index}
-              className="relative overflow-hidden rounded-lg shadow-md group"
+              to={`/industries/${industry.slug}`}
+              className="block relative overflow-hidden rounded-lg shadow-md group transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               <img
                 src={industry.image}
@@ -23,13 +25,16 @@ const IndustryGrid: React.FC = () => {
                 <div className="text-left text-white">
                   <h3 className="text-2xl font-semibold mb-2">{industry.name}</h3>
                   <p className="text-sm opacity-90">{industry.applicationExample}</p>
+                   <div className="mt-4 text-sm font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Learn More &rarr;
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="mt-16">
-          <Button variant="secondary" href="#">View Case Studies</Button>
+          <Button variant="secondary" href="/industries">Explore All Industries</Button>
         </div>
       </div>
     </section>

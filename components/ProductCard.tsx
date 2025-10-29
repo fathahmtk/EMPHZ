@@ -68,12 +68,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
           )}
         </div>
         {product.image && (
-          <div className="mt-4 rounded-md overflow-hidden">
+          <div className="mt-4 rounded-md overflow-hidden aspect-[3/2]">
             <img 
               src={Array.isArray(product.image) ? product.image[0] : product.image} 
               alt={product.name} 
-              loading="lazy" 
-              className="w-full h-40 object-cover rounded-md transition-transform duration-500 ease-in-out group-hover:scale-110" 
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              width="600"
+              height="400"
+              className="w-full h-full object-cover rounded-md transition-transform duration-500 ease-in-out group-hover:scale-110" 
             />
           </div>
         )}

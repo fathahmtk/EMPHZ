@@ -1,27 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import ProductsPage from './pages/ProductsPage';
-import ProductCategoryPage from './pages/ProductCategoryPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import IndustriesPage from './pages/IndustriesPage';
-import InnovationPage from './pages/InnovationPage';
-import SustainabilityPage from './pages/SustainabilityPage';
-import CorporatePage from './pages/CorporatePage';
-import SupportPage from './pages/SupportPage';
-import KnowledgePage from './pages/KnowledgePage';
-import ContactPage from './pages/ContactPage';
-import AdminPage from './pages/AdminPage';
 import ScrollToTopButton from './components/ScrollToTopButton';
-import NotFoundPage from './pages/NotFoundPage';
 import SearchModal from './components/SearchModal';
 import QuickViewModal from './components/QuickViewModal';
 import { useUIState } from './UIStateContext';
 import config from './config';
 import ToastContainer from './components/ToastContainer';
 import ContactFAB from './components/ContactFAB';
+import LoadingSpinner from './components/LoadingSpinner';
+
+// Lazy load all page components for code splitting
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
+const IndustryLandingPage = lazy(() => import('./pages/IndustryLandingPage'));
+const InnovationPage = lazy(() => import('./pages/InnovationPage'));
+const SustainabilityPage = lazy(() => import('./pages/SustainabilityPage'));
+const CorporatePage = lazy(() => import('./pages/CorporatePage'));
+const SupportPage = lazy(() => import('./pages/SupportPage'));
+const KnowledgePage = lazy(() => import('./pages/KnowledgePage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash, state } = useLocation();
@@ -84,25 +88,29 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/category/:categorySlug" element={<ProductCategoryPage />} />
-            <Route path="/products/:productCode" element={<ProductDetailPage />} />
-            <Route path="/industries" element={<IndustriesPage />} />
-            <Route path="/innovation" element={<InnovationPage />} />
-            <Route path="/sustainability" element={<SustainabilityPage />} />
-            <Route path="/corporate" element={<CorporatePage />} />
-            <Route path="/support" element={<SupportPage />} />
-            <Route path="/knowledge" element={<KnowledgePage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            {config.isAdminPortalEnabled && <Route path="/admin" element={<AdminPage />} />}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+        <main id="main-content" className="flex-grow">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/products/category/:categorySlug" element={<ProductCategoryPage />} />
+              <Route path="/products/:productCode" element={<ProductDetailPage />} />
+              <Route path="/industries" element={<IndustriesPage />} />
+              <Route path="/industries/:industrySlug" element={<IndustryLandingPage />} />
+              <Route path="/innovation" element={<InnovationPage />} />
+              <Route path="/sustainability" element={<SustainabilityPage />} />
+              <Route path="/corporate" element={<CorporatePage />} />
+              <Route path="/support" element={<SupportPage />} />
+              <Route path="/knowledge" element={<KnowledgePage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              {config.isAdminPortalEnabled && <Route path="/admin" element={<AdminPage />} />}
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         {/* Floating Action Buttons Container */}

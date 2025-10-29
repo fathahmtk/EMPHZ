@@ -3,8 +3,10 @@ import ContactRFQ from '../components/ContactRFQ';
 import Button from '../components/Button';
 import MetaTags from '../components/MetaTags';
 import { SEO_DATA } from '../constants';
+import { useToast } from '../ToastContext';
 
 const ContactPage: React.FC = () => {
+  const { addToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -73,7 +75,7 @@ const ContactPage: React.FC = () => {
 
     if (isNameValid && isEmailValid && isMessageValid && isPhoneValid) {
       console.log('RFQ Form Submitted:', formData);
-      alert('Thank you for your request! We will get back to you shortly.');
+      addToast('Thank you! Your quote request has been submitted successfully.', 'success');
       setFormData({
         name: '',
         email: '',

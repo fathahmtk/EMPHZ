@@ -61,6 +61,10 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
           src={activeImage}
           alt={`${productName} - image ${activeIndex + 1}`}
           loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          width="800"
+          height="800"
           className="block w-full h-full object-cover transition-transform duration-300 ease-out"
           style={{
             transform: isZoomed ? 'scale(1.75)' : 'scale(1)',
@@ -114,6 +118,10 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
                 src={img}
                 alt={`${productName} thumbnail ${index + 1}`}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+                width="150"
+                height="150"
                 className="w-full h-full object-cover"
               />
             </button>

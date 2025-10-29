@@ -195,7 +195,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
             "https://www.dropbox.com/scl/fi/ucvfzpqgtloe261ohehem/Emphz-GRP-Portable-Toilet15.png?rlkey=0x6eg64krw9sb1po4cp00roye&st=27ynmfl3&dl=1",
             "https://www.dropbox.com/scl/fi/xgpdf7o58bzuk3bxlwdcx/Emphz-GRP-Portable-Toilet14.png?rlkey=gpt4qav1bdlmsrjy569itf8b1&st=uawes17w&dl=1",
             "https://www.dropbox.com/scl/fi/1qbk0lro0rk87e0w4mkan/Emphz-GRP-Portable-Toilet13.png?rlkey=85rswr89uohxu6rf1yv7qu3i7&st=pzkyht8o&dl=1",
-            "https://www.dropbox.com/scl/fi/dirsd8yvopssfjcl4ae6a/Emphz-GRP-Portable-Toilet12.png?rlkey=87qyxe43i94lz9pxcl59ah7jx&st=mzw80lh4&dl=1",
+            "https://www.dropbox.com/scl/fi/dirsd8yvopssfjcl4ae6a/Emphz-GRP-Portable-Toilet12.png?rlkey=87qyxe43i94lz9pxcl59ah7jx&st=mzw80lh4&dl=1"
         ],
       },
       {
@@ -508,28 +508,78 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
 export const INDUSTRIES: Industry[] = [
   {
     name: "Electrical & Utilities",
+    slug: "electrical-utilities",
     applicationExample: "GRP feeder pillars and transformer enclosures",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Electrical"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Electrical",
+    description: "EMPHZ provides mission-critical GRP enclosures and housings for the electrical power transmission and distribution sector. Our non-conductive, corrosion-proof solutions protect sensitive equipment like switchgear, transformers, and control panels from harsh environmental conditions, ensuring grid reliability and safety.",
+    details: [
+      "IP66/IK10 rated enclosures for superior protection against dust, water, and impact.",
+      "UV-stabilized and fire-retardant materials for long-term outdoor performance.",
+      "Customizable designs for feeder pillars, RMU housings, and transformer kiosks.",
+      "Lightweight construction for easy transportation and installation in remote locations."
+    ],
+    relatedCategories: ['CAT1', 'CAT3', 'CAT4'],
+    featuredProducts: ['E-103', 'E-106', 'U-307', 'U-308']
   },
   {
     name: "Renewable Energy",
+    slug: "renewable-energy",
     applicationExample: "Solar inverter cabinets, wind farm junction boxes",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Renewable"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Renewable",
+    description: "In the renewable energy sector, our GRP solutions provide durable, maintenance-free protection for critical components in solar and wind farms. From inverter cabinets to nacelle covers, our composites withstand extreme weather, ensuring maximum uptime and a low total cost of ownership for green energy projects.",
+    details: [
+      "UV-stable GRP cabinets for solar inverters and battery storage systems.",
+      "Lightweight, high-strength nacelle covers for wind turbines.",
+      "Corrosion-proof junction boxes and control panels for coastal and offshore installations.",
+      "Thermally insulated designs to protect sensitive electronics from temperature extremes."
+    ],
+    relatedCategories: ['CAT1', 'CAT4', 'CAT5', 'CAT6'],
+    featuredProducts: ['E-108', 'C-406', 'C-409', 'O-504']
   },
   {
     name: "Telecom & IT",
+    slug: "telecom-it",
     applicationExample: "Weatherproof kiosk housings for fiber and base stations",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Telecom"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Telecom",
+    description: "EMPHZ engineers robust GRP enclosures and shelters for the telecom and IT industries, safeguarding sensitive network equipment from environmental hazards. Our solutions offer excellent thermal management and RF transparency, making them ideal for 5G base stations, fiber optic junction boxes, and remote data-gathering nodes.",
+    details: [
+      "Weatherproof kiosks and cabinets with advanced thermal management options.",
+      "Customizable enclosures with EMI/RFI shielding for sensitive electronics.",
+      "RF-transparent materials ideal for antenna housings and communication equipment.",
+      "Secure and durable shelters for remote base stations and network hubs."
+    ],
+    relatedCategories: ['CAT1', 'CAT2', 'CAT4', 'CAT6'],
+    featuredProducts: ['E-105', 'M-206', 'C-401', 'S-605']
   },
   {
     name: "Construction & Infrastructure",
+    slug: "construction-infrastructure",
     applicationExample: "Portable toilets, control cabins, and pump rooms",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Construction"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Construction",
+    description: "For the construction and public infrastructure sectors, EMPHZ delivers rapid-deployment modular GRP structures and durable utility products. Our lightweight yet strong portable cabins, restrooms, and site offices offer a superior alternative to traditional materials, while our composite manhole covers and cable trenches ensure long-term, corrosion-free performance.",
+    details: [
+      "Rapid-deployment portable cabins, site offices, and security booths.",
+      "Hygienic, easy-to-clean portable toilets and restroom units.",
+      "High-strength, lightweight manhole covers and drainage gratings.",
+      "Corrosion-immune water storage and septic tanks for reliable sanitation."
+    ],
+    relatedCategories: ['CAT2', 'CAT3'],
+    featuredProducts: ['M-201', 'M-203', 'M-210', 'U-305']
   },
   {
     name: "Marine & Offshore",
+    slug: "marine-offshore",
     applicationExample: "Anti-corrosive enclosures for coastal facilities",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Marine"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Marine",
+    description: "EMPHZ's specialized GRP composites are engineered to withstand the most corrosive marine and offshore environments. Our IP67-rated enclosures, cabinets, and custom-molded components provide unparalleled protection against saltwater, humidity, and UV radiation, making them the ideal choice for ports, desalination plants, and offshore platforms.",
+    details: [
+      "IP67-rated enclosures certified for over 1000 hours of salt spray testing.",
+      "Corrosion-immune materials for junction boxes, control cabinets, and battery compartments.",
+      "Lightweight structures that reduce structural load on offshore platforms and vessels.",
+      "Fire-retardant and UV-stabilized formulations for enhanced safety and longevity."
+    ],
+    relatedCategories: ['CAT1', 'CAT5'],
+    featuredProducts: ['E-104', 'O-501', 'O-503', 'O-505']
   },
 ];
 
@@ -688,6 +738,10 @@ export const SEO_DATA = {
   industries: {
     title: "EMPHZ Composite Engineering - GRP Applications Across India",
     description: "EMPHZ empowers industries from electrical utilities to marine & offshore with advanced GRP composite solutions tailored for diverse applications.",
+  },
+  industryDetail: {
+    title: (industryName: string) => `GRP Solutions for the ${industryName} Sector | EMPHZ`,
+    description: (industryName: string, industryDescription: string) => `Explore EMPHZ's specialized GRP composite solutions for the ${industryName} sector. ${industryDescription.substring(0, 150)}...`,
   },
   innovation: {
     title: "EMPHZ Innovation & Quality - Precision in Every Layer",

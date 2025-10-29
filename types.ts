@@ -41,8 +41,13 @@ export interface BrandPillar {
 
 export interface Industry {
   name: string;
+  slug: string;
   applicationExample: string;
   image: string;
+  description: string;
+  details: string[];
+  relatedCategories: string[];
+  featuredProducts: string[];
 }
 
 export interface QualityPoint {
