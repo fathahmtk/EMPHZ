@@ -55,14 +55,14 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 p-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+      <div className="relative z-10 p-4 max-w-5xl mx-auto">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 animate-fadeInUp text-shadow-strong">
           {HERO_SECTION.headline}
         </h1>
-        <p className="text-lg sm:text-xl lg:text-2xl font-light mb-8 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+        <p className="text-lg sm:text-xl lg:text-2xl font-light mb-8 animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.3s' }}>
           {HERO_SECTION.subline}
         </p>
-        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+        <div className="flex flex-wrap justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
           <Button variant="secondary" href="/products" className="min-w-[200px] text-lg">
             {HERO_SECTION.cta1}
           </Button>

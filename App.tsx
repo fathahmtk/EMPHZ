@@ -18,6 +18,7 @@ const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
 const IndustryLandingPage = lazy(() => import('./pages/IndustryLandingPage'));
+const AutomobileIndustryPage = lazy(() => import('./pages/AutomobileIndustryPage')); // New Page
 const InnovationPage = lazy(() => import('./pages/InnovationPage'));
 const SustainabilityPage = lazy(() => import('./pages/SustainabilityPage'));
 const CorporatePage = lazy(() => import('./pages/CorporatePage'));
@@ -100,6 +101,7 @@ const App: React.FC = () => {
               <Route path="/products/category/:categorySlug" element={<ProductCategoryPage />} />
               <Route path="/products/:productCode" element={<ProductDetailPage />} />
               <Route path="/industries" element={<IndustriesPage />} />
+              <Route path="/industries/automobile-transport" element={<AutomobileIndustryPage />} />
               <Route path="/industries/:industrySlug" element={<IndustryLandingPage />} />
               <Route path="/innovation" element={<InnovationPage />} />
               <Route path="/sustainability" element={<SustainabilityPage />} />

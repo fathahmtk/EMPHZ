@@ -194,6 +194,7 @@ const ContactPage: React.FC = () => {
                   <option value="GRP Industrial Components & Custom Fabrication">GRP Industrial Components & Custom Fabrication</option>
                   <option value="GRP Marine, Offshore & Energy Solutions">GRP Marine, Offshore & Energy Solutions</option>
                   <option value="GRP Sustainable & Smart Solutions">GRP Sustainable & Smart Solutions</option>
+                  <option value="GRP Automobile">GRP Automobile</option>
                   <option value="Other / Custom Project">Other / Custom Project</option>
                 </select>
               </div>

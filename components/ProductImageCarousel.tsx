@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Lightbox from './Lightbox';
 
 interface ProductImageCarouselProps {
   images: string[];
@@ -7,126 +8,143 @@ interface ProductImageCarouselProps {
 
 const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, productName }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
-  // Reset active image if the images prop changes (e.g., navigating between products)
   useEffect(() => {
     setActiveIndex(0);
   }, [images]);
+  
+  const checkScrollability = useCallback(() => {
+    const el = thumbnailsRef.current;
+    if (el) {
+      setCanScrollLeft(el.scrollLeft > 0);
+      setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1); // -1 for precision
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = thumbnailsRef.current;
+    if (el) {
+      checkScrollability();
+      const resizeObserver = new ResizeObserver(checkScrollability);
+      resizeObserver.observe(el);
+      return () => resizeObserver.disconnect();
+    }
+  }, [images, checkScrollability]);
+
 
   if (images.length === 0) {
-    // Fallback in case no images are provided
     images = ['https://placehold.co/800x600/F7FAFC/1A202C?text=No+Image'];
   }
-  
+
   const activeImage = images[activeIndex];
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-    setMousePosition({ x, y });
-  };
-
-  const handleMouseEnter = () => setIsZoomed(true);
-  const handleMouseLeave = () => setIsZoomed(false);
-
-  const handlePrevImage = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  const handleNextImage = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+  const handleThumbnailClick = (index: number) => {
+    setActiveIndex(index);
+    const selectedThumbnail = thumbnailsRef.current?.children[index] as HTMLElement;
+    selectedThumbnail?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   };
   
-  const handleThumbnailKeyDown = (e: React.KeyboardEvent, index: number) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setActiveIndex(index);
+  const handleScroll = (direction: 'left' | 'right') => {
+    const el = thumbnailsRef.current;
+    if (el) {
+      const scrollAmount = el.clientWidth * 0.8;
+      el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
     }
   };
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Main Image Viewer */}
       <div
-        className="relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] cursor-zoom-in border border-[var(--color-border)]"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
-        role="img"
-        aria-label={`${productName} - image ${activeIndex + 1}`}
+        className="relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] cursor-pointer border border-[var(--color-border)]"
+        onClick={() => setIsLightboxOpen(true)}
+        role="button"
+        aria-label={`View ${productName} images in fullscreen`}
       >
         <img
           src={activeImage}
           alt={`${productName} - image ${activeIndex + 1}`}
           loading="eager"
-          decoding="async"
           fetchPriority="high"
           width="800"
           height="800"
-          className="block w-full h-full object-cover transition-transform duration-300 ease-out"
-          style={{
-            transform: isZoomed ? 'scale(1.75)' : 'scale(1)',
-            transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`,
-          }}
+          className="block w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
-
+        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <svg className="w-16 h-16 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+        </div>
         {images.length > 1 && (
-          <>
-            {/* Image Counter */}
-            <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10" aria-hidden="true">
+            <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10">
               {activeIndex + 1} / {images.length}
             </div>
-
-            {/* Previous Button */}
-            <button
-              onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
-              className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-              aria-label="Previous image"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            {/* Next Button */}
-            <button
-              onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
-              className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-              aria-label="Next image"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </>
         )}
       </div>
 
+      {/* Thumbnail Filmstrip */}
       {images.length > 1 && (
-        <div className="grid grid-cols-4 sm:grid-cols-5 gap-3" role="group" aria-label="Image thumbnails">
-          {images.map((img, index) => (
+        <div className="relative">
+          {canScrollLeft && (
             <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              onKeyDown={(e) => handleThumbnailKeyDown(e, index)}
-              className={`rounded-md overflow-hidden border-2 transition-all duration-200 aspect-square focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand)] ${
-                activeIndex === index
-                  ? 'border-[var(--color-brand)]'
-                  : 'border-transparent hover:border-gray-400'
-              }`}
-              aria-label={`View image ${index + 1} of ${productName}`}
-              aria-current={activeIndex === index ? 'true' : 'false'}
+              onClick={() => handleScroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white border border-[var(--color-border)]"
+              aria-label="Scroll thumbnails left"
             >
-              <img
-                src={img}
-                alt={`${productName} thumbnail ${index + 1}`}
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-                width="150"
-                height="150"
-                className="w-full h-full object-cover"
-              />
+              <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
             </button>
-          ))}
+          )}
+          <div
+            ref={thumbnailsRef}
+            onScroll={checkScrollability}
+            className="flex gap-3 overflow-x-auto snap-x snap-mandatory py-1 no-scrollbar"
+            role="group"
+            aria-label="Image thumbnails"
+          >
+            {images.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => handleThumbnailClick(index)}
+                className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 snap-center rounded-md overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand)] ${
+                  activeIndex === index
+                    ? 'border-[var(--color-brand)]'
+                    : 'border-transparent hover:border-gray-400'
+                }`}
+                aria-label={`View image ${index + 1} of ${productName}`}
+                aria-current={activeIndex === index ? 'true' : 'false'}
+              >
+                <img
+                  src={img}
+                  alt={`${productName} thumbnail ${index + 1}`}
+                  loading="lazy"
+                  fetchPriority="low"
+                  width="150"
+                  height="150"
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+           {canScrollRight && (
+            <button
+              onClick={() => handleScroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white border border-[var(--color-border)]"
+              aria-label="Scroll thumbnails right"
+            >
+              <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          )}
         </div>
+      )}
+      
+      {isLightboxOpen && (
+        <Lightbox
+            images={images}
+            startIndex={activeIndex}
+            onClose={() => setIsLightboxOpen(false)}
+        />
       )}
     </div>
   );

@@ -1,4 +1,3 @@
-
 export interface Product {
   code: string;
   name: string;
@@ -31,7 +30,7 @@ export interface KeyValueProposition {
 
 // FIX: Create a specific type for icon names to ensure type safety.
 // This must be kept in sync with the keys of the ICONS object in constants.ts.
-export type IconName = "sustainability" | "engineering" | "strength" | "customization" | "linkedin" | "twitter" | "google";
+export type IconName = "sustainability" | "engineering" | "strength" | "customization" | "linkedin" | "twitter" | "google" | "lightweight" | "fuel" | "aerodynamic" | "durability" | "design" | "safety";
 
 export interface BrandPillar {
   icon: IconName;
@@ -75,4 +74,32 @@ export interface TechnicalStandard {
 export interface FAQItem {
   question: string;
   answer: string;
+}
+
+// --- Types for dedicated Automobile Page ---
+export interface AutomobileSolution {
+    title: string;
+    description: string;
+    image: string;
+}
+
+export interface AutomobileAdvantage {
+    icon: IconName;
+    title: string;
+    description: string;
+}
+
+export interface AutomobilePageData {
+    hero: {
+        videoUrl: string;
+        title: string;
+        subtitle: string;
+    };
+    introduction: {
+      title: string;
+      content: string;
+    };
+    solutions: AutomobileSolution[];
+    advantages: AutomobileAdvantage[];
+    featuredProducts: string[];
 }

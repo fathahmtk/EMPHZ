@@ -7,7 +7,8 @@ import {
   CostComparison,
   CorporateDetail,
   TechnicalStandard,
-  FAQItem
+  FAQItem,
+  AutomobilePageData
 } from './types';
 
 // --- Homepage Content ---
@@ -48,6 +49,12 @@ export const ICONS = {
   linkedin: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z',
   twitter: 'M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.119 0-5.515 2.57-5.515 5.734 0 .442.05.874.146 1.284-4.576-.229-8.632-2.424-11.353-5.762-.474.813-.746 1.748-.746 2.734 0 1.983 1.01 3.733 2.538 4.752-.947-.03-1.838-.289-2.618-.724v.072c0 2.774 1.973 5.086 4.591 5.612-.48.131-.986.202-1.503.202-.37 0-.728-.036-1.076-.104.729 2.27 2.844 3.933 5.353 3.979-1.959 1.527-4.425 2.437-7.11 2.437-.462 0-.919-.027-1.368-.08.572.368 1.246.583 1.964.583 2.35 0 4.538-.773 6.388-2.189 1.85-1.417 2.924-3.383 2.924-5.617v-.272c.99-.714 1.848-1.606 2.538-2.634z',
   google: 'M21.35,11.1H12.18V13.83H18.67C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12.5C5,8.75 8.36,5.73 12.19,5.73C15.22,5.73 17.45,7.92 17.45,7.92L19.07,6.31C19.07,6.31 16.59,4 12.19,4C7.03,4 3,7.55 3,12.5C3,17.45 7.03,21 12.19,21C17.83,21 21.64,17.25 21.64,11.39C21.64,11.19 21.35,11.1 21.35,11.1Z',
+  lightweight: 'M18.36,8.36C17.18,7.18,15.67,6,14,5.43V4c0-0.55-0.45-1-1-1h-2c-0.55,0-1,0.45-1,1v1.43C8.33,6,6.82,7.18,5.64,8.36C4.46,9.54,3.7,11.21,3.54,13H2c-0.55,0-1,0.45-1,1v2c0,0.55,0.45,1,1,1h1.54c0.16,1.79,0.92,3.46,2.1,4.64c1.18,1.18,2.69,2.36,4.36,2.93V20c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-1.43c1.67-0.57,3.18-1.75,4.36-2.93c1.18-1.18,1.94-2.85,2.1-4.64H22c0.55,0,1-0.45,1-1v-2c0-0.55-0.45-1-1-1h-1.54C20.3,11.21,19.54,9.54,18.36,8.36z M12,16c-2.21,0-4-1.79-4-4s1.79-4,4-4s4,1.79,4,4S14.21,16,12,16z',
+  fuel: 'M16.9,8.58l-1.42-1.42l-2.04,2.05l-2.04-2.05l-1.42,1.42L12,10.61V14c0,1.1,0.9,2,2,2h2v2H8v-2h2v-3.39L12,8.61l1.9-1.91l1.42,1.42L13.41,10L12,11.41V16h4v-2c1.1,0,2-0.9,2-2v-2.42L16.9,8.58z M15,4h-1V3c0-0.55-0.45-1-1-1h-2c-0.55,0-1,0.45-1,1v1h-1c-1.1,0-2,0.9-2,2v2.17c0,0.53,0.21,1.04,0.59,1.41l2.41,2.41H11v1.41l-2.71,2.71C7.53,18.47,7,19.2,7,20v1c0,0.55,0.45,1,1,1h8c0.55,0,1-0.45,1-1v-1c0-0.8-0.53-1.53-1.29-1.88L13,15.41V14h1.59l2.41-2.41c0.38-0.38,0.59-0.88,0.59-1.41V6C17,4.9,16.1,4,15,4z',
+  aerodynamic: 'M21.9,12.5c-0.2-0.7-0.6-1.4-1.2-1.8L13.8,6c-0.4-0.4-1-0.4-1.4,0L7.6,10.8c-1,1-1.6,2.3-1.6,3.7c0,3,2.5,5.5,5.5,5.5c1.4,0,2.7-0.5,3.7-1.6L20,13.6c0.4-0.4,0.4-1,0-1.4l-1.4-1.4c-0.4-0.4-1-0.4-1.4,0L13,15.1c-0.8,0.8-2.1,0.8-2.8,0c-0.8-0.8-0.8-2.1,0-2.8l4.2-4.2l5.4,4.2c0.2,0.2,0.5,0.2,0.7,0s0.2-0.5,0-0.7l-5.8-4.5c-0.2-0.2-0.5-0.2-0.7,0l-5.8,4.5c-0.2,0.2-0.2,0.5,0,0.7s0.5,0.2,0.7,0l5.4-4.2l-4.2,4.2c-0.8,0.8-0.8,2.1,0,2.8c0.8,0.8,2.1,0.8,2.8,0L17,10.9l2.1,2.1c0.2,0.2,0.5,0.2,0.7,0s0.2-0.5,0-0.7l-2.5-2.5c-0.2-0.2-0.5-0.2-0.7,0l-2.5,2.5c-0.2,0.2-0.2,0.5,0,0.7s0.5,0.2,0.7,0l2.1-2.1l-2.1,2.1c-0.2,0.2-0.2,0.5,0,0.7s0.5,0.2,0.7,0l2.1-2.1c-0.2-0.2-0.5-0.2-0.7,0l-2.1,2.1c-0.2,0.2-0.2,0.5,0,0.7s0.5,0.2,0.7,0l2.1-2.1l-2.1,2.1c-0.2,0.2-0.2,0.5,0,0.7s0.5,0.2,0.7,0l2.1-2.1',
+  durability: 'M12,1L3,5v6c0,5.55,3.84,10.74,9,12c5.16-1.26,9-6.45,9-12V5L12,1z M10,17l-4-4l1.41-1.41L10,14.17l6.59-6.59L18,9L10,17z',
+  design: 'M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9c0.83,0,1.5-0.67,1.5-1.5c0-0.39-0.15-0.74-0.39-1.01c-0.23-0.26-0.38-0.61-0.38-0.99c0-0.83,0.67-1.5,1.5-1.5H16c2.76,0,5-2.24,5-5c0-4.42-4.03-8-9-8V3z M6.5,12C5.67,12,5,11.33,5,10.5S5.67,9,6.5,9S8,9.67,8,10.5S7.33,12,6.5,12z M9.5,8C8.67,8,8,7.33,8,6.5S8.67,5,9.5,5S11,5.67,11,6.5S10.33,8,9.5,8z M14.5,8C13.67,8,13,7.33,13,6.5S13.67,5,14.5,5S16,5.67,16,6.5S15.33,8,14.5,8z M17.5,12c-0.83,0-1.5-0.67-1.5-1.5S16.67,9,17.5,9S19,9.67,19,10.5S18.33,12,17.5,12z',
+  safety: 'M13,14h-2v-2h2V14z M13,10h-2V4h2V10z M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8S16.41,20,12,20z',
 };
 
 
@@ -96,49 +103,55 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         code: 'E-102',
         name: 'GRP Double-Door Enclosure',
         description: 'Medium-size cabinet for MCCs, switchgear assemblies, and distribution boards.',
-        image: 'https://placehold.co/600x400/008C99/white?text=E-102',
+        image: 'https://i.ibb.co/bF9gYgJ/emphz-grp-double-door-enclosure.png',
       },
       {
         code: 'E-103',
         name: 'GRP Feeder Pillar Cabinet',
         description: 'Multi-door outdoor cabinet for power distribution and street-lighting networks.',
-        image: 'https://placehold.co/600x400/008C99/white?text=E-103',
+        image: 'https://i.ibb.co/Rz3yV0M/emphz-grp-feeder-pillar.png',
       },
       {
         code: 'E-104',
         name: 'GRP Weatherproof Panel Board',
         description: 'Heavy-duty enclosure for marine/coastal and desert environments.',
-        image: 'https://placehold.co/600x400/008C99/white?text=E-104',
+        image: 'https://i.ibb.co/BwWzWqS/emphz-grp-weatherproof-panel.png',
       },
       {
         code: 'E-105',
         name: 'GRP Meter Box / Junction Box',
         description: 'Utility meter housings and telecom termination boxes.',
+        image: 'https://i.ibb.co/yQxGdtY/emphz-grp-meter-box.png',
       },
       {
         code: 'E-106',
         name: 'GRP Transformer Kiosk / Ring Main Unit (RMU) Housing',
         description: 'Outdoor protection for RMU, isolator, and LV distribution gear.',
+        image: 'https://i.ibb.co/3kpvL2L/emphz-grp-transformer-kiosk.png',
       },
       {
         code: 'E-107',
         name: 'GRP Instrument / Control Enclosure',
         description: 'Custom panel housings for automation and PLC systems.',
+        image: 'https://i.ibb.co/YyY4Vf8/emphz-grp-instrument-enclosure.png',
       },
       {
         code: 'E-108',
         name: 'GRP Battery / UPS Cabinet',
         description: 'Ventilated enclosures for energy storage and solar backup systems.',
+        image: 'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
       },
       {
         code: 'E-109',
         name: 'GRP Cable Management Box',
         description: 'Insulated cabinet for junctions and feeder joints in industrial environments.',
+        image: 'https://i.ibb.co/6P8J5Pz/emphz-grp-cable-management.png',
       },
       {
         code: 'E-110',
         name: 'GRP Street-Light Control Panel',
         description: 'Smart controller housing with timer and IoT integration options.',
+        image: 'https://i.ibb.co/mHq3QdF/emphz-grp-streetlight-panel.png',
       },
     ],
     sharedHighlights: [
@@ -172,13 +185,14 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         name: 'GRP Security / Guard Cabin',
         useCase: 'Prefab sentry units for factories, offices, and gated communities.',
         description: 'Prefab sentry units for factories, offices, and gated communities.',
-        image: 'https://placehold.co/600x400/008C99/white?text=M-201',
+        image: 'https://i.ibb.co/yWjX9jL/emphz-grp-security-cabin.png',
       },
       {
         code: 'M-202',
         name: 'GRP Information / Ticket Kiosk',
         useCase: 'Public information booths, toll and ticket counters.',
         description: 'Public information booths, toll and ticket counters.',
+        image: 'https://i.ibb.co/Wc2g1G9/emphz-grp-ticket-kiosk.png',
       },
       {
         code: 'M-203',
@@ -203,44 +217,49 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         name: 'GRP Executive Office Cabin',
         useCase: 'Prefab cabins with A/C, lighting, and internal partitions.',
         description: 'Prefab cabins with A/C, lighting, and internal partitions.',
-        image: 'https://placehold.co/600x400/008C99/white?text=M-204',
+        image: 'https://i.ibb.co/3zdVKt7/emphz-grp-office-cabin.png',
       },
       {
         code: 'M-205',
         name: 'GRP Modular Villa / Worker Housing',
         useCase: 'Fast-install housing, insulated, termite-proof.',
         description: 'Fast-install housing, insulated, termite-proof.',
+        image: 'https://i.ibb.co/zXWkR1p/emphz-grp-modular-villa.png',
       },
       {
         code: 'M-206',
         name: 'GRP ATM / Telecom Booth',
         useCase: 'Secure standalone kiosk for ATM or telecom nodes.',
         description: 'Secure standalone kiosk for ATM or telecom nodes.',
+        image: 'https://i.ibb.co/P9tN4Qd/emphz-grp-atm-booth.png',
       },
       {
         code: 'M-207',
         name: 'GRP Portable Kitchen / Canteen Unit',
         useCase: 'Food-safe, washable interior cabins for remote camps.',
         description: 'Food-safe, washable interior cabins for remote camps.',
+        image: 'https://i.ibb.co/L5YwYc1/emphz-grp-portable-kitchen.png',
       },
       {
         code: 'M-208',
         name: 'GRP Smart Charging Pod / EV Booth',
         useCase: 'Weatherproof composite charging station kiosks.',
         description: 'Weatherproof composite charging station kiosks.',
-        image: 'https://placehold.co/600x400/008C99/white?text=M-208',
+        image: 'https://i.ibb.co/mNyqW6h/emphz-grp-ev-booth.png',
       },
       {
         code: 'M-209',
         name: 'GRP Toilet-Shower Combo Unit',
         useCase: 'For labour sites, events, and public areas.',
         description: 'For labour sites, events, and public areas.',
+        image: 'https://i.ibb.co/FJhL5zW/emphz-grp-toilet-shower.png',
       },
       {
         code: 'M-210',
         name: 'GRP Site Office Cabin',
         useCase: 'Fully furnished project management cabin with flooring and electrical fit-out.',
         description: 'Fully furnished project management cabin with flooring and electrical fit-out.',
+        image: 'https://i.ibb.co/Kmf4p8p/emphz-grp-site-office.png',
       },
     ],
     compliance: [
@@ -265,60 +284,67 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP UTILITY & INFRASTRUCTURE PRODUCTS',
     slug: 'grp-utility-infrastructure',
     tagline: 'Composite solutions for water, waste, and urban systems.',
-    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Infrastructure',
+    image: 'https://i.ibb.co/tZ57R7M/emphz-grp-water-tank.png',
     products: [
       {
         code: 'U-301',
         name: 'GRP Water Storage Tanks',
         description: 'Cylindrical or rectangular, 500 L–50 000 L, UV-resistant.',
-        image: 'https://placehold.co/600x400/008C99/white?text=U-301',
+        image: 'https://i.ibb.co/tZ57R7M/emphz-grp-water-tank.png',
       },
       {
         code: 'U-302',
         name: 'GRP Chemical Storage Tanks',
         description: 'For acids, effluents, and industrial liquids; FR-grade resin.',
+        image: 'https://i.ibb.co/q1t75P5/emphz-grp-chemical-tank.png',
       },
       {
         code: 'U-303',
         name: 'GRP Septic Tanks',
         description: 'One-piece molded, leak-proof, maintenance-free.',
+        image: 'https://i.ibb.co/mS7xXfD/emphz-grp-septic-tank.png',
       },
       {
         code: 'U-304',
         name: 'GRP Grease Traps / Interceptors',
         description: 'For kitchens, restaurants, and processing plants.',
+        image: 'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
       },
       {
         code: 'U-305',
         name: 'GRP Manholes & Chambers',
         description: 'Load class A15–D400, slip-resistant, non-sparking.',
-        image: 'https://placehold.co/600x400/008C99/white?text=U-305',
+        image: 'https://i.ibb.co/3s3XfJ2/emphz-grp-manhole.png',
       },
       {
         code: 'U-306',
         name: 'GRP Drainage Covers & Gratings',
         description: 'Anti-corrosive gratings for municipal networks.',
+        image: 'https://i.ibb.co/Wc2g1G9/emphz-grp-ticket-kiosk.png',
       },
       {
         code: 'U-307',
         name: 'GRP Cable Trays & Trenches',
         description: 'Electrically insulating trays for power/data cabling.',
-        image: 'https://placehold.co/600x400/008C99/white?text=U-307',
+        image: 'https://i.ibb.co/VMyLh8h/emphz-grp-cable-tray.png',
       },
       {
         code: 'U-308',
         name: 'GRP Transformer Foundation Bases',
         description: 'Corrosion-proof base platforms for pad-mounted equipment.',
+        image: 'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
       },
       {
         code: 'U-309',
         name: 'GRP Rainwater Harvest Modules',
         description: 'Modular underground tanks for eco-projects.',
+        image: 'https://i.ibb.co/BwWzWqS/emphz-grp-weatherproof-panel.png',
       },
       {
         code: 'U-310',
         name: 'GRP Chemical Dosing & Pump Cabinets',
         description: 'Compact housings for metering pumps and chemical handling.',
+        image: 'https://i.ibb.co/YyY4Vf8/emphz-grp-instrument-enclosure.png',
       },
     ],
     technicalSnapshot: [
@@ -336,60 +362,68 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP INDUSTRIAL COMPONENTS & CUSTOM FABRICATION',
     slug: 'grp-industrial-components',
     tagline: 'Tailor-made composites for specialized industries.',
-    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Custom',
+    image: 'https://i.ibb.co/QcxLgJr/emphz-grp-custom-molding.png',
     products: [
       {
         code: 'C-401',
         name: 'GRP Custom Molded Parts',
         applications: ['Telecom', 'rail', 'defense', 'automotive'],
         description: 'Custom molded parts for applications in telecom, rail, defense, and automotive industries.',
-        image: 'https://placehold.co/600x400/008C99/white?text=C-401',
+        image: 'https://i.ibb.co/QcxLgJr/emphz-grp-custom-molding.png',
       },
       {
         code: 'C-402',
         name: 'GRP Control Panel Frames & Bases',
         description: 'Skid mounts and non-conductive frames.',
+        image: 'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
       },
       {
         code: 'C-403',
         name: 'GRP Acoustic / Fire-Shield Panels',
         description: 'Sound-attenuating and FR enclosures.',
+        image: 'https://i.ibb.co/YyY4Vf8/emphz-grp-instrument-enclosure.png',
       },
       {
         code: 'C-404',
         name: 'GRP Battery Racks & Shelves',
         description: 'Lightweight, corrosion-free storage frames.',
+        image: 'https://i.ibb.co/BwWzWqS/emphz-grp-weatherproof-panel.png',
       },
       {
         code: 'C-405',
         name: 'GRP Instrument Housings',
         description: 'Weatherproof protection for sensors.',
+        image: 'https://i.ibb.co/yQxGdtY/emphz-grp-meter-box.png',
       },
       {
         code: 'C-406',
         name: 'GRP Wind Turbine Nacelle Covers',
         description: 'Renewable-energy composite shells.',
-        image: 'https://placehold.co/600x400/008C99/white?text=C-406',
+        image: 'https://i.ibb.co/JqKxZ0H/emphz-grp-nacelle-cover.png',
       },
       {
         code: 'C-407',
         name: 'GRP HVAC Ducts & Covers',
         description: 'Non-metallic, corrosion-resistant ducts.',
+        image: 'https://i.ibb.co/6P8J5Pz/emphz-grp-cable-management.png',
       },
       {
         code: 'C-408',
         name: 'GRP Motor Canopies & Pump Housings',
         description: 'Mechanical protection with ventilation.',
+        image: 'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
       },
       {
         code: 'C-409',
         name: 'GRP Solar Equipment Cabinets',
         description: 'UV-stable composite enclosures for PV systems.',
+        image: 'https://i.ibb.co/mHq3QdF/emphz-grp-streetlight-panel.png',
       },
       {
         code: 'C-410',
         name: 'GRP Busbar / Switchgear Barriers',
         description: 'Insulated dielectric partitions for LV panels.',
+        image: 'https://i.ibb.co/6P8J5Pz/emphz-grp-cable-management.png',
       },
     ],
     technicalSnapshot: [
@@ -407,39 +441,42 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP MARINE, OFFSHORE & ENERGY SOLUTIONS',
     slug: 'grp-marine-offshore',
     tagline: 'Resistant to salt, UV, and extreme climates.',
-    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Marine',
+    image: 'https://i.ibb.co/1n4yBZn/emphz-grp-offshore-enclosure.png',
     products: [
       {
         code: 'O-501',
         name: 'GRP Offshore Electrical Enclosure',
         useCase: 'Marine platforms, desalination plants.',
         description: 'Electrical enclosures designed for marine platforms and desalination plants.',
-        image: 'https://placehold.co/600x400/008C99/white?text=O-501',
+        image: 'https://i.ibb.co/1n4yBZn/emphz-grp-offshore-enclosure.png',
       },
       {
         code: 'O-502',
         name: 'GRP Navigation Light Housings',
         useCase: 'Saltwater-resistant protective boxes.',
         description: 'Saltwater-resistant protective housings for navigation lights.',
+        image: 'https://i.ibb.co/6P8J5Pz/emphz-grp-cable-management.png',
       },
       {
         code: 'O-503',
         name: 'GRP Battery Compartment for Vessels',
         useCase: 'Anti-corrosive, lightweight battery storage.',
         description: 'Anti-corrosive, lightweight battery storage compartments for vessels.',
+        image: 'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
       },
       {
         code: 'O-504',
         name: 'GRP Solar Panel Mounting Structures',
         useCase: 'Composite frames for coastal solar arrays.',
         description: 'Composite mounting frames specifically for coastal solar arrays.',
-        image: 'https://placehold.co/600x400/008C99/white?text=O-504',
+        image: 'https://i.ibb.co/sK3YyYF/emphz-grp-solar-mounts.png',
       },
       {
         code: 'O-505',
         name: 'GRP Dock / Jetty Control Cabinets',
         useCase: 'Water-resistant junction cabinets.',
         description: 'Water-resistant junction cabinets for dock and jetty control systems.',
+        image: 'https://i.ibb.co/BwWzWqS/emphz-grp-weatherproof-panel.png',
       },
     ],
     technicalSnapshot: [
@@ -457,39 +494,42 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP SUSTAINABLE & SMART SOLUTIONS',
     slug: 'grp-smart-solutions',
     tagline: 'Innovating toward circular and intelligent infrastructure.',
-    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Smart',
+    image: 'https://i.ibb.co/RSC5b0w/emphz-grp-smart-kiosk.png',
     products: [
       {
         code: 'S-601',
         name: 'GRP Smart IoT Kiosk',
         innovation: 'Built-in display, solar charging, and data sensors.',
         description: 'An innovative kiosk with built-in display, solar charging, and data sensors for smart applications.',
-        image: 'https://placehold.co/600x400/008C99/white?text=S-601',
+        image: 'https://i.ibb.co/RSC5b0w/emphz-grp-smart-kiosk.png',
       },
       {
         code: 'S-602',
         name: 'GRP Recycling Collection Booth',
         innovation: 'Modular waste segregation pods.',
         description: 'Modular pods designed for efficient waste segregation and collection.',
+        image: 'https://i.ibb.co/FJhL5zW/emphz-grp-toilet-shower.png',
       },
       {
         code: 'S-603',
         name: 'GRP EV Charging Station Shelter',
         innovation: 'Fire-safe composite structure for electric vehicle hubs.',
         description: 'A fire-safe composite shelter solution for electric vehicle charging stations.',
-        image: 'https://placehold.co/600x400/008C99/white?text=S-603',
+        image: 'https://i.ibb.co/yS54N0d/emphz-grp-ev-shelter.png',
       },
       {
         code: 'S-604',
         name: 'GRP Solar Inverter Enclosure (Hybrid)',
         innovation: 'Passive-cooled cabinet with integrated monitoring.',
         description: 'A passive-cooled cabinet for hybrid solar inverters with integrated monitoring capabilities.',
+        image: 'https://i.ibb.co/mHq3QdF/emphz-grp-streetlight-panel.png',
       },
       {
         code: 'S-605',
         name: 'GRP Telecom Shelter Pod',
         innovation: 'Climate-controlled composite pods for 5G base stations.',
         description: 'Climate-controlled composite pods providing robust shelter for 5G base stations.',
+        image: 'https://i.ibb.co/3zdVKt7/emphz-grp-office-cabin.png',
       },
     ],
     technicalSnapshot: [
@@ -502,6 +542,48 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     materials: ["Bio-Resins (on request)", "Recycled Fiber Core", "Low-VOC Gelcoat"],
     accessories: ["Solar Charge Controllers", "IoT Sensors", "Touchscreen Displays", "LED Lighting"],
   },
+  {
+    code: 'CAT7',
+    name: 'GRP Transport & Automotive Components',
+    slug: 'grp-transport-automotive',
+    tagline: 'Lightweight, durable, and aerodynamic composite bodies for modern transport.',
+    image: 'https://i.ibb.co/6r0M5kQ/emphz-grp-bus-body.png',
+    products: [
+      {
+        code: 'A-701',
+        name: 'GRP Bus Body Panels & Front Fascia',
+        description: 'Complete GRP panel kits, roofs, and aerodynamic front fascias for city buses and coaches, offering significant weight reduction and fuel efficiency.',
+        image: 'https://i.ibb.co/6r0M5kQ/emphz-grp-bus-body.png',
+      },
+      {
+        code: 'A-702',
+        name: 'GRP Auto-Rickshaw Body & Canopy',
+        description: 'Rust-proof, lightweight bodies and canopies for three-wheelers, enhancing durability, safety, and passenger comfort.',
+        image: 'https://i.ibb.co/hXN0GfW/emphz-grp-auto-rickshaw-body.png',
+      },
+      {
+        code: 'A-703',
+        name: 'GRP Truck & Van Aerodynamic Kits',
+        description: 'Custom-molded fairings, spoilers, and side skirts to reduce drag and improve fuel economy for commercial vehicles.',
+        image: 'https://i.ibb.co/fDbPNSb/emphz-grp-truck-fairing.png',
+      },
+      {
+        code: 'A-704',
+        name: 'GRP Ambulance & Mobile Clinic Bodies',
+        description: 'Hygienic, easy-to-clean, and customizable composite bodies for special-purpose medical vehicles, ensuring durability and insulation.',
+        image: 'https://i.ibb.co/hK5J9ZJ/emphz-grp-ambulance-body.png',
+      },
+    ],
+    technicalSnapshot: [
+      { parameter: "Flexural Strength", specification: "180-250 MPa", certification: "ASTM D790" },
+      { parameter: "Impact Resistance", specification: "IK09", certification: "IEC 62262" },
+      { parameter: "Fire Standard", specification: "FMVSS 302 Compliant", certification: "AIS 004" },
+      { parameter: "UV Resistance", specification: "Automotive Grade Gelcoat", certification: "ISO 4892" },
+      { parameter: "Weight Savings vs Steel", specification: "Up to 40%", certification: "" },
+    ],
+    materials: ["SMC/BMC Composites", "Automotive-Grade Resin", "UV-Resistant Gelcoat"],
+    accessories: ["Integrated Mountings", "Structural Inserts", "Custom Paint Finish"],
+  },
 ];
 
 // --- Industries We Empower ---
@@ -510,7 +592,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Electrical & Utilities",
     slug: "electrical-utilities",
     applicationExample: "GRP feeder pillars and transformer enclosures",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Electrical",
+    image: 'https://i.ibb.co/qD4D6qY/industry-electrical.jpg',
     description: "EMPHZ provides mission-critical GRP enclosures and housings for the electrical power transmission and distribution sector. Our non-conductive, corrosion-proof solutions protect sensitive equipment like switchgear, transformers, and control panels from harsh environmental conditions, ensuring grid reliability and safety.",
     details: [
       "IP66/IK10 rated enclosures for superior protection against dust, water, and impact.",
@@ -525,7 +607,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Renewable Energy",
     slug: "renewable-energy",
     applicationExample: "Solar inverter cabinets, wind farm junction boxes",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Renewable",
+    image: 'https://i.ibb.co/PNSc9Cf/industry-renewable.jpg',
     description: "In the renewable energy sector, our GRP solutions provide durable, maintenance-free protection for critical components in solar and wind farms. From inverter cabinets to nacelle covers, our composites withstand extreme weather, ensuring maximum uptime and a low total cost of ownership for green energy projects.",
     details: [
       "UV-stable GRP cabinets for solar inverters and battery storage systems.",
@@ -540,7 +622,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Telecom & IT",
     slug: "telecom-it",
     applicationExample: "Weatherproof kiosk housings for fiber and base stations",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Telecom",
+    image: 'https://i.ibb.co/3mS7bJd/industry-telecom.jpg',
     description: "EMPHZ engineers robust GRP enclosures and shelters for the telecom and IT industries, safeguarding sensitive network equipment from environmental hazards. Our solutions offer excellent thermal management and RF transparency, making them ideal for 5G base stations, fiber optic junction boxes, and remote data-gathering nodes.",
     details: [
       "Weatherproof kiosks and cabinets with advanced thermal management options.",
@@ -555,7 +637,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Construction & Infrastructure",
     slug: "construction-infrastructure",
     applicationExample: "Portable toilets, control cabins, and pump rooms",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Construction",
+    image: 'https://i.ibb.co/yQjD4sR/industry-construction.jpg',
     description: "For the construction and public infrastructure sectors, EMPHZ delivers rapid-deployment modular GRP structures and durable utility products. Our lightweight yet strong portable cabins, restrooms, and site offices offer a superior alternative to traditional materials, while our composite manhole covers and cable trenches ensure long-term, corrosion-free performance.",
     details: [
       "Rapid-deployment portable cabins, site offices, and security booths.",
@@ -570,7 +652,7 @@ export const INDUSTRIES: Industry[] = [
     name: "Marine & Offshore",
     slug: "marine-offshore",
     applicationExample: "Anti-corrosive enclosures for coastal facilities",
-    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Marine",
+    image: 'https://i.ibb.co/3d2C7Kq/industry-marine.jpg',
     description: "EMPHZ's specialized GRP composites are engineered to withstand the most corrosive marine and offshore environments. Our IP67-rated enclosures, cabinets, and custom-molded components provide unparalleled protection against saltwater, humidity, and UV radiation, making them the ideal choice for ports, desalination plants, and offshore platforms.",
     details: [
       "IP67-rated enclosures certified for over 1000 hours of salt spray testing.",
@@ -581,7 +663,62 @@ export const INDUSTRIES: Industry[] = [
     relatedCategories: ['CAT1', 'CAT5'],
     featuredProducts: ['E-104', 'O-501', 'O-503', 'O-505']
   },
+  {
+    name: "Automobile & Transport",
+    slug: "automobile-transport",
+    applicationExample: "GRP bus body panels and auto-rickshaw bodies",
+    image: 'https://i.ibb.co/N2cZ9N6/industry-automotive.jpg',
+    description: "EMPHZ delivers high-performance GRP composite solutions to the automotive and transport sectors, focusing on lightweight, durable, and aerodynamic components that improve fuel efficiency and reduce lifecycle costs.",
+    details: [], // Details are on the dedicated page
+    relatedCategories: ['CAT7'],
+    featuredProducts: ['A-701', 'A-702', 'A-703']
+  },
 ];
+
+// --- Dedicated Page Data: Automobile ---
+export const AUTOMOBILE_PAGE_DATA: AutomobilePageData = {
+  hero: {
+    videoUrl: "https://videos.pexels.com/video-files/8141341/8141341-hd_1920_1080_25fps.mp4",
+    title: "Driving the Future with GRP Composites",
+    subtitle: "Lightweight, aerodynamic, and durable solutions for the modern transport industry."
+  },
+  introduction: {
+    title: "Innovating Mobility with Advanced Composites",
+    content: "EMPHZ is at the forefront of revolutionizing the automobile and transport industry with our advanced GRP composite solutions. By replacing traditional heavy metals with our lightweight, high-strength materials, we help manufacturers build more fuel-efficient, durable, and aesthetically pleasing vehicles. From public transport to commercial logistics, our components are engineered to meet the rigorous demands of modern mobility."
+  },
+  solutions: [
+    {
+      title: "Buses & Coaches",
+      description: "We provide complete GRP solutions including front and rear fascias, roof panels, and interior components. Our products reduce overall vehicle weight, leading to significant fuel savings and lower emissions, while offering superior durability against daily wear and tear.",
+      image: "https://i.ibb.co/6r0M5kQ/emphz-grp-bus-body.png"
+    },
+    {
+      title: "Auto-Rickshaws & Three-Wheelers",
+      description: "Our rust-proof, impact-resistant GRP bodies and canopies for auto-rickshaws enhance vehicle longevity and passenger safety. The lightweight nature also improves maneuverability and operational efficiency in urban environments.",
+      image: "https://i.ibb.co/hXN0GfW/emphz-grp-auto-rickshaw-body.png"
+    },
+    {
+      title: "Commercial Trucks & Vans",
+      description: "EMPHZ designs and manufactures aerodynamic kits, including fairings and side skirts, that reduce drag and substantially improve fuel economy for long-haul trucks and commercial vans. Our solutions are built to withstand harsh road conditions.",
+      image: "https://i.ibb.co/fDbPNSb/emphz-grp-truck-fairing.png"
+    },
+    {
+      title: "Specialized Vehicles",
+      description: "We custom-fabricate GRP bodies for specialized vehicles like ambulances, mobile clinics, and refrigerated vans. The hygienic, easy-to-clean, and insulating properties of our composites make them the ideal material for these critical applications.",
+      image: "https://i.ibb.co/hK5J9ZJ/emphz-grp-ambulance-body.png"
+    }
+  ],
+  advantages: [
+    { icon: "lightweight", title: "Weight Reduction", description: "Up to 40% lighter than steel, directly improving fuel efficiency and payload capacity." },
+    { icon: "fuel", title: "Fuel Efficiency", description: "Reduced vehicle weight and improved aerodynamics lead to lower fuel consumption and emissions." },
+    { icon: "aerodynamic", title: "Aerodynamic Design", description: "Smooth, complex shapes are easily achievable, reducing drag for better performance." },
+    { icon: "durability", title: "Superior Durability", description: "High impact resistance and immunity to corrosion, rust, and chemicals extend vehicle life." },
+    { icon: "design", title: "Design Flexibility", description: "GRP allows for creative and complex designs, enabling modern and aesthetically superior vehicle bodies." },
+    { icon: "safety", title: "Enhanced Safety", description: "High strength-to-weight ratio and excellent impact absorption properties contribute to safer vehicle structures." }
+  ],
+  featuredProducts: ['A-701', 'A-702', 'A-703', 'A-704']
+};
+
 
 // --- Innovation & Quality ---
 export const QUALITY_FRAMEWORK: QualityPoint[] = [
@@ -594,8 +731,8 @@ export const QUALITY_FRAMEWORK: QualityPoint[] = [
 
 export const PROCESS_PHILOSOPHY = "Every EMPHZ product undergoes a closed-loop design-to-delivery system — from CAD modeling to finished product validation — ensuring zero tolerance for defects.";
 export const FACTORY_IMAGES = [
-  "https://placehold.co/800x600/F7FAFC/1A202C?text=Automated+Presses",
-  "https://placehold.co/800x600/F7FAFC/1A202C?text=Quality+Control+Lab"
+  "https://i.ibb.co/9gZczP3/emphz-factory-press.jpg",
+  "https://i.ibb.co/gDHm9d4/emphz-factory-qc.jpg"
 ];
 
 // --- Sustainability & Total Cost Advantage ---
