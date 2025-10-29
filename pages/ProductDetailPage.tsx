@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Product, ProductCategory } from '../types';
 import { useProduct } from '../hooks/useProduct';
@@ -8,6 +8,7 @@ import ProductCard from '../components/ProductCard';
 import { useUIState } from '../UIStateContext';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
 import { PRODUCT_FAQS } from '../constants';
+import ProductImageCarousel from '../components/ProductImageCarousel';
 
 const ProductDetailPage: React.FC = () => {
   const { productCode } = useParams<{ productCode: string }>();
@@ -20,37 +21,6 @@ const ProductDetailPage: React.FC = () => {
     if (!productData?.product?.image) return [];
     return Array.isArray(productData.product.image) ? productData.product.image : [productData.product.image];
   }, [productData]);
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  // Image zoom functionality state
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
-  
-  // Effect to reset active image when product changes
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [productCode]);
-
-  const activeImage = images[activeIndex] || 'https://picsum.photos/800/600?random=product-placeholder';
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-    setMousePosition({ x, y });
-  };
-
-  const handleMouseEnter = () => setIsZoomed(true);
-  const handleMouseLeave = () => setIsZoomed(false);
-
-  const handlePrevImage = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  const handleNextImage = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
 
   if (isLoading) {
     return (
@@ -129,75 +99,8 @@ const ProductDetailPage: React.FC = () => {
 
         {/* Product Details Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
-          <div className="flex flex-col gap-4">
-            <div
-              className="relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] cursor-zoom-in border border-[var(--color-border)]"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseMove={handleMouseMove}
-            >
-              <img
-                src={activeImage}
-                alt={`${product.name} - image ${activeIndex + 1}`}
-                loading="eager"
-                className="block w-full h-full object-cover transition-transform duration-300 ease-out"
-                style={{
-                  transform: isZoomed ? 'scale(1.75)' : 'scale(1)',
-                  transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`,
-                }}
-              />
-
-              {images.length > 1 && (
-                <>
-                  {/* Image Counter */}
-                  <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10">
-                    {activeIndex + 1} / {images.length}
-                  </div>
-
-                  {/* Previous Button */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
-                    className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label="Previous image"
-                  >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                  </button>
-                  {/* Next Button */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
-                    className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label="Next image"
-                  >
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                  </button>
-                </>
-              )}
-            </div>
-
-            {images.length > 1 && (
-              <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
-                {images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`rounded-md overflow-hidden border-2 transition-all duration-200 aspect-square focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand)] ${
-                      activeIndex === index
-                        ? 'border-[var(--color-brand)]'
-                        : 'border-transparent hover:border-gray-400'
-                    }`}
-                    aria-label={`View image ${index + 1}`}
-                  >
-                    <img
-                      src={img}
-                      alt={`${product.name} thumbnail ${index + 1}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <ProductImageCarousel images={images} productName={product.name} />
+          
           <div className="animate-fadeInUp">
             <span className="text-sm font-semibold text-[var(--color-brand)] uppercase tracking-wider">{category.name}</span>
             <h1 className="text-4xl font-bold mt-2 mb-4">{product.name}</h1>
@@ -219,11 +122,14 @@ const ProductDetailPage: React.FC = () => {
         
         {/* Technical Highlights from Category */}
         {(category.sharedHighlights && category.sharedHighlights.length > 0) && (
-            <div className="mt-8 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)] mb-20">
-              <h4 className="text-2xl font-semibold text-center mb-4">Technical Highlights</h4>
-              <ul className="list-disc list-inside text-[var(--color-text-primary)] grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 max-w-4xl mx-auto">
+            <div className="my-20 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
+              <h4 className="text-2xl font-semibold text-center mb-6">Technical Highlights</h4>
+              <ul className="columns-1 md:columns-2 lg:columns-3 gap-x-8 text-[var(--color-text-primary)] max-w-5xl mx-auto space-y-2">
                 {category.sharedHighlights.map((highlight, index) => (
-                  <li key={index}>{highlight}</li>
+                  <li key={index} className="flex items-start break-inside-avoid">
+                    <svg className="w-5 h-5 mr-2 text-[var(--color-brand)] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                    <span>{highlight}</span>
+                  </li>
                 ))}
               </ul>
             </div>

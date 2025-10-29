@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useUIState } from '../UIStateContext';
 import config from '../config';
 import Logo from './Logo';
+import { useScroll } from '../hooks/useScroll';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { openSearch } = useUIState();
+  const { isScrolled } = useScroll(10);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -24,12 +26,17 @@ const Navbar: React.FC = () => {
     navLinks.push({ name: 'Admin', path: '/admin' });
   }
 
+  const activeLinkStyle = {
+    color: 'var(--color-brand)',
+    fontWeight: '600',
+  };
+
   return (
-    <nav className="bg-white/90 backdrop-blur-lg sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-border)] shadow-[var(--shadow-sm)]">
+    <nav className={`bg-white/90 backdrop-blur-lg sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-border)] transition-shadow duration-300 ${isScrolled ? 'shadow-[var(--shadow-md)]' : 'shadow-none'}`}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center" aria-label="EMPHZ Homepage">
+        <NavLink to="/" className="flex items-center" aria-label="EMPHZ Homepage">
           <Logo className="h-10 w-auto" />
-        </Link>
+        </NavLink>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-2">
@@ -49,13 +56,14 @@ const Navbar: React.FC = () => {
         {/* Desktop navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.slice(0, 5).map((link) => ( 
-            <Link
+            <NavLink
               key={link.name}
               to={link.path}
               className="text-[var(--color-primary)] hover:text-[var(--color-brand)] font-medium transition-colors duration-300"
+              style={({ isActive }) => isActive ? activeLinkStyle : undefined}
             >
               {link.name}
-            </Link>
+            </NavLink>
           ))}
           <div
             onClick={openSearch}
@@ -68,12 +76,12 @@ const Navbar: React.FC = () => {
             </svg>
             <span className="text-sm">Search...</span>
           </div>
-           <Link
+           <NavLink
               to="/contact"
               className="bg-[var(--color-brand)]/10 text-[var(--color-brand)] hover:bg-[var(--color-brand)]/20 font-semibold py-2 px-5 rounded-lg transition-colors duration-300"
             >
               Contact
-            </Link>
+            </NavLink>
         </div>
       </div>
 
@@ -92,14 +100,15 @@ const Navbar: React.FC = () => {
               Search
             </button>
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className="block text-[var(--color-primary)] hover:text-[var(--color-brand)] font-medium py-2"
+                style={({ isActive }) => isActive ? activeLinkStyle : undefined}
               >
                 {link.name}
-              </Link>
+              </NavLink>
             ))}
           </div>
         </div>

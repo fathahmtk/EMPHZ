@@ -25,19 +25,31 @@ const HeroSection: React.FC = () => {
   return (
     <section
       className="relative h-[85vh] flex items-center justify-center text-center text-white overflow-hidden"
+      aria-roledescription="carousel"
+      aria-live="polite"
     >
       {/* Background Image Carousel */}
       <div className="absolute inset-0">
         {images.map((src, index) => (
-          <img
-            key={src} // Use image src as key for stable identity
-            src={src}
-            alt={`EMPHZ Background ${index + 1}`}
-            loading={index === 0 ? 'eager' : 'lazy'}
-            className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentIndex ? 'opacity-100 animate-hero-zoom' : 'opacity-0'
+          <div
+            key={src}
+            className={`w-full h-full absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
-          />
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`Image ${index + 1} of ${images.length}`}
+            aria-hidden={index !== currentIndex}
+          >
+            <img
+              src={src}
+              alt={`EMPHZ Background ${index + 1}`}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              className={`w-full h-full object-cover ${
+                index === currentIndex ? 'animate-hero-zoom' : ''
+              }`}
+            />
+          </div>
         ))}
         <div className="absolute inset-0 hero-overlay"></div>
       </div>
@@ -90,6 +102,7 @@ const HeroSection: React.FC = () => {
               index === currentIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
             }`}
             aria-label={`Go to slide ${index + 1}`}
+            aria-current={index === currentIndex}
           />
         ))}
       </div>

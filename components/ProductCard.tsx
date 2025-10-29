@@ -27,13 +27,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
       }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    const currentRef = cardRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      // Use a local variable to capture the current ref value
-      const currentRef = cardRef.current;
       if (currentRef) {
         observer.unobserve(currentRef);
       }
@@ -69,9 +68,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
           )}
         </div>
         {product.image && (
-          <div className="mt-4">
-            {/* FIX: Handle case where product.image is an array by taking the first image for the card. */}
-            <img src={Array.isArray(product.image) ? product.image[0] : product.image} alt={product.name} loading="lazy" className="w-full h-40 object-cover rounded-md" />
+          <div className="mt-4 rounded-md overflow-hidden">
+            <img 
+              src={Array.isArray(product.image) ? product.image[0] : product.image} 
+              alt={product.name} 
+              loading="lazy" 
+              className="w-full h-40 object-cover rounded-md transition-transform duration-500 ease-in-out group-hover:scale-110" 
+            />
           </div>
         )}
       </div>

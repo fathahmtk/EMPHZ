@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import config from '../config';
 
 const WhatsAppIcon: React.FC = () => (
@@ -29,8 +28,27 @@ const CloseIcon: React.FC = () => (
 
 const ContactFAB: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+        setIsOpen(false); // Also close the menu when it's hidden
+      }
+    };
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
 
   const toggleOpen = () => setIsOpen(!isOpen);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className="relative flex flex-col items-center">

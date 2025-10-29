@@ -40,24 +40,35 @@ export const KEY_VALUE_PROPOSITIONS: KeyValueProposition[] = [
   },
 ];
 
+export const ICONS = {
+  sustainability: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z',
+  engineering: 'M12.5 8c-2.65 0-5.18.5-7.5 1.5v9c2.32-1 4.85-1.5 7.5-1.5s5.18.5 7.5 1.5v-9c-2.32-1-4.85-1.5-7.5-1.5zm-1 9.48c-1.25.29-2.5.67-3.75 1.13V10.2c1.23-.42 2.48-.78 3.75-1.05v9.33zm5.75.13c-1.25-.46-2.5-.84-3.75-1.13V9.15c1.27.27 2.52.63 3.75 1.05v9.41zM12.5 3L22 7v10.31c0 .3-.02.6-.05.89l-1.6-1.59C20.62 16.2 21 15.7 21 15V8.5l-8.5-4L4 8.5v6.5c0 .7.38 1.2 1.05 1.61l-1.6 1.6c-.03-.29-.05-.59-.05-.89V7l9.5-4z',
+  strength: 'M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.48 10 10 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z',
+  customization: 'M20.5 4c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 6c1.86.5 4.37.83 6.5 1v10.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V7c2.13-.17 4.64-.5 6.5-1l.5-2zM12 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z',
+  linkedin: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z',
+  twitter: 'M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.119 0-5.515 2.57-5.515 5.734 0 .442.05.874.146 1.284-4.576-.229-8.632-2.424-11.353-5.762-.474.813-.746 1.748-.746 2.734 0 1.983 1.01 3.733 2.538 4.752-.947-.03-1.838-.289-2.618-.724v.072c0 2.774 1.973 5.086 4.591 5.612-.48.131-.986.202-1.503.202-.37 0-.728-.036-1.076-.104.729 2.27 2.844 3.933 5.353 3.979-1.959 1.527-4.425 2.437-7.11 2.437-.462 0-.919-.027-1.368-.08.572.368 1.246.583 1.964.583 2.35 0 4.538-.773 6.388-2.189 1.85-1.417 2.924-3.383 2.924-5.617v-.272c.99-.714 1.848-1.606 2.538-2.634z',
+  google: 'M21.35,11.1H12.18V13.83H18.67C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12.5C5,8.75 8.36,5.73 12.19,5.73C15.22,5.73 17.45,7.92 17.45,7.92L19.07,6.31C19.07,6.31 16.59,4 12.19,4C7.03,4 3,7.55 3,12.5C3,17.45 7.03,21 12.19,21C17.83,21 21.64,17.25 21.64,11.39C21.64,11.19 21.35,11.1 21.35,11.1Z',
+};
+
+
 export const BRAND_PILLARS: BrandPillar[] = [
   {
-    icon: "🌎", // Placeholder for actual icon
+    icon: "sustainability",
     title: "Sustainability by Design",
     description: "100% recyclable GRP composites",
   },
   {
-    icon: "⚙️", // Placeholder for actual icon
+    icon: "engineering",
     title: "Smart Engineering",
     description: "Designed and validated in-house with precision tooling",
   },
   {
-    icon: "🧱", // Placeholder for actual icon
+    icon: "strength",
     title: "Lightweight Strength",
     description: "75% lighter than steel; stronger than aluminum",
   },
   {
-    icon: "💡", // Placeholder for actual icon
+    icon: "customization",
     title: "Customization",
     description: "From small enclosures to modular villas, tailored for every industry",
   },
@@ -85,19 +96,19 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         code: 'E-102',
         name: 'GRP Double-Door Enclosure',
         description: 'Medium-size cabinet for MCCs, switchgear assemblies, and distribution boards.',
-        image: 'https://picsum.photos/600/400?random=enclosure-2',
+        image: 'https://placehold.co/600x400/008C99/white?text=E-102',
       },
       {
         code: 'E-103',
         name: 'GRP Feeder Pillar Cabinet',
         description: 'Multi-door outdoor cabinet for power distribution and street-lighting networks.',
-        image: 'https://picsum.photos/600/400?random=enclosure-3',
+        image: 'https://placehold.co/600x400/008C99/white?text=E-103',
       },
       {
         code: 'E-104',
         name: 'GRP Weatherproof Panel Board',
         description: 'Heavy-duty enclosure for marine/coastal and desert environments.',
-        image: 'https://picsum.photos/600/400?random=enclosure-4',
+        image: 'https://placehold.co/600x400/008C99/white?text=E-104',
       },
       {
         code: 'E-105',
@@ -154,14 +165,14 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP MODULAR & PORTABLE STRUCTURES',
     slug: 'grp-modular-structures',
     tagline: 'Rapid-deployment living, work, and service spaces.',
-    image: 'https://picsum.photos/600/400?random=cabin-1',
+    image: 'https://www.dropbox.com/scl/fi/c0tk1p87wwt2d0y9ksp8e/Emphz-GRP-Portable-Toilet3.png?rlkey=ix46vgc81i0wz058udkx4p1ql&st=xkn13hb5&dl=1',
     products: [
       {
         code: 'M-201',
         name: 'GRP Security / Guard Cabin',
         useCase: 'Prefab sentry units for factories, offices, and gated communities.',
         description: 'Prefab sentry units for factories, offices, and gated communities.',
-        image: 'https://picsum.photos/600/400?random=cabin-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=M-201',
       },
       {
         code: 'M-202',
@@ -174,14 +185,25 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         name: 'GRP Portable Toilets & Restrooms',
         useCase: 'Hygienic sanitation cabins with plumbing and vent systems.',
         description: 'Hygienic sanitation cabins with plumbing and vent systems.',
-        image: 'https://picsum.photos/600/400?random=cabin-toilets',
+        image: [
+            "https://www.dropbox.com/scl/fi/c0tk1p87wwt2d0y9ksp8e/Emphz-GRP-Portable-Toilet3.png?rlkey=ix46vgc81i0wz058udkx4p1ql&st=xkn13hb5&dl=1",
+            "https://www.dropbox.com/scl/fi/z0lapo5rr6fwbaj6nav95/Emphz-GRP-Portable-Toilet2.png?rlkey=c3utquy3sz2s6eo7riwgvmftm&st=92fepjrh&dl=1",
+            "https://www.dropbox.com/scl/fi/jfshpoh8ixrx7mykhdy2x/Emphz-GRP-Portable-Toilet6.png?rlkey=50gsigv2szjdjfd2i3tc368a1&st=ej3pc484&dl=1",
+            "https://www.dropbox.com/scl/fi/xsf9jg62b0z1hq0wefwe4/Emphz-GRP-Portable-Toilet5.png?rlkey=kl57esgeyuxx80adetcff520p&st=8c23pxs0&dl=1",
+            "https://www.dropbox.com/scl/fi/g6grmmy6x5zse8kwqntzy/Emphz-GRP-Portable-Toilet9.png?rlkey=74jp2e15mp4qdjnnojz0590ly&st=byhyd08h&dl=1",
+            "https://www.dropbox.com/scl/fi/iybzuipde43j7iik4pxnz/Emphz-GRP-Portable-Toilet8.png?rlkey=qzfl1tr0189g47k9x83ru7ub9&st=l0mkz7cu&dl=1",
+            "https://www.dropbox.com/scl/fi/ucvfzpqgtloe261ohehem/Emphz-GRP-Portable-Toilet15.png?rlkey=0x6eg64krw9sb1po4cp00roye&st=27ynmfl3&dl=1",
+            "https://www.dropbox.com/scl/fi/xgpdf7o58bzuk3bxlwdcx/Emphz-GRP-Portable-Toilet14.png?rlkey=gpt4qav1bdlmsrjy569itf8b1&st=uawes17w&dl=1",
+            "https://www.dropbox.com/scl/fi/1qbk0lro0rk87e0w4mkan/Emphz-GRP-Portable-Toilet13.png?rlkey=85rswr89uohxu6rf1yv7qu3i7&st=pzkyht8o&dl=1",
+            "https://www.dropbox.com/scl/fi/dirsd8yvopssfjcl4ae6a/Emphz-GRP-Portable-Toilet12.png?rlkey=87qyxe43i94lz9pxcl59ah7jx&st=mzw80lh4&dl=1",
+        ],
       },
       {
         code: 'M-204',
         name: 'GRP Executive Office Cabin',
         useCase: 'Prefab cabins with A/C, lighting, and internal partitions.',
         description: 'Prefab cabins with A/C, lighting, and internal partitions.',
-        image: 'https://picsum.photos/600/400?random=cabin-2',
+        image: 'https://placehold.co/600x400/008C99/white?text=M-204',
       },
       {
         code: 'M-205',
@@ -206,7 +228,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         name: 'GRP Smart Charging Pod / EV Booth',
         useCase: 'Weatherproof composite charging station kiosks.',
         description: 'Weatherproof composite charging station kiosks.',
-        image: 'https://picsum.photos/600/400?random=charging-pod',
+        image: 'https://placehold.co/600x400/008C99/white?text=M-208',
       },
       {
         code: 'M-209',
@@ -243,13 +265,13 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP UTILITY & INFRASTRUCTURE PRODUCTS',
     slug: 'grp-utility-infrastructure',
     tagline: 'Composite solutions for water, waste, and urban systems.',
-    image: 'https://picsum.photos/600/400?random=tank-1',
+    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Infrastructure',
     products: [
       {
         code: 'U-301',
         name: 'GRP Water Storage Tanks',
         description: 'Cylindrical or rectangular, 500 L–50 000 L, UV-resistant.',
-        image: 'https://picsum.photos/600/400?random=tank-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=U-301',
       },
       {
         code: 'U-302',
@@ -270,7 +292,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         code: 'U-305',
         name: 'GRP Manholes & Chambers',
         description: 'Load class A15–D400, slip-resistant, non-sparking.',
-        image: 'https://picsum.photos/600/400?random=manhole-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=U-305',
       },
       {
         code: 'U-306',
@@ -281,7 +303,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         code: 'U-307',
         name: 'GRP Cable Trays & Trenches',
         description: 'Electrically insulating trays for power/data cabling.',
-        image: 'https://picsum.photos/600/400?random=cable-tray-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=U-307',
       },
       {
         code: 'U-308',
@@ -314,14 +336,14 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP INDUSTRIAL COMPONENTS & CUSTOM FABRICATION',
     slug: 'grp-industrial-components',
     tagline: 'Tailor-made composites for specialized industries.',
-    image: 'https://picsum.photos/600/400?random=custom-part-1',
+    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Custom',
     products: [
       {
         code: 'C-401',
         name: 'GRP Custom Molded Parts',
         applications: ['Telecom', 'rail', 'defense', 'automotive'],
         description: 'Custom molded parts for applications in telecom, rail, defense, and automotive industries.',
-        image: 'https://picsum.photos/600/400?random=custom-part-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=C-401',
       },
       {
         code: 'C-402',
@@ -347,7 +369,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         code: 'C-406',
         name: 'GRP Wind Turbine Nacelle Covers',
         description: 'Renewable-energy composite shells.',
-        image: 'https://picsum.photos/600/400?random=wind-turbine-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=C-406',
       },
       {
         code: 'C-407',
@@ -385,14 +407,14 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP MARINE, OFFSHORE & ENERGY SOLUTIONS',
     slug: 'grp-marine-offshore',
     tagline: 'Resistant to salt, UV, and extreme climates.',
-    image: 'https://picsum.photos/600/400?random=offshore-1',
+    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Marine',
     products: [
       {
         code: 'O-501',
         name: 'GRP Offshore Electrical Enclosure',
         useCase: 'Marine platforms, desalination plants.',
         description: 'Electrical enclosures designed for marine platforms and desalination plants.',
-        image: 'https://picsum.photos/600/400?random=offshore-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=O-501',
       },
       {
         code: 'O-502',
@@ -411,7 +433,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         name: 'GRP Solar Panel Mounting Structures',
         useCase: 'Composite frames for coastal solar arrays.',
         description: 'Composite mounting frames specifically for coastal solar arrays.',
-        image: 'https://picsum.photos/600/400?random=marine-solar-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=O-504',
       },
       {
         code: 'O-505',
@@ -435,14 +457,14 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
     name: 'GRP SUSTAINABLE & SMART SOLUTIONS',
     slug: 'grp-smart-solutions',
     tagline: 'Innovating toward circular and intelligent infrastructure.',
-    image: 'https://picsum.photos/600/400?random=iot-kiosk-1',
+    image: 'https://placehold.co/600x400/1A202C/FFFFFF?text=Smart',
     products: [
       {
         code: 'S-601',
         name: 'GRP Smart IoT Kiosk',
         innovation: 'Built-in display, solar charging, and data sensors.',
         description: 'An innovative kiosk with built-in display, solar charging, and data sensors for smart applications.',
-        image: 'https://picsum.photos/600/400?random=iot-kiosk-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=S-601',
       },
       {
         code: 'S-602',
@@ -455,7 +477,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         name: 'GRP EV Charging Station Shelter',
         innovation: 'Fire-safe composite structure for electric vehicle hubs.',
         description: 'A fire-safe composite shelter solution for electric vehicle charging stations.',
-        image: 'https://picsum.photos/600/400?random=ev-shelter-1',
+        image: 'https://placehold.co/600x400/008C99/white?text=S-603',
       },
       {
         code: 'S-604',
@@ -487,27 +509,27 @@ export const INDUSTRIES: Industry[] = [
   {
     name: "Electrical & Utilities",
     applicationExample: "GRP feeder pillars and transformer enclosures",
-    image: "https://picsum.photos/600/400?random=electrical"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Electrical"
   },
   {
     name: "Renewable Energy",
     applicationExample: "Solar inverter cabinets, wind farm junction boxes",
-    image: "https://picsum.photos/600/400?random=renewable"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Renewable"
   },
   {
     name: "Telecom & IT",
     applicationExample: "Weatherproof kiosk housings for fiber and base stations",
-    image: "https://picsum.photos/600/400?random=telecom"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Telecom"
   },
   {
     name: "Construction & Infrastructure",
     applicationExample: "Portable toilets, control cabins, and pump rooms",
-    image: "https://picsum.photos/600/400?random=construction"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Construction"
   },
   {
     name: "Marine & Offshore",
     applicationExample: "Anti-corrosive enclosures for coastal facilities",
-    image: "https://picsum.photos/600/400?random=marine"
+    image: "https://placehold.co/600x400/2D3748/FFFFFF?text=Marine"
   },
 ];
 
@@ -521,6 +543,10 @@ export const QUALITY_FRAMEWORK: QualityPoint[] = [
 ];
 
 export const PROCESS_PHILOSOPHY = "Every EMPHZ product undergoes a closed-loop design-to-delivery system — from CAD modeling to finished product validation — ensuring zero tolerance for defects.";
+export const FACTORY_IMAGES = [
+  "https://placehold.co/800x600/F7FAFC/1A202C?text=Automated+Presses",
+  "https://placehold.co/800x600/F7FAFC/1A202C?text=Quality+Control+Lab"
+];
 
 // --- Sustainability & Total Cost Advantage ---
 export const COST_COMPARISON: CostComparison[] = [

@@ -105,9 +105,10 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer />
+        {/* Floating Action Buttons Container */}
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center space-y-4">
-            <ContactFAB />
             <ScrollToTopButton />
+            <ContactFAB />
         </div>
         <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
         <QuickViewModal product={quickViewProduct} onClose={closeQuickView} />

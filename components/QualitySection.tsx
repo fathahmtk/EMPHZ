@@ -1,5 +1,5 @@
 import React from 'react';
-import { QUALITY_FRAMEWORK, PROCESS_PHILOSOPHY } from '../constants';
+import { QUALITY_FRAMEWORK, PROCESS_PHILOSOPHY, FACTORY_IMAGES } from '../constants';
 
 const QualitySection: React.FC = () => {
   return (
@@ -11,13 +11,13 @@ const QualitySection: React.FC = () => {
           {/* Visual: High-definition factory images */}
           <div className="lg:order-2 space-y-8">
             <img
-              src="https://picsum.photos/800/600?random=factory-automated"
+              src={FACTORY_IMAGES[0]}
               alt="Automated SMC presses"
               loading="lazy"
               className="w-full h-auto rounded-lg shadow-lg object-cover aspect-video"
             />
             <img
-              src="https://picsum.photos/800/600?random=factory-qc"
+              src={FACTORY_IMAGES[1]}
               alt="QC lab in action"
               loading="lazy"
               className="w-full h-auto rounded-lg shadow-lg object-cover aspect-video"
@@ -30,7 +30,7 @@ const QualitySection: React.FC = () => {
             <ul className="space-y-4 mb-10">
               {QUALITY_FRAMEWORK.map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <svg className="h-6 w-6 text-[var(--color-accent)] mr-4 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-6 w-6 text-[var(--color-brand)] mr-4 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <p className="text-[var(--color-text-secondary)]">

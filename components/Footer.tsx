@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CONTACT_OPTIONS, OFFICE_LOCATIONS, SOCIAL_LINKS } from '../constants';
 import config from '../config';
 import Logo from './Logo';
+import Icon from './Icon';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -17,9 +18,15 @@ const Footer: React.FC = () => {
             Engineering Tomorrow’s Infrastructure — Today.
           </p>
           <div className="mt-6 flex space-x-4">
-            <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-accent)] transition-colors duration-200">LinkedIn</a>
-            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-accent)] transition-colors duration-200">Twitter</a>
-            <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-accent)] transition-colors duration-200">Google Profile</a>
+            <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-[var(--color-brand)] transition-colors duration-200">
+              <Icon name="linkedin" className="h-6 w-6" />
+            </a>
+            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-400 hover:text-[var(--color-brand)] transition-colors duration-200">
+              <Icon name="twitter" className="h-6 w-6" />
+            </a>
+            <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile" className="text-gray-400 hover:text-[var(--color-brand)] transition-colors duration-200">
+               <Icon name="google" className="h-6 w-6" />
+            </a>
           </div>
         </div>
 
@@ -27,11 +34,11 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold text-[var(--color-primary)] mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/products" className="hover:text-[var(--color-accent)] transition-colors duration-200">Products</Link></li>
-            <li><Link to="/industries" className="hover:text-[var(--color-accent)] transition-colors duration-200">Industries</Link></li>
-            <li><Link to="/innovation" className="hover:text-[var(--color-accent)] transition-colors duration-200">Innovation</Link></li>
-            <li><Link to="/sustainability" className="hover:text-[var(--color-accent)] transition-colors duration-200">Sustainability</Link></li>
-            <li><Link to="/contact" className="hover:text-[var(--color-accent)] transition-colors duration-200">Contact Us</Link></li>
+            <li><Link to="/products" className="hover:text-[var(--color-brand)] transition-colors duration-200">Products</Link></li>
+            <li><Link to="/industries" className="hover:text-[var(--color-brand)] transition-colors duration-200">Industries</Link></li>
+            <li><Link to="/innovation" className="hover:text-[var(--color-brand)] transition-colors duration-200">Innovation</Link></li>
+            <li><Link to="/sustainability" className="hover:text-[var(--color-brand)] transition-colors duration-200">Sustainability</Link></li>
+            <li><Link to="/contact" className="hover:text-[var(--color-brand)] transition-colors duration-200">Contact Us</Link></li>
           </ul>
         </div>
 
@@ -39,8 +46,8 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold text-[var(--color-primary)] mb-4">Contact Us</h3>
           <ul className="space-y-2 text-sm">
-             <li><a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-accent)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a></li>
-             <li><a href={`tel:${config.supportPhone}`} className="hover:text-[var(--color-accent)] transition-colors duration-200">{config.supportPhone}</a></li>
+             <li><a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a></li>
+             <li><a href={`tel:${config.supportPhone}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{config.supportPhone}</a></li>
           </ul>
         </div>
 
@@ -50,7 +57,7 @@ const Footer: React.FC = () => {
           <ul className="space-y-2 text-sm">
             {OFFICE_LOCATIONS.map((location, index) => (
               <li key={index} className="flex items-start">
-                <span className="mt-1 mr-2">📍</span>
+                <span className="mt-1 mr-2 text-[var(--color-brand)]">📍</span>
                 <span>{location}</span>
                 </li>
             ))}
