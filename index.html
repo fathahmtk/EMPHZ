@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPHZ Private Limited - Engineering Tomorrow in Composites</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/M7cR4Zg/emphz-icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+        
+        /* New Logo-Based Theme Variables */
+        :root {
+            --color-primary: #2A2A2A;      /* Charcoal Black from Logo Text */
+            --color-accent: #008C99;       /* Teal/Cyan from Logo Bolt */
+            --color-background: #F4F4F4;   /* Off-White from Logo Background */
+            --color-text-primary: #2A2A2A; /* Charcoal Black */
+            --color-text-secondary: #808080;/* Brushed Metal Gray */
+            --color-border: #DCDCDC;       /* Light Metallic Gray */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-primary);
+            background-color: var(--color-background);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+        }
+        .hero-overlay {
+            background-image: linear-gradient(45deg, rgba(42, 42, 42, 0.85), rgba(0, 140, 153, 0.7));
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+        .animate-hero-zoom {
+            animation: heroZoom 15s ease-out forwards;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.4"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
