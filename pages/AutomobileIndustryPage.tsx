@@ -6,6 +6,7 @@ import Icon from '../components/Icon';
 import ProductCard from '../components/ProductCard';
 import { useUIState } from '../UIStateContext';
 import Button from '../components/Button';
+import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
 
 const AutomobileIndustryPage: React.FC = () => {
   const { openQuickView } = useUIState();
@@ -22,6 +23,12 @@ const AutomobileIndustryPage: React.FC = () => {
     }
     return products;
   }, [industryData.featuredProducts]);
+
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Home', path: '/' },
+    { label: 'Industries', path: '/industries' },
+    { label: 'Automobile & Transport' },
+  ];
 
   return (
     <>
@@ -54,14 +61,7 @@ const AutomobileIndustryPage: React.FC = () => {
       </section>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Breadcrumbs */}
-        <nav className="text-sm mb-16 text-[var(--color-text-secondary)]" aria-label="Breadcrumb">
-          <ol className="list-none p-0 inline-flex items-center flex-wrap">
-            <li className="flex items-center"><Link to="/" className="hover:text-[var(--color-primary)]">Home</Link><span className="mx-3">/</span></li>
-            <li className="flex items-center"><Link to="/industries" className="hover:text-[var(--color-primary)]">Industries</Link><span className="mx-3">/</span></li>
-            <li className="text-[var(--color-primary)]" aria-current="page">Automobile & Transport</li>
-          </ol>
-        </nav>
+        <Breadcrumbs items={breadcrumbItems} className="mb-16" />
 
         {/* Introduction Section */}
         <section className="mb-20 text-center max-w-4xl mx-auto">

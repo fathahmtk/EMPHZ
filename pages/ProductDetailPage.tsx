@@ -9,6 +9,7 @@ import { useUIState } from '../UIStateContext';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
 import { PRODUCT_FAQS } from '../constants';
 import ProductImageCarousel from '../components/ProductImageCarousel';
+import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
 
 const ProductDetailPage: React.FC = () => {
   const { productCode } = useParams<{ productCode: string }>();
@@ -69,6 +70,13 @@ const ProductDetailPage: React.FC = () => {
   const relatedProducts = category.products.filter(p => p.code !== product.code).slice(0, 4);
   const descriptionText = product.description || product.useCase || product.innovation;
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Home', path: '/' },
+    { label: 'Products', path: '/products' },
+    { label: category.name, path: `/products/category/${category.slug}` },
+    { label: product.name },
+  ];
+
   return (
     <>
       <MetaTags
@@ -76,26 +84,7 @@ const ProductDetailPage: React.FC = () => {
         description={descriptionText || `Technical details for ${product.name}, part of EMPHZ's GRP composite solutions.`}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Breadcrumbs */}
-        <nav className="text-sm mb-8 text-[var(--color-text-secondary)]" aria-label="Breadcrumb">
-          <ol className="list-none p-0 inline-flex items-center flex-wrap">
-            <li className="flex items-center">
-              <Link to="/" className="hover:text-[var(--color-primary)]">Home</Link>
-              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569 9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-            </li>
-            <li className="flex items-center">
-              <Link to="/products" className="hover:text-[var(--color-primary)]">Products</Link>
-              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569 9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-            </li>
-            <li className="flex items-center">
-              <Link to={`/products/category/${category.slug}`} className="hover:text-[var(--color-primary)] truncate" title={category.name}>{category.name}</Link>
-              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569 9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-            </li>
-            <li className="text-[var(--color-primary)] truncate" aria-current="page" title={product.name}>
-              {product.name}
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumbs items={breadcrumbItems} className="mb-8" />
 
         {/* Product Details Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
