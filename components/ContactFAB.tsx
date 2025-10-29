@@ -54,7 +54,7 @@ const ContactFAB: React.FC = () => {
         </a>
         <a
           href={`tel:${config.supportPhone}`}
-          className="group relative bg-[var(--color-accent)] hover:opacity-90 text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110"
+          className="group relative bg-[var(--color-brand)] hover:bg-[var(--color-brand-light)] text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110"
           aria-label="Call Us"
         >
           <PhoneIcon />
@@ -67,7 +67,7 @@ const ContactFAB: React.FC = () => {
       {/* Main Toggle Button */}
       <button
         onClick={toggleOpen}
-        className="bg-slate-800 hover:bg-slate-900 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[var(--color-accent)]/50"
+        className="bg-[var(--color-primary)] hover:bg-gray-900 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[var(--color-brand)]/50"
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close contact options' : 'Open contact options'}
       >

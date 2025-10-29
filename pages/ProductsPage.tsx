@@ -1,105 +1,10 @@
 
-import React, { useState, useRef, useMemo, useCallback, useEffect } from 'react';
-import { TECHNICAL_STANDARD_SUMMARY, SEO_DATA } from '../constants';
-import DownloadButtons from '../components/DownloadButtons';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { PRODUCT_CATALOG, SEO_DATA } from '../constants';
 import MetaTags from '../components/MetaTags';
-import { TechnicalStandard, Product } from '../types';
-import ProductCard from '../components/ProductCard';
-import SkeletonProductCard from '../components/SkeletonProductCard';
-import { useUIState } from '../UIStateContext';
-import { useAllProducts } from '../hooks/useAllProducts';
-import Button from '../components/Button';
-
-// Extend Product type to include categoryName for display on the card
-interface ProductWithCategoryName extends Product {
-  categoryName: string;
-}
-
-const PAGE_SIZE = 8; // Number of products to load per "page"
 
 const ProductsPage: React.FC = () => {
-  const { openQuickView } = useUIState();
-  const { data: allProductsWithCategory, isLoading: isCatalogLoading, error } = useAllProducts();
-
-  // 1. Memoize the flattened product list
-  const allProducts: ProductWithCategoryName[] = useMemo(() => {
-    if (isCatalogLoading || !allProductsWithCategory) return [];
-    return allProductsWithCategory.map(({ product, category }) => ({
-      ...product,
-      categoryName: category.name,
-    }));
-  }, [allProductsWithCategory, isCatalogLoading]);
-
-  // 2. State for managing displayed products and loading status for infinite scroll
-  const [displayedProducts, setDisplayedProducts] = useState<ProductWithCategoryName[]>([]);
-  const [loading, setLoading] = useState(false); // For infinite scroll loading
-  const [hasMore, setHasMore] = useState(true);
-  
-  // Effect to initialize displayed products once data is loaded
-  useEffect(() => {
-    if (allProducts.length > 0) {
-      setDisplayedProducts(allProducts.slice(0, PAGE_SIZE));
-      setHasMore(allProducts.length > PAGE_SIZE);
-    }
-  }, [allProducts]);
-
-  // 3. Setup IntersectionObserver to trigger loading more products
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastProductElementRef = useCallback((node: HTMLDivElement) => {
-    if (loading) return; // Don't re-trigger if already loading
-    if (observer.current) observer.current.disconnect(); // Disconnect previous observer
-    
-    observer.current = new IntersectionObserver(entries => {
-      // If the last element is visible and there are more products to load
-      if (entries[0].isIntersecting && hasMore) {
-        setLoading(true);
-        // Simulate a network delay for a smoother user experience
-        setTimeout(() => {
-          const currentLength = displayedProducts.length;
-          const nextProducts = allProducts.slice(currentLength, currentLength + PAGE_SIZE);
-          
-          setDisplayedProducts(prevProducts => [...prevProducts, ...nextProducts]);
-          setHasMore(currentLength + PAGE_SIZE < allProducts.length);
-          setLoading(false);
-        }, 800);
-      }
-    });
-    
-    if (node) observer.current.observe(node); // Observe the new last element
-  }, [loading, hasMore, allProducts, displayedProducts.length]);
-
-  // Dedicated Error Component
-  if (error) {
-    return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center justify-center min-h-[60vh]">
-        <h1 className="text-4xl font-bold text-red-500 mb-4">Failed to Load Products</h1>
-        <p className="text-lg text-[var(--color-text-secondary)] mb-8 max-w-md">
-          There was a problem fetching the product catalog. Please check your network connection and try again.
-        </p>
-        <Button onClick={() => window.location.reload()} variant="primary">
-          Reload Page
-        </Button>
-      </div>
-    );
-  }
-
-  // Initial loading state UI
-  if (isCatalogLoading) {
-    return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <div className="h-12 bg-gray-300 rounded-full w-1/2 mx-auto mb-6 animate-pulse"></div>
-          <div className="h-6 bg-gray-200 rounded-full w-3/4 mx-auto animate-pulse"></div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {Array.from({ length: 8 }).map((_, index) => (
-            <SkeletonProductCard key={`initial-skeleton-${index}`} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <MetaTags
@@ -109,78 +14,43 @@ const ProductsPage: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Our Full Product Catalog
+            Our Product Categories
           </h1>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-3xl mx-auto">
-            Pioneering corrosion-proof, high-performance composite products built for power, infrastructure, and sustainability. Scroll down to discover our extensive range of solutions.
+            Pioneering corrosion-proof, high-performance composite products built for power, infrastructure, and sustainability. Explore our specialized product lines below.
           </p>
         </div>
 
-        {/* Unified Product Grid */}
-        <main>
-          {displayedProducts.length === 0 && !loading && !isCatalogLoading ? (
-            <div className="text-center py-16">
-              <h2 className="text-2xl font-semibold">No Products Found</h2>
-              <p className="text-[var(--color-text-secondary)] mt-2">The product catalog is currently empty. Please check back later.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {displayedProducts.map((product, index) => (
-                <div key={product.code} ref={index === displayedProducts.length - 1 ? lastProductElementRef : null}>
-                  <ProductCard
-                    product={product}
-                    onQuickViewClick={() => openQuickView(product)}
-                    categoryName={product.categoryName}
-                  />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {PRODUCT_CATALOG.map((category) => (
+            <Link
+              key={category.code}
+              to={`/products/category/${category.slug}`}
+              className="block group bg-[var(--color-background)] rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1"
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={category.image || 'https://picsum.photos/600/400?random=category-placeholder'}
+                  alt={category.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
+                  {category.name}
+                </h2>
+                <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2">
+                  {category.tagline}
+                </p>
+                <div className="mt-4 text-sm font-semibold text-[var(--color-brand)] group-hover:underline">
+                  View Products &rarr;
                 </div>
-              ))}
-              {/* Skeleton Loader for infinite scroll */}
-              {loading && (
-                <>
-                  {Array.from({ length: 4 }).map((_, index) => (
-                    <SkeletonProductCard key={`skeleton-${index}`} />
-                  ))}
-                </>
-              )}
-            </div>
-          )}
-
-          {/* End of List Message */}
-          {!hasMore && !loading && displayedProducts.length > 0 && (
-             <div className="text-center py-10 mt-8 border-t border-[var(--color-border)]">
-               <p className="text-lg font-medium text-[var(--color-text-secondary)]">You've viewed all products.</p>
-             </div>
-          )}
-        </main>
-
-        <section className="mb-16 mt-24">
-          <h3 className="text-3xl lg:text-4xl font-bold mb-6 text-center">Technical Standard Summary</h3>
-          <p className="text-center text-lg text-[var(--color-text-secondary)] mb-10 max-w-3xl mx-auto">
-            Our products are rigorously tested and certified to meet the highest international and national standards.
-          </p>
-          <div className="overflow-x-auto bg-[var(--color-surface)] rounded-lg shadow-sm p-4 border border-[var(--color-border)]">
-            <table className="min-w-full">
-              <thead className="bg-gray-800 text-white">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">Property</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">EMPHZ Standard</th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">International Code</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[var(--color-border)]">
-                {TECHNICAL_STANDARD_SUMMARY.map((item: TechnicalStandard, index: number) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--color-primary)]">{item.property}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)]">{item.emphzStandard}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)]">{item.internationalCode}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <DownloadButtons />
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );

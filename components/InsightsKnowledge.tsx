@@ -14,19 +14,19 @@ const InsightsKnowledge: React.FC = () => {
             <h3 className="text-2xl font-semibold mb-6">Latest Articles</h3>
             <div className="space-y-6">
               {BLOG_ARTICLES.map((article, index) => (
-                <a key={index} href={article.link} className="block p-6 bg-[var(--color-background)] rounded-lg shadow-sm hover:shadow-lg border border-[var(--color-border)] transition-shadow duration-300 group">
-                  <h4 className="text-xl font-semibold text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition-colors duration-300 mb-2">
+                <a key={index} href={article.link} className="block p-6 bg-[var(--color-background)] rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-xl)] border border-[var(--color-border)] transition-shadow duration-300 group">
+                  <h4 className="text-xl font-semibold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
                     {article.title}
                   </h4>
                   <p className="text-[var(--color-text-secondary)] text-sm">{article.description}</p>
-                  <span className="mt-4 inline-block text-[var(--color-primary)] group-hover:text-[var(--color-accent)] text-sm font-medium transition-colors duration-300">Read More &rarr;</span>
+                  <span className="mt-4 inline-block text-[var(--color-primary)] group-hover:text-[var(--color-brand)] text-sm font-medium transition-colors duration-300">Read More &rarr;</span>
                 </a>
               ))}
             </div>
           </div>
 
           {/* Downloadable Resources */}
-          <div className="bg-[var(--color-background)] p-8 rounded-lg shadow-sm border border-[var(--color-border)]">
+          <div className="bg-[var(--color-background)] p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
             <h3 className="text-2xl font-semibold mb-6">Downloadable Resources</h3>
             <div className="space-y-4">
               {KNOWLEDGE_RESOURCES.map((resource, index) => (

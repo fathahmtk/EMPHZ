@@ -15,7 +15,7 @@ export const HERO_SECTION = {
   headline: "Engineering Tomorrow’s Infrastructure — Today",
   subline: "High-performance GRP composite solutions engineered to outlast steel, outperform concrete, and redefine sustainability.",
   cta1: "Explore Our Products",
-  cta2: "Request a Project Quote",
+  cta2: "Request a Quote",
   backgroundImages: [
     "https://picsum.photos/1920/1080?random=factory-cinematic",
     "https://picsum.photos/1920/1080?random=composite-material",
@@ -67,7 +67,9 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
   {
     code: 'CAT1',
     name: 'GRP ELECTRICAL & UTILITY ENCLOSURES',
+    slug: 'grp-enclosures',
     tagline: 'Precision protection engineered for reliability and safety.',
+    image: 'https://picsum.photos/800/600?random=enclosure-1a',
     products: [
       {
         code: 'E-101',
@@ -136,13 +138,25 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
       'Double insulation, UV-stabilized gel coat',
       'Options: transparent door, window kit, fan filters, mounting rails',
     ],
+    technicalSnapshot: [
+      { parameter: "Ingress Protection", specification: "IP66", certification: "IEC 60529" },
+      { parameter: "Impact Resistance", specification: "IK10", certification: "IEC 62262" },
+      { parameter: "Fire Retardancy", specification: "UL 94 V-0", certification: "UL / BS 476" },
+      { parameter: "UV Resistance", specification: "> 10 Years", certification: "ISO 4892" },
+      { parameter: "Mechanical Strength", specification: "150–230 MPa", certification: "ASTM D790" },
+      { parameter: "Electrical Insulation", specification: "15 kV/mm", certification: "ASTM D149" },
+      { parameter: "Material Density", specification: "1.8 g/cm³", certification: "ASTM D792" },
+    ],
+    materials: ["Sheet Molding Compound (SMC)", "Glass Reinforced Polyester (GRP)"],
+    accessories: ["SS 316 Hardware", "Mounting Rails", "Ventilation Louvers", "Transparent Doors", "Gland Plates"],
   },
   {
     code: 'CAT2',
     name: 'GRP MODULAR & PORTABLE STRUCTURES',
+    slug: 'grp-modular-structures',
     tagline: 'Rapid-deployment living, work, and service spaces.',
+    image: 'https://picsum.photos/600/400?random=cabin-1',
     products: [
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-201',
         name: 'GRP Security / Guard Cabin',
@@ -150,14 +164,12 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Prefab sentry units for factories, offices, and gated communities.',
         image: 'https://picsum.photos/600/400?random=cabin-1',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-202',
         name: 'GRP Information / Ticket Kiosk',
         useCase: 'Public information booths, toll and ticket counters.',
         description: 'Public information booths, toll and ticket counters.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-203',
         name: 'GRP Portable Toilets & Restrooms',
@@ -165,7 +177,6 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Hygienic sanitation cabins with plumbing and vent systems.',
         image: 'https://picsum.photos/600/400?random=cabin-toilets',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-204',
         name: 'GRP Executive Office Cabin',
@@ -173,28 +184,24 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Prefab cabins with A/C, lighting, and internal partitions.',
         image: 'https://picsum.photos/600/400?random=cabin-2',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-205',
         name: 'GRP Modular Villa / Worker Housing',
         useCase: 'Fast-install housing, insulated, termite-proof.',
         description: 'Fast-install housing, insulated, termite-proof.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-206',
         name: 'GRP ATM / Telecom Booth',
         useCase: 'Secure standalone kiosk for ATM or telecom nodes.',
         description: 'Secure standalone kiosk for ATM or telecom nodes.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-207',
         name: 'GRP Portable Kitchen / Canteen Unit',
         useCase: 'Food-safe, washable interior cabins for remote camps.',
         description: 'Food-safe, washable interior cabins for remote camps.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-208',
         name: 'GRP Smart Charging Pod / EV Booth',
@@ -202,14 +209,12 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Weatherproof composite charging station kiosks.',
         image: 'https://picsum.photos/600/400?random=charging-pod',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-209',
         name: 'GRP Toilet-Shower Combo Unit',
         useCase: 'For labour sites, events, and public areas.',
         description: 'For labour sites, events, and public areas.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'M-210',
         name: 'GRP Site Office Cabin',
@@ -223,12 +228,23 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
       'IS 14856 (Doors)',
       'Wind-resistant, earthquake-safe, thermally insulated panels',
     ],
-    // Removed 'advantages' as per new specification not including it for this category
+    technicalSnapshot: [
+      { parameter: "Structural Integrity", specification: "Wind/Seismic Proof", certification: "IS 875 / 1893" },
+      { parameter: "Thermal Insulation", specification: "<0.5 W/m²K", certification: "ASTM C518" },
+      { parameter: "Fire Safety", specification: "Self-Extinguishing", certification: "BS 476 Part 7" },
+      { parameter: "Sound Insulation", specification: "25-30 dB", certification: "ISO 140" },
+      { parameter: "Water Absorption", specification: "<0.1%", certification: "ASTM D570" },
+      { parameter: "Termite Resistance", specification: "100% Proof", certification: "IS 4020" },
+    ],
+    materials: ["GRP Composite Panels", "PUF/EPS Insulation Core", "Steel Sub-Frame"],
+    accessories: ["Insulated Doors/Windows", "Electrical Wiring", "Plumbing Fixtures", "Flooring", "A/C Units"],
   },
   {
     code: 'CAT3',
     name: 'GRP UTILITY & INFRASTRUCTURE PRODUCTS',
+    slug: 'grp-utility-infrastructure',
     tagline: 'Composite solutions for water, waste, and urban systems.',
+    image: 'https://picsum.photos/600/400?random=tank-1',
     products: [
       {
         code: 'U-301',
@@ -284,13 +300,23 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Compact housings for metering pumps and chemical handling.',
       },
     ],
+    technicalSnapshot: [
+      { parameter: "Load Bearing", specification: "A15 to D400", certification: "BS EN 124" },
+      { parameter: "Compressive Strength", specification: ">120 MPa", certification: "ASTM D695" },
+      { parameter: "Water Absorption", specification: "<0.1%", certification: "ASTM D570" },
+      { parameter: "Chemical Resistance", specification: "Acids/Alkalis", certification: "ASTM D543" },
+      { parameter: "Fire Resistance", specification: "Self-Extinguishing", certification: "BS 476" },
+    ],
+    materials: ["Isophthalic/Vinylester Resins", "Woven Roving Glass Fiber"],
+    accessories: ["Lifting Hooks", "SS Fasteners", "Sealing Gaskets", "Vents"],
   },
   {
     code: 'CAT4',
     name: 'GRP INDUSTRIAL COMPONENTS & CUSTOM FABRICATION',
+    slug: 'grp-industrial-components',
     tagline: 'Tailor-made composites for specialized industries.',
+    image: 'https://picsum.photos/600/400?random=custom-part-1',
     products: [
-      // Added `description` for C-401 to satisfy the Product interface
       {
         code: 'C-401',
         name: 'GRP Custom Molded Parts',
@@ -345,13 +371,23 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Insulated dielectric partitions for LV panels.',
       },
     ],
+    technicalSnapshot: [
+      { parameter: "Tensile Strength", specification: "80-150 MPa", certification: "ASTM D638" },
+      { parameter: "Flexural Strength", specification: "150-230 MPa", certification: "ASTM D790" },
+      { parameter: "Dielectric Strength", specification: "15 kV/mm", certification: "ASTM D149" },
+      { parameter: "Max Temperature", specification: "150-180 °C", certification: "ASTM D648" },
+      { parameter: "Manufacturing Process", specification: "SMC/BMC, RTM, Hand Lay-up", certification: "" },
+    ],
+    materials: ["Polyester/Epoxy Resin", "E-Glass/Carbon Fiber", "Gelcoat Finish"],
+    accessories: ["Metal Inserts", "Custom Mounts", "RF-Transparent Windows"],
   },
   {
     code: 'CAT5',
     name: 'GRP MARINE, OFFSHORE & ENERGY SOLUTIONS',
+    slug: 'grp-marine-offshore',
     tagline: 'Resistant to salt, UV, and extreme climates.',
+    image: 'https://picsum.photos/600/400?random=offshore-1',
     products: [
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'O-501',
         name: 'GRP Offshore Electrical Enclosure',
@@ -359,21 +395,18 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Electrical enclosures designed for marine platforms and desalination plants.',
         image: 'https://picsum.photos/600/400?random=offshore-1',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'O-502',
         name: 'GRP Navigation Light Housings',
         useCase: 'Saltwater-resistant protective boxes.',
         description: 'Saltwater-resistant protective housings for navigation lights.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'O-503',
         name: 'GRP Battery Compartment for Vessels',
         useCase: 'Anti-corrosive, lightweight battery storage.',
         description: 'Anti-corrosive, lightweight battery storage compartments for vessels.',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'O-504',
         name: 'GRP Solar Panel Mounting Structures',
@@ -381,7 +414,6 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Composite mounting frames specifically for coastal solar arrays.',
         image: 'https://picsum.photos/600/400?random=marine-solar-1',
       },
-      // Added `description` using `useCase` value to satisfy the Product interface
       {
         code: 'O-505',
         name: 'GRP Dock / Jetty Control Cabinets',
@@ -389,13 +421,23 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Water-resistant junction cabinets for dock and jetty control systems.',
       },
     ],
+    technicalSnapshot: [
+      { parameter: "Ingress Protection", specification: "IP67", certification: "IEC 60529" },
+      { parameter: "Salt Spray Test", specification: ">1000 Hours", certification: "ASTM B117" },
+      { parameter: "UV Resistance", specification: "Conforms", certification: "ISO 4892" },
+      { parameter: "Fire Rating", specification: "UL 94 V-0", certification: "" },
+      { parameter: "Impact Strength", specification: "IK10", certification: "IEC 62262" },
+    ],
+    materials: ["Fire Retardant Resin", "UV-Stabilized Gelcoat", "SS 316 Hardware"],
+    accessories: ["Marine-Grade Hinges", "Breather Drains", "EMI/RFI Shielding"],
   },
   {
     code: 'CAT6',
     name: 'GRP SUSTAINABLE & SMART SOLUTIONS',
+    slug: 'grp-smart-solutions',
     tagline: 'Innovating toward circular and intelligent infrastructure.',
+    image: 'https://picsum.photos/600/400?random=iot-kiosk-1',
     products: [
-      // Added `description` using `innovation` value to satisfy the Product interface
       {
         code: 'S-601',
         name: 'GRP Smart IoT Kiosk',
@@ -403,14 +445,12 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'An innovative kiosk with built-in display, solar charging, and data sensors for smart applications.',
         image: 'https://picsum.photos/600/400?random=iot-kiosk-1',
       },
-      // Added `description` using `innovation` value to satisfy the Product interface
       {
         code: 'S-602',
         name: 'GRP Recycling Collection Booth',
         innovation: 'Modular waste segregation pods.',
         description: 'Modular pods designed for efficient waste segregation and collection.',
       },
-      // Added `description` using `innovation` value to satisfy the Product interface
       {
         code: 'S-603',
         name: 'GRP EV Charging Station Shelter',
@@ -418,14 +458,12 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'A fire-safe composite shelter solution for electric vehicle charging stations.',
         image: 'https://picsum.photos/600/400?random=ev-shelter-1',
       },
-      // Added `description` using `innovation` value to satisfy the Product interface
       {
         code: 'S-604',
         name: 'GRP Solar Inverter Enclosure (Hybrid)',
         innovation: 'Passive-cooled cabinet with integrated monitoring.',
         description: 'A passive-cooled cabinet for hybrid solar inverters with integrated monitoring capabilities.',
       },
-      // Added `description` using `innovation` value to satisfy the Product interface
       {
         code: 'S-605',
         name: 'GRP Telecom Shelter Pod',
@@ -433,6 +471,15 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         description: 'Climate-controlled composite pods providing robust shelter for 5G base stations.',
       },
     ],
+    technicalSnapshot: [
+      { parameter: "IoT Integration", specification: "Sensor/Display Mounts", certification: "" },
+      { parameter: "Solar Compatibility", specification: "Integrated Solar Panel Frames", certification: "" },
+      { parameter: "Recyclability", specification: "100%", certification: "" },
+      { parameter: "Design Life", specification: "50+ Years", certification: "" },
+      { parameter: "Thermal Management", specification: "Passive Cooling Vents", certification: "" },
+    ],
+    materials: ["Bio-Resins (on request)", "Recycled Fiber Core", "Low-VOC Gelcoat"],
+    accessories: ["Solar Charge Controllers", "IoT Sensors", "Touchscreen Displays", "LED Lighting"],
   },
 ];
 
@@ -602,8 +649,12 @@ export const SEO_DATA = {
     description: "EMPHZ is a global leader in GRP composite engineering, offering high-performance electrical enclosures, modular structures, and infrastructure solutions for critical applications.",
   },
   products: {
-    title: "EMPHZ Industrial Cabinets - GRP Electrical Enclosures",
-    description: "Explore EMPHZ's comprehensive range of GRP electrical enclosures, modular structures, and utility products designed for durability and performance.",
+    title: "EMPHZ Product Categories - GRP Composite Solutions",
+    description: "Explore EMPHZ's comprehensive range of GRP product categories, from electrical enclosures and modular structures to custom industrial components.",
+  },
+  productCategory: {
+    title: (categoryName: string) => `${categoryName} | EMPHZ Products`,
+    description: (categoryTagline: string) => `Discover our range of ${categoryTagline.toLowerCase()}. High-performance GRP composite solutions by EMPHZ.`,
   },
   modularStructures: {
     title: "EMPHZ Prefab Solutions - GRP Portable Cabins & Villas",
@@ -635,7 +686,7 @@ export const SEO_DATA = {
   },
   contact: {
     title: "GRP Composite Solutions for Your Project - EMPHZ Sales & Support",
-    description: "Connect with EMPHZ for general inquiries, technical support, or to request a project quotation. Our team is ready to engineer your next project.",
+    description: "Connect with EMPHZ for general inquiries, technical support, or to request a quote. Our team is ready to engineer your next project.",
   },
   admin: {
     title: "EMPHZ Admin Portal",

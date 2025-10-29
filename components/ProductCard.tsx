@@ -49,16 +49,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
     <Link
       ref={cardRef}
       to={`/products/${product.code}`}
-      className={`block h-full group relative opacity-0 ${isVisible ? 'animate-fadeInUp' : ''}`}
+      className={`block h-full group relative opacity-0 ${isVisible ? 'animate-fadeInUp' : ''} transition-transform duration-300 hover:-translate-y-1`}
     >
-      <div className="bg-[var(--color-background)] p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col">
+      <div className="bg-[var(--color-background)] p-6 rounded-lg shadow-[var(--shadow-md)] group-hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col">
         {/* Display Category Name */}
         {categoryName && (
-            <p className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-2">
+            <p className="text-xs font-bold text-[var(--color-brand)] uppercase tracking-wider mb-2">
                 {categoryName}
             </p>
         )}
-        <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition-colors duration-300 mb-2">{product.name}</h4>
+        <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">{product.name}</h4>
         <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-3">Code: {product.code}</p>
         <div className="flex-grow">
           {descriptionText && <p className="text-[var(--color-text-primary)] text-sm">{descriptionText}</p>}

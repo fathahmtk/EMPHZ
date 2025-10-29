@@ -16,7 +16,7 @@ const WarrantyService: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Warranty Coverage */}
-          <div className="p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">
+          <div className="p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
             <h3 className="text-xl font-semibold mb-4">Warranty Coverage</h3>
             <p className="text-[var(--color-text-primary)] leading-relaxed">{WARRANTY_COVERAGE}</p>
             <p className="text-[var(--color-text-secondary)] text-sm mt-4">
@@ -25,7 +25,7 @@ const WarrantyService: React.FC = () => {
           </div>
 
           {/* Exclusions */}
-          <div className="p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">
+          <div className="p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
             <h3 className="text-xl font-semibold mb-4">Exclusions</h3>
             <p className="text-[var(--color-text-primary)] leading-relaxed">{WARRANTY_EXCLUSIONS}</p>
             <p className="text-[var(--color-text-secondary)] text-sm mt-4">
@@ -34,7 +34,7 @@ const WarrantyService: React.FC = () => {
           </div>
 
           {/* Installation Requirements */}
-          <div className="p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">
+          <div className="p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
             <h3 className="text-xl font-semibold mb-4">Installation Requirements</h3>
             <ul className="list-disc list-inside space-y-2 text-[var(--color-text-primary)]">
               {INSTALLATION_REQUIREMENTS.map((req, index) => (
@@ -48,13 +48,13 @@ const WarrantyService: React.FC = () => {
         </div>
 
         {/* Support Contact */}
-        <div className="mt-20 text-center p-10 bg-gray-800 text-white rounded-lg shadow-lg">
+        <div className="mt-20 text-center p-10 bg-[var(--color-primary)] text-white rounded-lg shadow-[var(--shadow-lg)]">
           <h3 className="text-2xl font-bold mb-4">Need Support?</h3>
           <p className="text-lg">
-            📞 Call us at: <a href={`tel:${config.supportPhone}`} className="hover:text-[var(--color-accent)] transition-colors duration-200">{config.supportPhone}</a>
+            📞 Call us at: <a href={`tel:${config.supportPhone}`} className="hover:text-[var(--color-brand-light)] transition-colors duration-200">{config.supportPhone}</a>
           </p>
           <p className="text-lg mt-2">
-            ✉️ Email us: <a href={`mailto:${config.supportEmail}`} className="hover:text-[var(--color-accent)] transition-colors duration-200">{config.supportEmail}</a>
+            ✉️ Email us: <a href={`mailto:${config.supportEmail}`} className="hover:text-[var(--color-brand-light)] transition-colors duration-200">{config.supportEmail}</a>
           </p>
         </div>
       </div>

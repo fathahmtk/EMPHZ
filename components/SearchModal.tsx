@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useAllProducts } from '../hooks/useAllProducts';
+import { ProductCategory } from '../types';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -35,6 +36,8 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
     }
 
     const newIndex: SearchResult[] = [];
+    const categoriesAdded = new Set<string>();
+
     productsData.forEach(({ product, category }) => {
       // Add product to index
       const descriptionText = product.description || product.useCase || product.innovation || '';
@@ -49,16 +52,17 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       });
 
       // Add category to index if not already present
-      if (!newIndex.some(item => item.type === 'Category' && item.code === category.code)) {
+      if (!categoriesAdded.has(category.code)) {
         newIndex.push({
           type: 'Category',
           title: category.name,
           description: category.tagline,
-          link: `/products#${category.code}`, // Note: this link won't work with HashRouter for auto-scroll
+          link: `/products/category/${category.slug}`,
           score: 0,
           code: category.code,
           categoryName: category.name,
         });
+        categoriesAdded.add(category.code);
       }
     });
 
@@ -128,7 +132,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       case 'name-asc':
         return sorted.sort((a, b) => a.title.localeCompare(b.title));
       case 'name-desc':
-        return sorted.sort((a, b) => b.title.localeCompare(b.title));
+        return sorted.sort((a, b) => b.title.localeCompare(a.title));
       case 'code-asc':
         return sorted.sort((a, b) => (a.code || '').localeCompare(b.code || ''));
       case 'category':
@@ -158,7 +162,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
       e.preventDefault();
       const result = sortedResults[activeIndex];
       if (result) {
-        navigate(result.link.startsWith('/products#') ? '/products' : result.link);
+        navigate(result.link);
         onClose();
       }
     }

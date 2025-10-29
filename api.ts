@@ -39,3 +39,17 @@ export const fetchProductByCode = (code: string): Promise<{ product: Product; ca
     }, API_DELAY);
   });
 };
+
+/**
+ * Fetches a single product category by its slug.
+ * @param slug The category slug.
+ * @returns A promise that resolves to the category, or null if not found.
+ */
+export const fetchCategoryBySlug = (slug: string): Promise<ProductCategory | null> => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const category = PRODUCT_CATALOG.find(c => c.slug === slug);
+      resolve(category || null);
+    }, API_DELAY);
+  });
+};

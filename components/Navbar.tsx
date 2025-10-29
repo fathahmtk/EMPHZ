@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className="bg-white/90 backdrop-blur-lg sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-border)]">
+    <nav className="bg-white/90 backdrop-blur-lg sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-border)] shadow-[var(--shadow-sm)]">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center" aria-label="EMPHZ Homepage">
           <Logo className="h-10 w-auto" />
@@ -52,14 +52,14 @@ const Navbar: React.FC = () => {
             <Link
               key={link.name}
               to={link.path}
-              className="text-[var(--color-primary)] hover:text-[var(--color-accent)] font-medium transition-colors duration-300"
+              className="text-[var(--color-primary)] hover:text-[var(--color-brand)] font-medium transition-colors duration-300"
             >
               {link.name}
             </Link>
           ))}
           <div
             onClick={openSearch}
-            className="flex items-center bg-gray-100 text-[var(--color-text-secondary)] rounded-md px-3 py-2 cursor-pointer transition-colors duration-300 hover:bg-gray-200 hover:text-[var(--color-text-primary)] border border-[var(--color-border)]"
+            className="flex items-center bg-gray-100 text-[var(--color-text-secondary)] rounded-lg px-3 py-2 cursor-pointer transition-colors duration-300 hover:bg-gray-200 hover:text-[var(--color-text-primary)] border border-[var(--color-border)]"
             role="button"
             aria-label="Search (Ctrl+K)"
           >
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
           </div>
            <Link
               to="/contact"
-              className="text-[var(--color-accent)] bg-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/30 font-semibold py-2 px-4 rounded-md transition-colors duration-300"
+              className="bg-[var(--color-brand)]/10 text-[var(--color-brand)] hover:bg-[var(--color-brand)]/20 font-semibold py-2 px-5 rounded-lg transition-colors duration-300"
             >
               Contact
             </Link>
@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
                   setIsOpen(false);
                   openSearch();
                 }}
-                className="flex items-center gap-2 text-left text-[var(--color-primary)] hover:text-[var(--color-accent)] font-medium py-2"
+                className="flex items-center gap-2 text-left text-[var(--color-primary)] hover:text-[var(--color-brand)] font-medium py-2"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
               Search
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="block text-[var(--color-primary)] hover:text-[var(--color-accent)] font-medium py-2"
+                className="block text-[var(--color-primary)] hover:text-[var(--color-brand)] font-medium py-2"
               >
                 {link.name}
               </Link>

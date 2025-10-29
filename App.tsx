@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import ProductCategoryPage from './pages/ProductCategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import IndustriesPage from './pages/IndustriesPage';
 import InnovationPage from './pages/InnovationPage';
@@ -90,6 +91,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/category/:categorySlug" element={<ProductCategoryPage />} />
             <Route path="/products/:productCode" element={<ProductDetailPage />} />
             <Route path="/industries" element={<IndustriesPage />} />
             <Route path="/innovation" element={<InnovationPage />} />

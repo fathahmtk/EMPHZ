@@ -20,11 +20,11 @@ const Button: React.FC<ButtonProps> = ({
   href,
   disabled = false,
 }) => {
-  const baseStyles = `inline-block px-8 py-3 rounded-md text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
+  const baseStyles = `inline-block px-8 py-3 rounded-lg text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
 
-  const primaryStyles = `bg-slate-800 text-white hover:bg-slate-900 focus:ring-blue-500/50 shadow-md`;
-  const secondaryStyles = `bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent)]/90 focus:ring-[var(--color-accent)]/50 shadow-md`;
-  const outlineStyles = `bg-transparent border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white focus:ring-slate-800/50 shadow-sm`;
+  const primaryStyles = `bg-[var(--color-primary)] text-white hover:bg-gray-900 focus:ring-gray-500/50 shadow-[var(--shadow-md)]`;
+  const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-light)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
+  const outlineStyles = `bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white focus:ring-[var(--color-primary)]/50 shadow-[var(--shadow-sm)]`;
 
   let variantStyles = '';
   switch (variant) {

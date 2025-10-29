@@ -55,7 +55,7 @@ const ProductDetailPage: React.FC = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-40 text-center flex flex-col justify-center items-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-accent)]"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-brand)]"></div>
         <p className="mt-4 text-lg text-[var(--color-text-secondary)]">Loading Product Details...</p>
       </div>
     );
@@ -108,16 +108,20 @@ const ProductDetailPage: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Breadcrumbs */}
         <nav className="text-sm mb-8 text-[var(--color-text-secondary)]" aria-label="Breadcrumb">
-          <ol className="list-none p-0 inline-flex">
+          <ol className="list-none p-0 inline-flex items-center flex-wrap">
             <li className="flex items-center">
               <Link to="/" className="hover:text-[var(--color-primary)]">Home</Link>
-              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569 9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
             </li>
             <li className="flex items-center">
               <Link to="/products" className="hover:text-[var(--color-primary)]">Products</Link>
-              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569 9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
             </li>
-            <li className="text-[var(--color-primary)]" aria-current="page">
+            <li className="flex items-center">
+              <Link to={`/products/category/${category.slug}`} className="hover:text-[var(--color-primary)] truncate" title={category.name}>{category.name}</Link>
+              <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569 9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+            </li>
+            <li className="text-[var(--color-primary)] truncate" aria-current="page" title={product.name}>
               {product.name}
             </li>
           </ol>
@@ -127,7 +131,7 @@ const ProductDetailPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
           <div className="flex flex-col gap-4">
             <div
-              className="relative group aspect-square overflow-hidden rounded-lg shadow-lg cursor-zoom-in border border-[var(--color-border)]"
+              className="relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] cursor-zoom-in border border-[var(--color-border)]"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
@@ -176,9 +180,9 @@ const ProductDetailPage: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
-                    className={`rounded-md overflow-hidden border-2 transition-all duration-200 aspect-square focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent)] ${
+                    className={`rounded-md overflow-hidden border-2 transition-all duration-200 aspect-square focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand)] ${
                       activeIndex === index
-                        ? 'border-[var(--color-accent)]'
+                        ? 'border-[var(--color-brand)]'
                         : 'border-transparent hover:border-gray-400'
                     }`}
                     aria-label={`View image ${index + 1}`}
@@ -195,7 +199,7 @@ const ProductDetailPage: React.FC = () => {
             )}
           </div>
           <div className="animate-fadeInUp">
-            <span className="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-wider">{category.name}</span>
+            <span className="text-sm font-semibold text-[var(--color-brand)] uppercase tracking-wider">{category.name}</span>
             <h1 className="text-4xl font-bold mt-2 mb-4">{product.name}</h1>
             <p className="text-lg text-[var(--color-text-secondary)] mb-6">Product Code: {product.code}</p>
             {descriptionText && <p className="text-[var(--color-text-primary)] leading-relaxed mb-6">{descriptionText}</p>}
@@ -215,7 +219,7 @@ const ProductDetailPage: React.FC = () => {
         
         {/* Technical Highlights from Category */}
         {(category.sharedHighlights && category.sharedHighlights.length > 0) && (
-            <div className="mt-8 p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)] mb-20">
+            <div className="mt-8 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)] mb-20">
               <h4 className="text-2xl font-semibold text-center mb-4">Technical Highlights</h4>
               <ul className="list-disc list-inside text-[var(--color-text-primary)] grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 max-w-4xl mx-auto">
                 {category.sharedHighlights.map((highlight, index) => (
@@ -229,9 +233,9 @@ const ProductDetailPage: React.FC = () => {
         {(category.technicalSnapshot && category.technicalSnapshot.length > 0) && (
           <section className="mb-20">
             <h2 className="text-3xl font-bold text-center mb-10">Technical Specifications</h2>
-            <div className="overflow-x-auto bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">
+            <div className="overflow-x-auto bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
               <table className="min-w-full">
-                <thead className="bg-gray-800 text-white">
+                <thead className="bg-[var(--color-primary)] text-white">
                   <tr>
                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                       Parameter
@@ -261,7 +265,7 @@ const ProductDetailPage: React.FC = () => {
         {/* FAQ Section */}
         <section className="my-20">
           <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
-          <div className="max-w-4xl mx-auto bg-[var(--color-surface)] p-4 sm:p-8 rounded-lg shadow-sm border border-[var(--color-border)]">
+          <div className="max-w-4xl mx-auto bg-[var(--color-surface)] p-4 sm:p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
             <Accordion type="single" collapsible className="w-full">
               {PRODUCT_FAQS.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index}>

@@ -12,7 +12,9 @@ export interface Product {
 export interface ProductCategory {
   code:string;
   name: string;
+  slug: string;
   tagline: string;
+  image?: string;
   products: Product[];
   compliance?: string[];
   advantages?: string[];

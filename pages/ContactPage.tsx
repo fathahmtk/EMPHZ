@@ -113,7 +113,7 @@ const ContactPage: React.FC = () => {
         {/* RFQ Form Section */}
         <section id="rfq-form" className="py-16">
           <div className="max-w-3xl mx-auto p-8 lg:p-10 bg-[var(--color-surface)] rounded-lg shadow-lg border border-[var(--color-border)]">
-            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">Request a Project Quote</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">Request a Quote</h2>
             <p className="text-center text-[var(--color-text-secondary)] mb-10">
               Tell us about your project, and our engineering team will get back to you with a tailored solution.
             </p>
@@ -217,7 +217,7 @@ const ContactPage: React.FC = () => {
                 className="w-full text-lg"
                 disabled={!isFormValid}
               >
-                Submit Request
+                Submit Quote Request
               </Button>
             </form>
           </div>

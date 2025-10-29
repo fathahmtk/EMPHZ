@@ -17,7 +17,7 @@ const ContactRFQ: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
           {/* Contact Options */}
-          <div className="text-left bg-[var(--color-surface)] p-8 rounded-lg shadow-sm border border-[var(--color-border)]">
+          <div className="text-left bg-[var(--color-surface)] p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
             <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
             <div className="space-y-4">
               <p className="text-[var(--color-text-secondary)]">
@@ -46,11 +46,11 @@ const ContactRFQ: React.FC = () => {
           </div>
 
           {/* Call to Action Buttons */}
-          <div className="text-center md:text-left bg-[var(--color-surface)] p-8 rounded-lg shadow-sm border border-[var(--color-border)] flex flex-col justify-center">
+          <div className="text-center md:text-left bg-[var(--color-surface)] p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)] flex flex-col justify-center">
             <h3 className="text-2xl font-semibold mb-6">Ready to Partner?</h3>
             <div className="space-y-4">
               <Button variant="secondary" onClick={handleRequestQuoteClick} className="w-full justify-center">
-                Request a Quotation
+                Request a Quote
               </Button>
               <Button variant="outline" href={GENERAL_DOWNLOADS.find(d => d.name.includes("Product Catalog"))?.link || "#"} className="w-full justify-center">
                 Download Company Profile PDF
