@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ThemeProvider } from './ThemeContext';
 import { UIStateProvider } from './UIStateContext';
 import { ToastProvider } from './ToastContext';
 
@@ -14,12 +13,10 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
       <UIStateProvider>
         <ToastProvider>
           <App />
         </ToastProvider>
       </UIStateProvider>
-    </ThemeProvider>
   </React.StrictMode>
 );

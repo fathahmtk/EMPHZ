@@ -1,4 +1,3 @@
-
 import {
   ProductCategory,
   KeyValueProposition,
@@ -7,7 +6,8 @@ import {
   QualityPoint,
   CostComparison,
   CorporateDetail,
-  TechnicalStandard
+  TechnicalStandard,
+  FAQItem
 } from './types';
 
 // --- Homepage Content ---
@@ -16,7 +16,12 @@ export const HERO_SECTION = {
   subline: "High-performance GRP composite solutions engineered to outlast steel, outperform concrete, and redefine sustainability.",
   cta1: "Explore Our Products",
   cta2: "Request a Project Quote",
-  backgroundImage: "https://picsum.photos/1920/1080?random=factory-cinematic",
+  backgroundImages: [
+    "https://picsum.photos/1920/1080?random=factory-cinematic",
+    "https://picsum.photos/1920/1080?random=composite-material",
+    "https://picsum.photos/1920/1080?random=electrical-panel",
+    "https://picsum.photos/1920/1080?random=renewable"
+  ],
 };
 
 export const KEY_VALUE_PROPOSITIONS: KeyValueProposition[] = [
@@ -529,6 +534,30 @@ export const KNOWLEDGE_RESOURCES = [
   { name: "CAD Drawings (DWG / STEP)", link: "#" },
 ];
 
+// --- Frequently Asked Questions (General) ---
+export const PRODUCT_FAQS: FAQItem[] = [
+  {
+    question: "What is GRP and why is it superior to traditional materials like steel?",
+    answer: "GRP (Glass Reinforced Plastic) is a composite material that is corrosion-immune, lightweight (75% lighter than steel), and exceptionally durable. Unlike steel, it does not rust, require painting, or degrade in harsh chemical or coastal environments, offering a 50+ year maintenance-free lifecycle."
+  },
+  {
+    question: "Are EMPHZ products certified for international standards?",
+    answer: "Yes. Our products are engineered to meet or exceed major international and national standards, including IP66 for ingress protection, IK10 for impact resistance, UL 94 V-0 for fire retardancy, and compliance with IEC, UL, and BIS codes."
+  },
+  {
+    question: "Can I get a custom-sized enclosure or cabin?",
+    answer: "Absolutely. We specialize in custom fabrication. Our in-house R&D and mold design capabilities allow us to create tailor-made composite solutions for specialized industrial applications. Please contact us with your project requirements to get a quote."
+  },
+  {
+    question: "What is the typical installation process for a portable cabin?",
+    answer: "Our modular structures are designed for rapid deployment. The typical installation requires a simple RCC/PCC base foundation and proper anchoring with chemical bolts. Certified electrical and plumbing points are needed for final hookup. The lightweight nature of GRP significantly reduces installation time and heavy machinery requirements."
+  },
+  {
+    question: "What is the warranty coverage on EMPHZ products?",
+    answer: "We offer a comprehensive warranty of 5 to 10 years covering product integrity and corrosion resistance. This reflects our confidence in the long-term performance and durability of our GRP composite solutions. Please refer to our full warranty document for specific terms."
+  }
+];
+
 // --- Contact & RFQ ---
 export const CONTACT_OPTIONS = {
   generalEnquiry: "info@emphz.com",
@@ -539,6 +568,12 @@ export const OFFICE_LOCATIONS = [
   "Head Office: Vadakara, Kerala, India",
   "Factory: Mysore, Karnataka, India",
 ];
+
+export const SOCIAL_LINKS = {
+  linkedIn: "#",
+  twitter: "#",
+  googleBusiness: "https://share.google/dOm0irJP3POkKMhSN",
+};
 
 // --- Downloads ---
 export const GENERAL_DOWNLOADS = [

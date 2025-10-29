@@ -20,7 +20,7 @@ const Logo: React.FC<{ className?: string }> = ({ className = 'h-12 w-auto' }) =
             <path d="M37 16 H40 L38.5 24 H37 V16 Z" fill="url(#logoGradient)" opacity="0.7"/>
         </g>
       </svg>
-      <span className="font-bold text-2xl tracking-tight text-gray-800 dark:text-gray-200 font-poppins">
+      <span className="font-bold text-2xl tracking-tight text-gray-800 font-poppins">
         EMPHZ
       </span>
     </div>

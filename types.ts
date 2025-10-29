@@ -60,3 +60,8 @@ export interface TechnicalStandard {
   emphzStandard: string;
   internationalCode: string;
 }
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}

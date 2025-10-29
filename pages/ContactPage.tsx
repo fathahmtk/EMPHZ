@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ContactRFQ from '../components/ContactRFQ';
 import Button from '../components/Button';
@@ -98,8 +97,8 @@ const ContactPage: React.FC = () => {
     formData.message.trim() !== '' &&
     Object.values(formErrors).every(error => error === '');
   
-  const inputBaseClasses = `w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-offset-1 transition-colors duration-200 bg-white dark:bg-zinc-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500`;
-  const inputBorderClasses = `border-gray-300 dark:border-zinc-600 focus:ring-teal-500/80 focus:border-teal-500`;
+  const inputBaseClasses = `w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-offset-1 transition-colors duration-200 bg-[var(--color-background)] text-[var(--color-primary)] placeholder-[var(--color-text-secondary)]`;
+  const inputBorderClasses = `border-[var(--color-border)] focus:ring-[var(--color-accent)]/80 focus:border-[var(--color-accent)]`;
   const inputErrorBorderClasses = `border-red-500 focus:ring-red-400`;
 
   return (
@@ -113,14 +112,14 @@ const ContactPage: React.FC = () => {
 
         {/* RFQ Form Section */}
         <section id="rfq-form" className="py-16">
-          <div className="max-w-3xl mx-auto p-8 lg:p-10 bg-white dark:bg-zinc-800 rounded-lg shadow-lg border border-gray-200 dark:border-zinc-700">
+          <div className="max-w-3xl mx-auto p-8 lg:p-10 bg-[var(--color-surface)] rounded-lg shadow-lg border border-[var(--color-border)]">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">Request a Project Quote</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-10">
+            <p className="text-center text-[var(--color-text-secondary)] mb-10">
               Tell us about your project, and our engineering team will get back to you with a tailored solution.
             </p>
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1">Your Name <span className="text-red-500">*</span></label>
+                <label htmlFor="name" className="block text-sm font-medium text-[var(--color-primary)] mb-1">Your Name <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   id="name"
@@ -136,7 +135,7 @@ const ContactPage: React.FC = () => {
                 {formErrors.name && <p id="name-error" className="text-red-600 text-xs mt-1">{formErrors.name}</p>}
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1">Email <span className="text-red-500">*</span></label>
+                <label htmlFor="email" className="block text-sm font-medium text-[var(--color-primary)] mb-1">Email <span className="text-red-500">*</span></label>
                 <input
                   type="email"
                   id="email"
@@ -152,7 +151,7 @@ const ContactPage: React.FC = () => {
                 {formErrors.email && <p id="email-error" className="text-red-600 text-xs mt-1">{formErrors.email}</p>}
               </div>
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1">Company</label>
+                <label htmlFor="company" className="block text-sm font-medium text-[var(--color-primary)] mb-1">Company</label>
                 <input
                   type="text"
                   id="company"
@@ -163,7 +162,7 @@ const ContactPage: React.FC = () => {
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1">Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-[var(--color-primary)] mb-1">Phone Number</label>
                 <input
                   type="tel"
                   id="phone"
@@ -178,7 +177,7 @@ const ContactPage: React.FC = () => {
                 {formErrors.phone && <p id="phone-error" className="text-red-600 text-xs mt-1">{formErrors.phone}</p>}
               </div>
               <div>
-                <label htmlFor="productOfInterest" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1">Product/Category of Interest</label>
+                <label htmlFor="productOfInterest" className="block text-sm font-medium text-[var(--color-primary)] mb-1">Product/Category of Interest</label>
                 <select
                   id="productOfInterest"
                   name="productOfInterest"
@@ -197,7 +196,7 @@ const ContactPage: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-1">Project Details / Message <span className="text-red-500">*</span></label>
+                <label htmlFor="message" className="block text-sm font-medium text-[var(--color-primary)] mb-1">Project Details / Message <span className="text-red-500">*</span></label>
                 <textarea
                   id="message"
                   name="message"

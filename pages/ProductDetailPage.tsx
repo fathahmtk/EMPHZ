@@ -1,12 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Product, ProductCategory } from '../types';
 import { useProduct } from '../hooks/useProduct';
 import MetaTags from '../components/MetaTags';
 import Button from '../components/Button';
 import ProductCard from '../components/ProductCard';
 import { useUIState } from '../UIStateContext';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
+import { PRODUCT_FAQS } from '../constants';
 
 const ProductDetailPage: React.FC = () => {
   const { productCode } = useParams<{ productCode: string }>();
@@ -54,8 +55,8 @@ const ProductDetailPage: React.FC = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-40 text-center flex flex-col justify-center items-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-teal-500"></div>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">Loading Product Details...</p>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-accent)]"></div>
+        <p className="mt-4 text-lg text-[var(--color-text-secondary)]">Loading Product Details...</p>
       </div>
     );
   }
@@ -63,8 +64,8 @@ const ProductDetailPage: React.FC = () => {
   if (error) {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center justify-center min-h-[60vh]">
-        <h1 className="text-4xl font-bold text-red-500 dark:text-red-400 mb-4">Error Loading Product</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md">
+        <h1 className="text-4xl font-bold text-red-500 mb-4">Error Loading Product</h1>
+        <p className="text-lg text-[var(--color-text-secondary)] mb-8 max-w-md">
           There was a problem fetching the details for this product. Please try again.
         </p>
         <div className="flex space-x-4">
@@ -85,7 +86,7 @@ const ProductDetailPage: React.FC = () => {
         <MetaTags title="Product Not Found" description="The requested product could not be found." />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">Sorry, we couldn't find the product you're looking for.</p>
+          <p className="text-lg text-[var(--color-text-primary)] mb-8">Sorry, we couldn't find the product you're looking for.</p>
           <Button href="/products" variant="primary">
             Back to All Products
           </Button>
@@ -106,17 +107,17 @@ const ProductDetailPage: React.FC = () => {
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Breadcrumbs */}
-        <nav className="text-sm mb-8 text-gray-500 dark:text-gray-400" aria-label="Breadcrumb">
+        <nav className="text-sm mb-8 text-[var(--color-text-secondary)]" aria-label="Breadcrumb">
           <ol className="list-none p-0 inline-flex">
             <li className="flex items-center">
-              <Link to="/" className="hover:text-gray-800 dark:hover:text-gray-200">Home</Link>
+              <Link to="/" className="hover:text-[var(--color-primary)]">Home</Link>
               <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
             </li>
             <li className="flex items-center">
-              <Link to="/products" className="hover:text-gray-800 dark:hover:text-gray-200">Products</Link>
+              <Link to="/products" className="hover:text-[var(--color-primary)]">Products</Link>
               <svg className="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
             </li>
-            <li className="text-gray-800 dark:text-gray-200" aria-current="page">
+            <li className="text-[var(--color-primary)]" aria-current="page">
               {product.name}
             </li>
           </ol>
@@ -126,7 +127,7 @@ const ProductDetailPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
           <div className="flex flex-col gap-4">
             <div
-              className="relative group aspect-square overflow-hidden rounded-lg shadow-lg cursor-zoom-in border border-gray-200 dark:border-zinc-700"
+              className="relative group aspect-square overflow-hidden rounded-lg shadow-lg cursor-zoom-in border border-[var(--color-border)]"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
@@ -174,9 +175,9 @@ const ProductDetailPage: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
-                    className={`rounded-md overflow-hidden border-2 transition-all duration-200 aspect-square focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 ${
+                    className={`rounded-md overflow-hidden border-2 transition-all duration-200 aspect-square focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent)] ${
                       activeIndex === index
-                        ? 'border-teal-500'
+                        ? 'border-[var(--color-accent)]'
                         : 'border-transparent hover:border-gray-400'
                     }`}
                     aria-label={`View image ${index + 1}`}
@@ -192,14 +193,14 @@ const ProductDetailPage: React.FC = () => {
             )}
           </div>
           <div className="animate-fadeInUp">
-            <span className="text-sm font-semibold text-teal-600 dark:text-teal-500 uppercase tracking-wider">{category.name}</span>
+            <span className="text-sm font-semibold text-[var(--color-accent)] uppercase tracking-wider">{category.name}</span>
             <h1 className="text-4xl font-bold mt-2 mb-4">{product.name}</h1>
-            <p className="text-lg text-gray-500 dark:text-gray-400 mb-6">Product Code: {product.code}</p>
-            {descriptionText && <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{descriptionText}</p>}
+            <p className="text-lg text-[var(--color-text-secondary)] mb-6">Product Code: {product.code}</p>
+            {descriptionText && <p className="text-[var(--color-text-primary)] leading-relaxed mb-6">{descriptionText}</p>}
             {product.applications && (
               <div className="mb-4">
                 <h4 className="text-lg font-semibold mb-2">Key Applications:</h4>
-                <ul className="list-disc list-inside text-gray-600 dark:text-gray-400">
+                <ul className="list-disc list-inside text-[var(--color-text-primary)]">
                   {product.applications.map((app, index) => <li key={index}>{app}</li>)}
                 </ul>
               </div>
@@ -212,9 +213,9 @@ const ProductDetailPage: React.FC = () => {
         
         {/* Technical Highlights from Category */}
         {(category.sharedHighlights && category.sharedHighlights.length > 0) && (
-            <div className="mt-8 p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-sm border border-gray-200 dark:border-zinc-700 mb-20">
+            <div className="mt-8 p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)] mb-20">
               <h4 className="text-2xl font-semibold text-center mb-4">Technical Highlights</h4>
-              <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 max-w-4xl mx-auto">
+              <ul className="list-disc list-inside text-[var(--color-text-primary)] grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 max-w-4xl mx-auto">
                 {category.sharedHighlights.map((highlight, index) => (
                   <li key={index}>{highlight}</li>
                 ))}
@@ -226,9 +227,9 @@ const ProductDetailPage: React.FC = () => {
         {(category.technicalSnapshot && category.technicalSnapshot.length > 0) && (
           <section className="mb-20">
             <h2 className="text-3xl font-bold text-center mb-10">Technical Specifications</h2>
-            <div className="overflow-x-auto bg-white dark:bg-zinc-800 rounded-lg shadow-sm border border-gray-200 dark:border-zinc-700">
+            <div className="overflow-x-auto bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">
               <table className="min-w-full">
-                <thead className="bg-gray-800 dark:bg-zinc-900 text-white">
+                <thead className="bg-gray-800 text-white">
                   <tr>
                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider">
                       Parameter
@@ -241,12 +242,12 @@ const ProductDetailPage: React.FC = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-zinc-700">
+                <tbody className="divide-y divide-[var(--color-border)]">
                   {category.technicalSnapshot.map((spec, index) => (
-                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-zinc-700/50 transition-colors duration-200">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{spec.parameter}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">{spec.specification}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">{spec.certification}</td>
+                    <tr key={index} className="hover:bg-gray-50 transition-colors duration-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--color-primary)]">{spec.parameter}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)]">{spec.specification}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)]">{spec.certification}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -254,6 +255,25 @@ const ProductDetailPage: React.FC = () => {
             </div>
           </section>
         )}
+
+        {/* FAQ Section */}
+        <section className="my-20">
+          <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
+          <div className="max-w-4xl mx-auto bg-[var(--color-surface)] p-4 sm:p-8 rounded-lg shadow-sm border border-[var(--color-border)]">
+            <Accordion type="single" collapsible className="w-full">
+              {PRODUCT_FAQS.map((faq, index) => (
+                <AccordionItem value={`item-${index}`} key={index}>
+                  <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[var(--color-text-secondary)] leading-relaxed pt-2">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (

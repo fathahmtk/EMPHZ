@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 
 const ScrollToTopButton: React.FC = () => {
@@ -31,7 +30,7 @@ const ScrollToTopButton: React.FC = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="bg-teal-600 hover:bg-teal-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-teal-500/50"
+          className="bg-[var(--color-accent)] hover:bg-opacity-90 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[var(--color-accent)]/50"
           aria-label="Scroll to top"
         >
           <svg

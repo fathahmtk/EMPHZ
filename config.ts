@@ -9,6 +9,8 @@ const config = {
   // --- Contact Information ---
   supportEmail: process.env.REACT_APP_SUPPORT_EMAIL || 'service@emphz.com',
   supportPhone: process.env.REACT_APP_SUPPORT_PHONE || '+91 86488 81888',
+  whatsAppLink: `https://wa.me/${(process.env.REACT_APP_SUPPORT_PHONE || '+91 86488 81888').replace(/\s+/g, '').replace('+', '')}`,
+
 
   // --- Feature Flags ---
   // Use 'true' as a string to match how process.env works.

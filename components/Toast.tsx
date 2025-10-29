@@ -14,10 +14,10 @@ const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
   };
   
   const typeClasses = {
-    error: 'bg-red-500 border-red-600 dark:bg-red-600 dark:border-red-700',
-    info: 'bg-blue-500 border-blue-600 dark:bg-blue-600 dark:border-blue-700',
-    success: 'bg-green-500 border-green-600 dark:bg-green-600 dark:border-green-700',
-    warning: 'bg-yellow-500 border-yellow-600 dark:bg-yellow-600 dark:border-yellow-700',
+    error: 'bg-red-500 border-red-600',
+    info: 'bg-blue-500 border-blue-600',
+    success: 'bg-green-500 border-green-600',
+    warning: 'bg-yellow-500 border-yellow-600',
   };
 
   const icon = {

@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -21,6 +20,7 @@ import QuickViewModal from './components/QuickViewModal';
 import { useUIState } from './UIStateContext';
 import config from './config';
 import ToastContainer from './components/ToastContainer';
+import ContactFAB from './components/ContactFAB';
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash, state } = useLocation();
@@ -103,7 +103,10 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer />
-        <ScrollToTopButton />
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center space-y-4">
+            <ContactFAB />
+            <ScrollToTopButton />
+        </div>
         <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
         <QuickViewModal product={quickViewProduct} onClose={closeQuickView} />
         <ToastContainer />

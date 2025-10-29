@@ -1,6 +1,5 @@
-
 import React, { memo, useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Product } from '../types';
 import Button from './Button';
 
@@ -52,20 +51,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
       to={`/products/${product.code}`}
       className={`block h-full group relative opacity-0 ${isVisible ? 'animate-fadeInUp' : ''}`}
     >
-      <div className="bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-zinc-700 h-full flex flex-col">
+      <div className="bg-[var(--color-background)] p-6 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col">
         {/* Display Category Name */}
         {categoryName && (
-            <p className="text-xs font-bold text-teal-600 dark:text-teal-500 uppercase tracking-wider mb-2">
+            <p className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-2">
                 {categoryName}
             </p>
         )}
-        <h4 className="text-lg font-bold text-gray-800 dark:text-gray-100 group-hover:text-teal-600 dark:group-hover:text-teal-500 transition-colors duration-300 mb-2">{product.name}</h4>
-        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-3">Code: {product.code}</p>
+        <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition-colors duration-300 mb-2">{product.name}</h4>
+        <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-3">Code: {product.code}</p>
         <div className="flex-grow">
-          {descriptionText && <p className="text-gray-600 dark:text-gray-400 text-sm">{descriptionText}</p>}
+          {descriptionText && <p className="text-[var(--color-text-primary)] text-sm">{descriptionText}</p>}
           {product.applications && product.applications.length > 0 && (
-            <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">
-              <span className="font-semibold">Applications:</span> {product.applications.join(', ')}
+            <p className="text-[var(--color-text-primary)] text-sm mt-2">
+              <span className="font-semibold text-[var(--color-primary)]">Applications:</span> {product.applications.join(', ')}
             </p>
           )}
         </div>

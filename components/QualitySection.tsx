@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { QUALITY_FRAMEWORK, PROCESS_PHILOSOPHY } from '../constants';
 
 const QualitySection: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-50 dark:bg-zinc-900/50">
+    <section className="py-24 bg-[var(--color-surface)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">Precision in Every Layer.</h2>
 
@@ -29,18 +28,18 @@ const QualitySection: React.FC = () => {
             <ul className="space-y-4 mb-10">
               {QUALITY_FRAMEWORK.map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <svg className="h-6 w-6 text-teal-600 dark:text-teal-500 mr-4 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-6 w-6 text-[var(--color-accent)] mr-4 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-gray-800 dark:text-gray-200">{item.title}</span>{item.description}
+                  <p className="text-[var(--color-text-secondary)]">
+                    <span className="font-semibold text-[var(--color-primary)]">{item.title}</span>{item.description}
                   </p>
                 </li>
               ))}
             </ul>
 
             <h3 className="text-2xl font-semibold mb-4">Process Philosophy</h3>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-[var(--color-text-secondary)] leading-relaxed">
               {PROCESS_PHILOSOPHY}
             </p>
           </div>

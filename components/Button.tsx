@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -23,9 +22,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const baseStyles = `inline-block px-8 py-3 rounded-md text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
 
-  const primaryStyles = `bg-gray-800 text-white hover:bg-gray-900 focus:ring-teal-500/50 dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-white dark:focus:ring-teal-400/50 shadow-md`;
-  const secondaryStyles = `bg-teal-600 text-white hover:bg-teal-700 focus:ring-teal-500/50 dark:hover:bg-teal-500 dark:focus:ring-teal-400/50 shadow-md`;
-  const outlineStyles = `bg-transparent border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-900 focus:ring-gray-800/50 dark:focus:ring-gray-300/50 shadow-sm`;
+  const primaryStyles = `bg-slate-800 text-white hover:bg-slate-900 focus:ring-blue-500/50 shadow-md`;
+  const secondaryStyles = `bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent)]/90 focus:ring-[var(--color-accent)]/50 shadow-md`;
+  const outlineStyles = `bg-transparent border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white focus:ring-slate-800/50 shadow-sm`;
 
   let variantStyles = '';
   switch (variant) {
