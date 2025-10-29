@@ -28,14 +28,17 @@ export const HERO_SECTION = {
 
 export const KEY_VALUE_PROPOSITIONS: KeyValueProposition[] = [
   {
+    icon: "durability",
     coreValue: "Corrosion-Immune Materials",
     description: "Built for endurance — EMPHZ composites remain unaffected by salt, humidity, and chemicals even in coastal and industrial zones.",
   },
   {
+    icon: "sustainability",
     coreValue: "50-Year Lifecycle Advantage",
     description: "Maintenance-free operation with zero repainting, no rust, and the lowest Total Cost of Ownership in the industry.",
   },
   {
+    icon: "engineering",
     coreValue: "Engineered for Precision",
     description: "Every EMPHZ product meets or exceeds IEC, UL, and BIS standards — ensuring unmatched reliability and safety.",
   },
@@ -55,6 +58,8 @@ export const ICONS = {
   durability: 'M12,1L3,5v6c0,5.55,3.84,10.74,9,12c5.16-1.26,9-6.45,9-12V5L12,1z M10,17l-4-4l1.41-1.41L10,14.17l6.59-6.59L18,9L10,17z',
   design: 'M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9c0.83,0,1.5-0.67,1.5-1.5c0-0.39-0.15-0.74-0.39-1.01c-0.23-0.26-0.38-0.61-0.38-0.99c0-0.83,0.67-1.5,1.5-1.5H16c2.76,0,5-2.24,5-5c0-4.42-4.03-8-9-8V3z M6.5,12C5.67,12,5,11.33,5,10.5S5.67,9,6.5,9S8,9.67,8,10.5S7.33,12,6.5,12z M9.5,8C8.67,8,8,7.33,8,6.5S8.67,5,9.5,5S11,5.67,11,6.5S10.33,8,9.5,8z M14.5,8C13.67,8,13,7.33,13,6.5S13.67,5,14.5,5S16,5.67,16,6.5S15.33,8,14.5,8z M17.5,12c-0.83,0-1.5-0.67-1.5-1.5S16.67,9,17.5,9S19,9.67,19,10.5S18.33,12,17.5,12z',
   safety: 'M13,14h-2v-2h2V14z M13,10h-2V4h2V10z M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8S16.41,20,12,20z',
+  nvh: 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z',
+  assembly: 'M11 17h2v-1.17l6.78-6.78-7.95-7.95L4.05 8.88 2.64 7.46 4.05 6.05l1.41 1.41L11 1.83l9.17 9.17-6.78 6.78V17zm-7-2h2v2H4v-2zm4 0h2v2H8v-2zm4 0h2v2h-2v-2z',
 };
 
 
@@ -709,12 +714,12 @@ export const AUTOMOBILE_PAGE_DATA: AutomobilePageData = {
     }
   ],
   advantages: [
-    { icon: "lightweight", title: "Weight Reduction", description: "Up to 40% lighter than steel, directly improving fuel efficiency and payload capacity." },
-    { icon: "fuel", title: "Fuel Efficiency", description: "Reduced vehicle weight and improved aerodynamics lead to lower fuel consumption and emissions." },
-    { icon: "aerodynamic", title: "Aerodynamic Design", description: "Smooth, complex shapes are easily achievable, reducing drag for better performance." },
-    { icon: "durability", title: "Superior Durability", description: "High impact resistance and immunity to corrosion, rust, and chemicals extend vehicle life." },
-    { icon: "design", title: "Design Flexibility", description: "GRP allows for creative and complex designs, enabling modern and aesthetically superior vehicle bodies." },
-    { icon: "safety", title: "Enhanced Safety", description: "High strength-to-weight ratio and excellent impact absorption properties contribute to safer vehicle structures." }
+    { icon: "lightweight", title: "Weight Reduction", description: "Up to 40% lighter than steel, directly improving fuel efficiency, handling, and payload capacity." },
+    { icon: "durability", title: "Superior Durability", description: "High impact resistance and immunity to corrosion from road salt and environmental pollutants." },
+    { icon: "design", title: "Design Flexibility", description: "GRP allows for creative, complex, and aerodynamic shapes, enabling modern and aesthetically superior vehicle bodies." },
+    { icon: "nvh", title: "Noise & Vibration Damping", description: "Inherent material properties reduce NVH levels, leading to a quieter and more comfortable ride experience." },
+    { icon: "safety", title: "Enhanced Safety", description: "High strength-to-weight ratio contributes to safer vehicle structures with excellent impact absorption properties." },
+    { icon: "assembly", title: "Faster Production Cycles", description: "Consolidated parts and lightweight modules simplify the assembly process, reducing manufacturing time and costs." },
   ],
   featuredProducts: ['A-701', 'A-702', 'A-703', 'A-704']
 };

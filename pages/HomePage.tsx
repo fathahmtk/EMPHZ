@@ -7,6 +7,7 @@ import MetaTags from '../components/MetaTags';
 import { SEO_DATA } from '../constants';
 import IndustryGrid from '../components/IndustryGrid';
 import ContactRFQ from '../components/ContactRFQ';
+import CTABanner from '../components/CTABanner';
 
 const HomePage: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage: React.FC = () => {
       <HeroSection />
       <div className="space-y-24">
         <ValueProposition />
+        <CTABanner />
         <BrandPillars />
         <IndustryGrid />
         <ContactRFQ />

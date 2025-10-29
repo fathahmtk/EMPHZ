@@ -5,7 +5,7 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'glass';
   className?: string;
   href?: string;
   disabled?: boolean;
@@ -20,11 +20,12 @@ const Button: React.FC<ButtonProps> = ({
   href,
   disabled = false,
 }) => {
-  const baseStyles = `inline-block px-8 py-3 rounded-lg text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
+  const baseStyles = `inline-block px-8 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
 
-  const primaryStyles = `bg-[var(--color-primary)] text-white hover:bg-gray-900 focus:ring-gray-500/50 shadow-[var(--shadow-md)]`;
-  const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-light)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
+  const primaryStyles = `bg-[var(--color-primary)] text-white hover:bg-slate-800 focus:ring-slate-500/50 shadow-[var(--shadow-md)]`;
+  const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
   const outlineStyles = `bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white focus:ring-[var(--color-primary)]/50 shadow-[var(--shadow-sm)]`;
+  const glassStyles = `bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 focus:ring-white/50 shadow-[var(--shadow-md)]`;
 
   let variantStyles = '';
   switch (variant) {
@@ -37,9 +38,11 @@ const Button: React.FC<ButtonProps> = ({
     case 'outline':
       variantStyles = outlineStyles;
       break;
+    case 'glass':
+      variantStyles = glassStyles;
+      break;
   }
 
-  // Centralized logic for disabling and providing tooltips for placeholder links
   const isDisabled = disabled || href === '#';
   const tooltip = href === '#' ? 'This feature is coming soon.' : undefined;
 

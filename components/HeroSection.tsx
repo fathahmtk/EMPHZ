@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
         {images.map((src, index) => (
           <div
             key={src}
-            className={`w-full h-full absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`w-full h-full absolute inset-0 transition-opacity duration-1500 ease-in-out ${
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
             role="group"
@@ -56,17 +56,17 @@ const HeroSection: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 p-4 max-w-5xl mx-auto">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 animate-fadeInUp text-shadow-strong">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight mb-4 animate-fadeInUp text-shadow-strong">
           {HERO_SECTION.headline}
         </h1>
         <p className="text-lg sm:text-xl lg:text-2xl font-light mb-8 animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.3s' }}>
           {HERO_SECTION.subline}
         </p>
-        <div className="flex flex-wrap justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          <Button variant="secondary" href="/products" className="min-w-[200px] text-lg">
+        <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+          <Button variant="glass" href="/products" className="min-w-[220px] text-lg lg:text-xl lg:py-4">
             {HERO_SECTION.cta1}
           </Button>
-          <Button variant="outline" href="/contact" className="min-w-[200px] text-lg border-white text-white hover:bg-white hover:text-black">
+          <Button variant="glass" href="/contact" className="min-w-[220px] text-lg lg:text-xl lg:py-4">
             {HERO_SECTION.cta2}
           </Button>
         </div>
@@ -76,7 +76,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute z-20 left-4 sm:left-8 top-1/2 -translate-y-1/2">
         <button
           onClick={handlePrev}
-          className="bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+          className="bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/30 transition-all focus:outline-none focus:ring-2 focus:ring-white/50"
           aria-label="Previous slide"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute z-20 right-4 sm:right-8 top-1/2 -translate-y-1/2">
         <button
           onClick={handleNext}
-          className="bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+          className="bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/30 transition-all focus:outline-none focus:ring-2 focus:ring-white/50"
           aria-label="Next slide"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
@@ -98,7 +98,7 @@ const HeroSection: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 ${
               index === currentIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
             }`}
             aria-label={`Go to slide ${index + 1}`}

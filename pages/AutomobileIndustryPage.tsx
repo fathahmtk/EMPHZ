@@ -86,16 +86,18 @@ const AutomobileIndustryPage: React.FC = () => {
         </section>
 
         {/* Key Advantages Section */}
-        <section className="mb-20 p-8 bg-gray-800 text-white rounded-lg shadow-lg">
+        <section className="mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">Key Advantages of EMPHZ Composites</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {industryData.advantages.map((advantage, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="p-4 bg-white/10 rounded-full mb-4">
-                  <Icon name={advantage.icon} className="h-10 w-10 text-white" />
+              <div key={index} className="bg-[var(--color-surface)] p-6 rounded-lg shadow-sm border border-[var(--color-border)] text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <div className="flex justify-center mb-4">
+                  <div className="p-4 bg-[var(--color-brand)]/10 rounded-full">
+                    <Icon name={advantage.icon} className="h-10 w-10 text-[var(--color-brand)]" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{advantage.title}</h3>
-                <p className="text-sm text-gray-300">{advantage.description}</p>
+                <h3 className="text-lg font-semibold mb-2 text-[var(--color-primary)]">{advantage.title}</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">{advantage.description}</p>
               </div>
             ))}
           </div>

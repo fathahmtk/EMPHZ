@@ -24,13 +24,14 @@ export interface ProductCategory {
 }
 
 export interface KeyValueProposition {
+  icon: IconName;
   coreValue: string;
   description: string;
 }
 
 // FIX: Create a specific type for icon names to ensure type safety.
 // This must be kept in sync with the keys of the ICONS object in constants.ts.
-export type IconName = "sustainability" | "engineering" | "strength" | "customization" | "linkedin" | "twitter" | "google" | "lightweight" | "fuel" | "aerodynamic" | "durability" | "design" | "safety";
+export type IconName = "sustainability" | "engineering" | "strength" | "customization" | "linkedin" | "twitter" | "google" | "lightweight" | "fuel" | "aerodynamic" | "durability" | "design" | "safety" | "nvh" | "assembly";
 
 export interface BrandPillar {
   icon: IconName;

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -13,10 +12,10 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-      <UIStateProvider>
-        <ToastProvider>
-          <App />
-        </ToastProvider>
-      </UIStateProvider>
+    <UIStateProvider>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </UIStateProvider>
   </React.StrictMode>
 );
