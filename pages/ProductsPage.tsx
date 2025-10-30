@@ -23,48 +23,53 @@ const ProductsPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PRODUCT_CATALOG.map((category) => (
-            <Link
-              key={category.code}
-              to={`/products/category/${category.slug}`}
-              className="block group bg-[var(--color-background)] rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1 flex flex-col"
-            >
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={category.image || 'https://picsum.photos/600/400?random=category-placeholder'}
-                  alt={category.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
-              <div className="p-6 flex-grow flex flex-col">
-                <h2 className="text-xl font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
-                  {category.name}
-                </h2>
-                <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 flex-grow">
-                  {category.tagline}
-                </p>
-                 {/* Product Previews */}
-                <div className="mt-4 border-t border-[var(--color-border)] pt-3">
-                  <p className="text-xs font-semibold text-[var(--color-text-primary)] mb-2">Includes:</p>
-                  <ul className="space-y-1">
-                    {category.products.slice(0, 3).map(p => (
-                        <li key={p.code} className="text-xs text-[var(--color-text-secondary)] truncate">
-                            &bull; {p.name}
-                        </li>
-                    ))}
-                    {category.products.length > 3 && (
-                        <li className="text-xs text-[var(--color-text-secondary)]">...and more.</li>
-                    )}
-                  </ul>
+          {PRODUCT_CATALOG.map((category) => {
+            const hasRealImage = !!category.image;
+            const imageUrl = category.image || 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
+            
+            return (
+              <Link
+                key={category.code}
+                to={`/products/category/${category.slug}`}
+                className="block group bg-[var(--color-background)] rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1 flex flex-col"
+              >
+                <div className={`relative h-56 overflow-hidden ${!hasRealImage ? 'bg-gray-100' : ''}`}>
+                  <img
+                    src={imageUrl}
+                    alt={category.name}
+                    loading="lazy"
+                    className={`w-full h-full ${hasRealImage ? 'object-cover transition-transform duration-500 group-hover:scale-110' : 'object-contain p-8'}`}
+                  />
+                  {hasRealImage && <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>}
                 </div>
-                <div className="mt-auto pt-4 text-sm font-semibold text-[var(--color-brand)] group-hover:underline">
-                  View Products &rarr;
+                <div className="p-6 flex-grow flex flex-col">
+                  <h2 className="text-xl font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
+                    {category.name}
+                  </h2>
+                  <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 flex-grow">
+                    {category.tagline}
+                  </p>
+                  {/* Product Previews */}
+                  <div className="mt-4 border-t border-[var(--color-border)] pt-3">
+                    <p className="text-xs font-semibold text-[var(--color-text-primary)] mb-2">Includes:</p>
+                    <ul className="space-y-1">
+                      {category.products.slice(0, 3).map(p => (
+                          <li key={p.code} className="text-xs text-[var(--color-text-secondary)] truncate">
+                              &bull; {p.name}
+                          </li>
+                      ))}
+                      {category.products.length > 3 && (
+                          <li className="text-xs text-[var(--color-text-secondary)]">...and more.</li>
+                      )}
+                    </ul>
+                  </div>
+                  <div className="mt-auto pt-4 text-sm font-semibold text-[var(--color-brand)] group-hover:underline">
+                    View Products &rarr;
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </>

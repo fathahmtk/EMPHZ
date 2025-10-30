@@ -33,8 +33,9 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
   }
 
   const descriptionText = product.description || product.useCase || product.innovation;
-  // FIX: Handle case where product.image is an array by taking the first image for the modal.
-  const imageUrl = (Array.isArray(product.image) ? product.image[0] : product.image) || 'https://picsum.photos/600/600?random=product-placeholder';
+  const rawImage = Array.isArray(product.image) ? product.image[0] : product.image;
+  const imageUrl = rawImage || 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
+  const hasRealImage = !!rawImage;
 
   return (
     <div
@@ -59,12 +60,12 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
           </svg>
         </button>
 
-        <div className="w-full md:w-1/2">
+        <div className={`w-full md:w-1/2 ${!hasRealImage ? 'bg-gray-100 p-8' : ''}`}>
           <img
             src={imageUrl}
             alt={product.name}
             loading="lazy"
-            className="w-full h-64 md:h-full object-cover"
+            className={`w-full h-64 md:h-full ${hasRealImage ? 'object-cover' : 'object-contain'}`}
           />
         </div>
 

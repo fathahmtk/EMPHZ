@@ -12,6 +12,10 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  
+  const FALLBACK_LOGO_URL = 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
+  const hasRealImages = images.length > 0;
+  const displayImages = hasRealImages ? images : [FALLBACK_LOGO_URL];
 
   useEffect(() => {
     setActiveIndex(0);
@@ -27,20 +31,16 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
 
   useEffect(() => {
     const el = thumbnailsRef.current;
-    if (el) {
+    if (el && hasRealImages) {
       checkScrollability();
       const resizeObserver = new ResizeObserver(checkScrollability);
       resizeObserver.observe(el);
       return () => resizeObserver.disconnect();
     }
-  }, [images, checkScrollability]);
+  }, [displayImages, hasRealImages, checkScrollability]);
 
 
-  if (images.length === 0) {
-    images = ['https://placehold.co/800x600/F7FAFC/1A202C?text=No+Image'];
-  }
-
-  const activeImage = images[activeIndex];
+  const activeImage = displayImages[activeIndex];
 
   const handleThumbnailClick = (index: number) => {
     setActiveIndex(index);
@@ -60,32 +60,34 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
     <div className="flex flex-col gap-4">
       {/* Main Image Viewer */}
       <div
-        className="relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] cursor-pointer border border-[var(--color-border)]"
-        onClick={() => setIsLightboxOpen(true)}
-        role="button"
-        aria-label={`View ${productName} images in fullscreen`}
+        className={`relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] border border-[var(--color-border)] ${hasRealImages ? 'cursor-pointer' : ''} ${!hasRealImages ? 'bg-gray-100' : ''}`}
+        onClick={hasRealImages ? () => setIsLightboxOpen(true) : undefined}
+        role={hasRealImages ? "button" : "img"}
+        aria-label={hasRealImages ? `View ${productName} images in fullscreen` : productName}
       >
         <img
           src={activeImage}
-          alt={`${productName} - image ${activeIndex + 1}`}
+          alt={`${productName}${hasRealImages ? ` - image ${activeIndex + 1}`: ' - no image available'}`}
           loading="eager"
           fetchPriority="high"
           width="800"
           height="800"
-          className="block w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+          className={`block w-full h-full ${hasRealImages ? 'object-cover transition-transform duration-300 ease-out group-hover:scale-105' : 'object-contain p-10'}`}
         />
-        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <svg className="w-16 h-16 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
-        </div>
-        {images.length > 1 && (
+        {hasRealImages && (
+            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <svg className="w-16 h-16 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+            </div>
+        )}
+        {displayImages.length > 1 && hasRealImages && (
             <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10">
-              {activeIndex + 1} / {images.length}
+              {activeIndex + 1} / {displayImages.length}
             </div>
         )}
       </div>
 
       {/* Thumbnail Filmstrip */}
-      {images.length > 1 && (
+      {hasRealImages && displayImages.length > 1 && (
         <div className="relative">
           {canScrollLeft && (
             <button
@@ -103,7 +105,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
             role="group"
             aria-label="Image thumbnails"
           >
-            {images.map((img, index) => (
+            {displayImages.map((img, index) => (
               <button
                 key={index}
                 onClick={() => handleThumbnailClick(index)}
@@ -139,9 +141,9 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
         </div>
       )}
       
-      {isLightboxOpen && (
+      {hasRealImages && isLightboxOpen && (
         <Lightbox
-            images={images}
+            images={displayImages}
             startIndex={activeIndex}
             onClose={() => setIsLightboxOpen(false)}
         />

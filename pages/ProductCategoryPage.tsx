@@ -68,6 +68,9 @@ const ProductCategoryPage: React.FC = () => {
     { label: 'Products', path: '/products' },
     { label: category.name },
   ];
+  
+  const hasRealImage = !!category.image;
+  const imageUrl = category.image || 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
 
   return (
     <>
@@ -78,14 +81,14 @@ const ProductCategoryPage: React.FC = () => {
 
       {/* New Category Hero Section */}
       <section className="relative h-[45vh] bg-slate-700 text-white flex items-center justify-center text-center overflow-hidden">
-        <div className="absolute inset-0">
+        <div className={`absolute inset-0 ${!hasRealImage ? 'bg-gray-100' : ''}`}>
           <img
-            src={category.image || 'https://images.unsplash.com/photo-1511288599423-5a0223b827e4?q=80&w=2070&auto=format&fit=crop'}
+            src={imageUrl}
             alt={`Background for ${category.name}`}
             loading="eager"
-            className="w-full h-full object-cover animate-hero-zoom"
+            className={`w-full h-full ${hasRealImage ? 'object-cover animate-hero-zoom' : 'object-contain p-12'}`}
           />
-          <div className="absolute inset-0 hero-overlay"></div>
+          {hasRealImage && <div className="absolute inset-0 hero-overlay"></div>}
         </div>
         <div className="relative z-10 p-8 max-w-4xl mx-auto">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4 animate-fadeInUp text-shadow-strong">
