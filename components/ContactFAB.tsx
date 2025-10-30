@@ -92,7 +92,7 @@ const ContactFAB: React.FC = () => {
       {/* Main Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-500/50"
+        className="bg-[var(--color-brand)] hover:bg-[var(--color-accent)] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[var(--color-brand)]/50"
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close chat widget' : 'Open chat widget'}
       >
