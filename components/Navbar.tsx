@@ -14,7 +14,7 @@ const NavDropdown: React.FC<{ title: string; children: React.ReactNode; path?: s
       {title}
       <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
     </NavLink>
-    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-[var(--color-border)] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 z-50">
+    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-[var(--color-border)] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 z-50">
       <div className="py-2 max-h-96 overflow-y-auto">
         {children}
       </div>
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
   const navLinkClasses = "text-[var(--color-primary)] hover:text-[var(--color-brand)] font-medium transition-colors duration-300 py-2";
 
   return (
-    <nav className={`bg-white/90 backdrop-blur-lg sticky top-0 z-50 py-2 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-border)] transition-shadow duration-300 ${isScrolled ? 'shadow-[var(--shadow-md)]' : 'shadow-none'}`}>
+    <nav className={`bg-white/95 backdrop-blur-lg sticky top-0 z-50 py-3 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-border)] transition-shadow duration-300 ${isScrolled ? 'shadow-[var(--shadow-md)]' : 'shadow-none'}`}>
       <div className="container mx-auto flex justify-between items-center">
         <NavLink to="/" className="flex items-center" aria-label="EMPHZ Homepage">
           <Logo className="h-10 w-auto" />
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-2">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-[var(--color-primary)] focus:outline-none p-2">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-[var(--color-primary)] focus:outline-none p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
             </svg>
@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
           
           <NavDropdown title="Products" path="/products">
             {PRODUCT_CATALOG.map(cat => (
-              <NavLink key={cat.code} to={`/products/category/${cat.slug}`} className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">
+              <NavLink key={cat.code} to={`/products/category/${cat.slug}`} className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">
                 {cat.name}
               </NavLink>
             ))}
@@ -81,21 +81,21 @@ const Navbar: React.FC = () => {
 
           <NavDropdown title="Industries" path="/industries">
             {INDUSTRIES.map(ind => (
-              <NavLink key={ind.slug} to={`/industries/${ind.slug}`} className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">
+              <NavLink key={ind.slug} to={`/industries/${ind.slug}`} className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">
                 {ind.name}
               </NavLink>
             ))}
           </NavDropdown>
 
           <NavDropdown title="About Us">
-            <NavLink to="/innovation" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">Innovation</NavLink>
-            <NavLink to="/sustainability" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">Sustainability</NavLink>
-            <NavLink to="/corporate" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">Corporate</NavLink>
+            <NavLink to="/innovation" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">Innovation</NavLink>
+            <NavLink to="/sustainability" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">Sustainability</NavLink>
+            <NavLink to="/corporate" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">Corporate</NavLink>
           </NavDropdown>
           
           <NavDropdown title="Resources">
-            <NavLink to="/knowledge" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">Knowledge Hub</NavLink>
-            <NavLink to="/support" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-gray-100 hover:text-[var(--color-brand)]">Support</NavLink>
+            <NavLink to="/knowledge" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">Knowledge Hub</NavLink>
+            <NavLink to="/support" className="block px-4 py-2 text-sm text-[var(--color-text-primary)] hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] transition-colors">Support</NavLink>
           </NavDropdown>
           
           <NavLink to="/contact" className={navLinkClasses} style={({ isActive }) => isActive ? activeLinkStyle : undefined}>Contact</NavLink>
@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={openSearch}
-              className="p-2 text-[var(--color-text-secondary)] rounded-full transition-colors duration-300 hover:bg-gray-100 hover:text-[var(--color-text-primary)] border border-transparent hover:border-[var(--color-border)]"
+              className="p-2 text-[var(--color-text-secondary)] rounded-lg transition-all duration-300 hover:bg-[var(--color-brand)]/10 hover:text-[var(--color-brand)] border border-transparent hover:border-[var(--color-brand)]/30"
               role="button"
               aria-label="Search"
             >
@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
             </button>
             <NavLink
               to="/contact"
-              className="bg-[var(--color-brand)]/10 text-[var(--color-brand)] hover:bg-[var(--color-brand)]/20 font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-sm"
+              className="bg-[var(--color-brand)] text-white hover:bg-[var(--color-accent)] font-semibold py-2 px-5 rounded-lg transition-all duration-300 text-sm hover:shadow-lg transform hover:scale-105"
             >
               Request a Quote
             </NavLink>
@@ -125,35 +125,35 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="md:hidden mt-4 animate-fadeInUp" style={{animationDuration: '0.3s'}}>
           <div className="flex flex-col space-y-1 px-2 pt-2 pb-3">
-             <NavLink to="/" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-gray-100 rounded-md font-medium py-2 px-3" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>Home</NavLink>
+             <NavLink to="/" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-[var(--color-brand)]/10 rounded-md font-medium py-2 px-3" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>Home</NavLink>
             
             <MobileCollapsible title="Products">
-                <NavLink to="/products" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-gray-100 rounded-md font-medium py-2 px-3 w-full text-left" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>All Products</NavLink>
-                {PRODUCT_CATALOG.map(cat => <NavLink key={cat.code} to={`/products/category/${cat.slug}`} onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">{cat.name}</NavLink>)}
+                <NavLink to="/products" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-[var(--color-brand)]/10 rounded-md font-medium py-2 px-3 w-full text-left" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>All Products</NavLink>
+                {PRODUCT_CATALOG.map(cat => <NavLink key={cat.code} to={`/products/category/${cat.slug}`} onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">{cat.name}</NavLink>)}
             </MobileCollapsible>
             
             <MobileCollapsible title="Industries">
-                <NavLink to="/industries" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-gray-100 rounded-md font-medium py-2 px-3 w-full text-left" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>All Industries</NavLink>
-                {INDUSTRIES.map(ind => <NavLink key={ind.slug} to={`/industries/${ind.slug}`} onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">{ind.name}</NavLink>)}
+                <NavLink to="/industries" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-[var(--color-brand)]/10 rounded-md font-medium py-2 px-3 w-full text-left" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>All Industries</NavLink>
+                {INDUSTRIES.map(ind => <NavLink key={ind.slug} to={`/industries/${ind.slug}`} onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">{ind.name}</NavLink>)}
             </MobileCollapsible>
 
             <MobileCollapsible title="About Us">
-                <NavLink to="/innovation" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">Innovation</NavLink>
-                <NavLink to="/sustainability" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">Sustainability</NavLink>
-                <NavLink to="/corporate" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">Corporate</NavLink>
+                <NavLink to="/innovation" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">Innovation</NavLink>
+                <NavLink to="/sustainability" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">Sustainability</NavLink>
+                <NavLink to="/corporate" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">Corporate</NavLink>
             </MobileCollapsible>
 
             <MobileCollapsible title="Resources">
-                <NavLink to="/knowledge" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">Knowledge Hub</NavLink>
-                <NavLink to="/support" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-gray-100 rounded-md py-2 px-3 w-full text-left">Support</NavLink>
+                <NavLink to="/knowledge" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">Knowledge Hub</NavLink>
+                <NavLink to="/support" onClick={() => setIsOpen(false)} className="block text-sm text-[var(--color-text-secondary)] hover:bg-[var(--color-brand)]/10 rounded-md py-2 px-3 w-full text-left">Support</NavLink>
             </MobileCollapsible>
 
-            <NavLink to="/contact" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-gray-100 rounded-md font-medium py-2 px-3" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>Contact</NavLink>
+            <NavLink to="/contact" onClick={() => setIsOpen(false)} className="block text-[var(--color-primary)] hover:bg-[var(--color-brand)]/10 rounded-md font-medium py-2 px-3" style={({ isActive }) => isActive ? activeLinkStyle : undefined}>Contact</NavLink>
             
             <div className="border-t border-gray-200 mt-4 pt-4">
               <button
                 onClick={() => { setIsOpen(false); openSearch(); }}
-                className="w-full flex items-center gap-2 text-left text-[var(--color-primary)] hover:bg-gray-100 rounded-md font-medium py-2 px-3"
+                className="w-full flex items-center gap-2 text-left text-[var(--color-primary)] hover:bg-[var(--color-brand)]/10 rounded-md font-medium py-2 px-3"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 Search...

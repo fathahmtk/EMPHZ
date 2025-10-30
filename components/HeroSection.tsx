@@ -58,17 +58,20 @@ const HeroSection: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 p-8 max-w-4xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4 animate-fadeInUp text-shadow-strong">
+        <div className="mb-6 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+          <span className="inline-block px-4 py-2 bg-[var(--color-brand)]/20 backdrop-blur-md border border-[var(--color-brand)]/40 rounded-full text-sm font-semibold text-white mb-4">Engineering Innovation</span>
+        </div>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6 animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.2s' }}>
           {HERO_SECTION.headline}
         </h1>
-        <p className="text-sm sm:text-base lg:text-lg font-normal max-w-3xl mx-auto mb-8 animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.3s' }}>
+        <p className="text-base sm:text-lg lg:text-xl font-light max-w-3xl mx-auto mb-10 animate-fadeInUp text-shadow-strong leading-relaxed" style={{ animationDelay: '0.3s' }}>
           {HERO_SECTION.subline}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          <Button variant="glass-subtle" href="/products" className="px-6 py-3">
+          <Button variant="glass-cta" href="/products" className="px-8 py-4 text-base font-semibold">
             {HERO_SECTION.cta1}
           </Button>
-          <Button variant="glass-cta" href="/contact" className="px-6 py-3">
+          <Button variant="glass-subtle" href="/contact" className="px-8 py-4 text-base font-semibold">
             {HERO_SECTION.cta2}
           </Button>
         </div>
@@ -78,7 +81,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute z-20 left-4 sm:left-8 top-1/2 -translate-y-1/2">
         <button
           onClick={handlePrev}
-          className="bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/30 transition-all focus:outline-none focus:ring-2 focus:ring-white/50"
+          className="bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/40 hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
           aria-label="Previous slide"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
@@ -87,7 +90,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute z-20 right-4 sm:right-8 top-1/2 -translate-y-1/2">
         <button
           onClick={handleNext}
-          className="bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/30 transition-all focus:outline-none focus:ring-2 focus:ring-white/50"
+          className="bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/40 hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
           aria-label="Next slide"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
