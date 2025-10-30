@@ -14,13 +14,14 @@ const ImagePlaceholder: React.FC = () => (
     <div className="w-full h-full bg-gray-200 animate-skeleton-pulse"></div>
 );
 
-// New component for error state
+// Use the company logo as a branded fallback for missing images.
 const ImageError: React.FC = () => (
-    <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center p-4 text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span className="text-xs font-medium">Image unavailable</span>
+    <div className="w-full h-full bg-gray-100 flex items-center justify-center p-4">
+        <img
+            src="https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1"
+            alt="Image unavailable - EMPHZ Logo"
+            className="w-2/3 h-auto object-contain opacity-50"
+        />
     </div>
 );
 
