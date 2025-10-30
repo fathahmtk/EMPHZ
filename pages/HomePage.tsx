@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import HeroSection from '../components/HeroSection';
 import ValueProposition from '../components/ValueProposition';
@@ -8,6 +9,7 @@ import { SEO_DATA } from '../constants';
 import IndustryGrid from '../components/IndustryGrid';
 import ContactRFQ from '../components/ContactRFQ';
 import CTABanner from '../components/CTABanner';
+import FeaturedProducts from '../components/FeaturedProducts';
 
 const HomePage: React.FC = () => {
   return (
@@ -17,10 +19,11 @@ const HomePage: React.FC = () => {
         description={SEO_DATA.home.description}
       />
       <HeroSection />
-      <div className="space-y-24">
+      <div>
         <ValueProposition />
-        <CTABanner />
         <BrandPillars />
+        <FeaturedProducts />
+        <CTABanner />
         <IndustryGrid />
         <ContactRFQ />
       </div>

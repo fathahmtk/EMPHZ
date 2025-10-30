@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import ContactRFQ from '../components/ContactRFQ';
 import Button from '../components/Button';
 import MetaTags from '../components/MetaTags';
@@ -7,6 +8,7 @@ import { useToast } from '../ToastContext';
 
 const ContactPage: React.FC = () => {
   const { addToast } = useToast();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,6 +17,16 @@ const ContactPage: React.FC = () => {
     message: '',
     productOfInterest: '',
   });
+
+  useEffect(() => {
+    if (location.state?.productName) {
+      setFormData(prev => ({
+        ...prev,
+        productOfInterest: location.state.productName,
+        message: `I'm interested in getting a quote for the product: ${location.state.productName} (Code: ${location.state.productCode}).`
+      }));
+    }
+  }, [location.state]);
 
   const [formErrors, setFormErrors] = useState({
     name: '',
@@ -103,6 +115,17 @@ const ContactPage: React.FC = () => {
   const inputBorderClasses = `border-[var(--color-border)] focus:ring-[var(--color-accent)]/80 focus:border-[var(--color-accent)]`;
   const inputErrorBorderClasses = `border-red-500 focus:ring-red-400`;
 
+  const categoryOptions = [
+    "GRP Electrical & Utility Enclosures",
+    "GRP Modular & Portable Structures",
+    "GRP Utility & Infrastructure Products",
+    "GRP Industrial Components & Custom Fabrication",
+    "GRP Marine, Offshore & Energy Solutions",
+    "GRP Sustainable & Smart Solutions",
+    "GRP Transport & Automotive Components",
+    "Other / Custom Project"
+  ];
+
   return (
     <>
       <MetaTags
@@ -188,14 +211,15 @@ const ContactPage: React.FC = () => {
                   className={`${inputBaseClasses} ${inputBorderClasses}`}
                 >
                   <option value="">Select a product or category</option>
-                  <option value="GRP Electrical & Utility Enclosures">GRP Electrical & Utility Enclosures</option>
-                  <option value="GRP Modular & Portable Structures">GRP Modular & Portable Structures</option>
-                  <option value="GRP Utility & Infrastructure Products">GRP Utility & Infrastructure Products</option>
-                  <option value="GRP Industrial Components & Custom Fabrication">GRP Industrial Components & Custom Fabrication</option>
-                  <option value="GRP Marine, Offshore & Energy Solutions">GRP Marine, Offshore & Energy Solutions</option>
-                  <option value="GRP Sustainable & Smart Solutions">GRP Sustainable & Smart Solutions</option>
-                  <option value="GRP Automobile">GRP Automobile</option>
-                  <option value="Other / Custom Project">Other / Custom Project</option>
+                  {/* If a product was passed via state and isn't a standard category, add it as an option */}
+                  {formData.productOfInterest && !categoryOptions.includes(formData.productOfInterest) && (
+                    <option value={formData.productOfInterest}>
+                      {formData.productOfInterest}
+                    </option>
+                  )}
+                  {categoryOptions.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
                 </select>
               </div>
               <div>

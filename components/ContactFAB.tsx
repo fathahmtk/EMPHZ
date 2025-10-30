@@ -53,8 +53,8 @@ const ContactFAB: React.FC = () => {
       <div
         className={`
           w-[calc(100vw-3rem)] max-w-sm h-auto bg-[var(--color-background)] rounded-lg shadow-xl border border-[var(--color-border)] flex flex-col
-          transition-all duration-300 ease-in-out origin-bottom-right absolute bottom-[calc(100%+1rem)] right-0
-          ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+          transition-[transform,opacity] duration-300 ease-in-out origin-bottom-right absolute bottom-[calc(100%+1rem)] right-0
+          ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
         `}
         aria-hidden={!isOpen}
       >

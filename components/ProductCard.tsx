@@ -1,7 +1,8 @@
-import React, { memo, useRef, useEffect, useState } from 'react';
+import React, { memo, useRef } from 'react';
 import { Link } from "react-router-dom";
 import { Product } from '../types';
 import Button from './Button';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 interface ProductCardProps {
   product: Product;
@@ -11,64 +12,37 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, categoryName }) => {
   const descriptionText = product.description || product.useCase || product.innovation;
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        rootMargin: '0px 0px -50px 0px', // Trigger animation slightly before it's fully in view
-      }
-    );
-
-    const currentRef = cardRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  const handleQuickViewClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    onQuickViewClick(product);
-  };
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isVisible = useIntersectionObserver(cardRef);
 
   return (
-    <Link
+    <div
       ref={cardRef}
-      to={`/products/${product.code}`}
-      className={`block h-full group relative opacity-0 ${isVisible ? 'animate-fadeInUp' : ''} transition-transform duration-300 hover:-translate-y-1`}
+      className={`h-full group opacity-0 ${isVisible ? 'animate-fadeInUp' : ''}`}
     >
-      <div className="bg-[var(--color-background)] p-6 rounded-lg shadow-[var(--shadow-md)] group-hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col">
-        {/* Display Category Name */}
-        {categoryName && (
-            <p className="text-xs font-bold text-[var(--color-brand)] uppercase tracking-wider mb-2">
-                {categoryName}
-            </p>
-        )}
-        <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">{product.name}</h4>
-        <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-3">Code: {product.code}</p>
+      <div className="bg-[var(--color-background)] p-6 rounded-lg shadow-[var(--shadow-md)] group-hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col hover:-translate-y-1">
         <div className="flex-grow">
-          {descriptionText && <p className="text-[var(--color-text-primary)] text-sm">{descriptionText}</p>}
+          {categoryName && (
+              <p className="text-xs font-bold text-[var(--color-brand)] uppercase tracking-wider mb-2">
+                  {categoryName}
+              </p>
+          )}
+          <Link to={`/products/${product.code}`} className="block">
+              <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">{product.name}</h4>
+          </Link>
+          <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-3">Code: {product.code}</p>
+          
+          {descriptionText && <p className="text-[var(--color-text-primary)] text-sm mb-4 line-clamp-3">{descriptionText}</p>}
+          
           {product.applications && product.applications.length > 0 && (
-            <p className="text-[var(--color-text-primary)] text-sm mt-2">
+              <p className="text-[var(--color-text-primary)] text-sm mt-2 line-clamp-2">
               <span className="font-semibold text-[var(--color-primary)]">Applications:</span> {product.applications.join(', ')}
-            </p>
+              </p>
           )}
         </div>
+        
         {product.image && (
-          <div className="mt-4 rounded-md overflow-hidden aspect-[3/2]">
+          <Link to={`/products/${product.code}`} className="mt-4 rounded-md overflow-hidden aspect-[3/2] block">
             <img 
               src={Array.isArray(product.image) ? product.image[0] : product.image} 
               alt={product.name} 
@@ -79,19 +53,39 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
               height="400"
               className="w-full h-full object-cover rounded-md transition-transform duration-500 ease-in-out group-hover:scale-110" 
             />
-          </div>
+          </Link>
         )}
+
+        <div className="mt-6 pt-4 border-t border-[var(--color-border)] flex items-stretch justify-center gap-2">
+          <Button
+              href={`/products/${product.code}`}
+              variant="outline"
+              className="px-2 py-2 text-xs flex-1"
+          >
+              Details
+          </Button>
+          <Button
+              href="/contact"
+              state={{ 
+                  productName: product.name, 
+                  productCode: product.code,
+                  scrollTo: 'rfq-form'
+              }}
+              variant="secondary"
+              className="px-2 py-2 text-xs flex-1"
+          >
+              Quote
+          </Button>
+          <Button
+              onClick={() => onQuickViewClick(product)}
+              variant="primary"
+              className="px-2 py-2 text-xs flex-1"
+          >
+              Quick View
+          </Button>
+        </div>
       </div>
-      <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <Button
-            onClick={handleQuickViewClick}
-            variant="secondary"
-            className="px-4 py-2 text-sm shadow-md"
-        >
-            Quick View
-        </Button>
-      </div>
-    </Link>
+    </div>
   );
 };
 

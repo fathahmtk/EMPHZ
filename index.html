@@ -1,3 +1,15 @@
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
+    "@radix-ui/react-accordion": "https://aistudiocdn.com/@radix-ui/react-accordion@^1.2.12",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1"
+  }
+}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +17,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMPHZ Private Limited - Engineering Tomorrow in Composites</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/M7cR4Zg/emphz-icon.png">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.dropbox.com">
+    <link rel="preconnect" href="https://i.ibb.co">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -63,26 +81,34 @@
             text-wrap: balance; /* Improve text wrapping aesthetics */
         }
         .hero-overlay {
-            /* New gradient for better image visibility while maintaining contrast */
-            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, transparent 50%, rgba(15, 23, 42, 0.8) 100%);
+            /* Enhanced gradient for better contrast */
+            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, transparent 50%, rgba(15, 23, 42, 0.75) 100%);
         }
         
         .text-shadow-strong {
-            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(25px) scale(0.97);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
         .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
+            animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-in-out forwards;
         }
 
         @keyframes heroZoom {
@@ -104,6 +130,13 @@
         @keyframes lightbox-zoom-in {
             from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes skeleton-pulse {
+            50% { background-color: #e2e8f0; } /* slate-200 */
+        }
+        .animate-skeleton-pulse {
+            animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         
         .no-scrollbar::-webkit-scrollbar {
@@ -128,37 +161,4 @@
         }
         .skip-link {
             position: absolute;
-            top: -100px;
-            left: 0.5rem;
-            background: var(--color-brand);
-            color: white;
-            padding: 0.5rem 1rem;
-            z-index: 1000;
-            transition: top 0.3s ease-in-out;
-            border-bottom-left-radius: var(--radius);
-            border-bottom-right-radius: var(--radius);
-            font-weight: 600;
-            box-shadow: var(--shadow-lg);
-        }
-        .skip-link:focus {
-            top: 0;
-        }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.4",
-    "@radix-ui/react-accordion": "https://aistudiocdn.com/@radix-ui/react-accordion@^1.2.12",
-    "clsx": "https://aistudiocdn.com/clsx@^2.1.1"
-  }
-}
-</script>
-</head>
-<body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-</body>
-</html>
+            top: -100px

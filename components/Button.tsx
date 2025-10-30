@@ -9,6 +9,7 @@ interface ButtonProps {
   className?: string;
   href?: string;
   disabled?: boolean;
+  state?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,8 +20,9 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   href,
   disabled = false,
+  state,
 }) => {
-  const baseStyles = `inline-block px-8 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
+  const baseStyles = `inline-block px-8 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
 
   const primaryStyles = `bg-[var(--color-primary)] text-white hover:bg-slate-800 focus:ring-slate-500/50 shadow-[var(--shadow-md)]`;
   const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
@@ -83,6 +85,7 @@ const Button: React.FC<ButtonProps> = ({
         className={`${finalClassName} text-center ${isDisabled ? 'pointer-events-none' : ''}`}
         aria-disabled={isDisabled}
         title={tooltip}
+        state={state}
       >
         {children}
       </Link>

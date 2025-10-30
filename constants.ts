@@ -13,10 +13,10 @@ import {
 
 // --- Homepage Content ---
 export const HERO_SECTION = {
-  headline: "Engineering Tomorrow’s Infrastructure — Today",
-  subline: "High-performance GRP composite solutions engineered to outlast steel, outperform concrete, and redefine sustainability.",
-  cta1: "Explore Our Products",
-  cta2: "Request a Quote",
+  headline: "Engineering a Resilient Future. Today.",
+  subline: "Discover GRP composites: the corrosion-proof, lightweight alternative to steel and concrete, engineered for a 50-year sustainable lifecycle.",
+  cta1: "View Product Catalog",
+  cta2: "Get a Project Quote",
   backgroundImages: [
     "https://www.dropbox.com/scl/fi/3q4zsq0vxb6bscss6j98z/Emphz-GRP-Portable-Toilet.png?rlkey=cjq4lyp3emeqwj7hf0q1cchxe&st=135v3dzm&dl=1",
     "https://www.dropbox.com/scl/fi/i0r4s035cvcc8v8ykg9ba/Emphz-GRP-Hero-Image-3.png?rlkey=obfwaz3804vodjbnk2rpgmdj9&st=2kcxqe9b&dl=1",

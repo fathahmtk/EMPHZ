@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCategoryBySlug } from '../hooks/useCategoryBySlug';
 import MetaTags from '../components/MetaTags';
 import { SEO_DATA } from '../constants';
@@ -65,14 +66,31 @@ const ProductCategoryPage: React.FC = () => {
         title={SEO_DATA.productCategory.title(category.name)}
         description={SEO_DATA.productCategory.description(category.tagline)}
       />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <Breadcrumbs items={breadcrumbItems} className="mb-8" />
-        
-        <header className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">{category.name}</h1>
-          <p className="text-xl text-[var(--color-text-secondary)] max-w-3xl mx-auto">{category.tagline}</p>
-        </header>
 
+      {/* New Category Hero Section */}
+      <section className="relative h-[45vh] bg-slate-700 text-white flex items-center justify-center text-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={category.image || 'https://images.unsplash.com/photo-1511288599423-5a0223b827e4?q=80&w=2070&auto=format&fit=crop'}
+            alt={`Background for ${category.name}`}
+            loading="eager"
+            className="w-full h-full object-cover animate-hero-zoom"
+          />
+          <div className="absolute inset-0 hero-overlay"></div>
+        </div>
+        <div className="relative z-10 p-8 max-w-4xl mx-auto">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4 animate-fadeInUp text-shadow-strong">
+            {category.name}
+          </h1>
+          <p className="text-xl text-slate-200 max-w-3xl mx-auto animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.2s' }}>
+            {category.tagline}
+          </p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <Breadcrumbs items={breadcrumbItems} className="mb-12" />
+        
         <main>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {category.products.map((product: Product) => (

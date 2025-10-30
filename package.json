@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react-dom": "^19.2.0",
     "react": "^19.2.0",
-    "react-router-dom": "^7.9.4",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5",
     "@radix-ui/react-accordion": "^1.2.12",
     "clsx": "^2.1.1"
   },
