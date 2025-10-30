@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { GoogleGenAI, Chat } from "@google/genai";
 import config from '../config';
 import Logo from './Logo';
 
@@ -14,42 +15,93 @@ const CloseIcon: React.FC = () => (
   </svg>
 );
 
+interface ChatMessage {
+  sender: 'user' | 'ai';
+  text: string;
+}
 
 const ContactFAB: React.FC = () => {
+  // UI State
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [message, setMessage] = useState('');
   
-  const welcomeMessage = "Hi there! 👋 How can our engineering team help you with your composite needs today?";
+  // Chat State
+  const [chat, setChat] = useState<Chat | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [userInput, setUserInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const toggleVisibility = () => {
       const shouldBeVisible = window.scrollY > 300;
       setIsVisible(shouldBeVisible);
-      if (!shouldBeVisible) setIsOpen(false); // Close widget when it scrolls out of view
+      if (!shouldBeVisible) setIsOpen(false);
     };
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (message.trim() === '') return;
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${config.supportPhone.replace(/\s+/g, '').replace('+', '')}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    setMessage('');
-    setIsOpen(false);
+  const initializeChat = () => {
+    if (!chat) {
+      try {
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const systemInstruction = "You are a friendly, expert sales and support assistant for EMPHZ, a global manufacturer of GRP composite solutions. Your goal is to answer user questions about products and help them find the right solution. Be professional and concise. The main product categories are: GRP Electrical Enclosures, Modular & Portable Structures, Utility & Infrastructure Products, Industrial Components, Marine/Offshore Solutions, Sustainable/Smart Solutions, and Transport/Automotive Components. If you don't know an answer, politely say you need to check with a human engineer and suggest they use the contact form.";
+        
+        const newChat = ai.chats.create({
+          model: 'gemini-2.5-flash',
+          config: {
+            systemInstruction: systemInstruction,
+          },
+        });
+        setChat(newChat);
+        setMessages([{ sender: 'ai', text: "Hi there! I'm the EMPHZ AI Assistant. How can I help you with our composite solutions today?" }]);
+      } catch (error) {
+        console.error("Failed to initialize Gemini AI:", error);
+        setMessages([{ sender: 'ai', text: "Sorry, the AI assistant is currently unavailable. Please use our contact form." }]);
+      }
+    }
   };
 
-  if (!isVisible) {
-    return null;
-  }
+  const toggleChat = () => {
+    const newIsOpenState = !isOpen;
+    setIsOpen(newIsOpenState);
+    if (newIsOpenState && !chat) {
+      initializeChat();
+    }
+  };
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!userInput.trim() || isLoading || !chat) return;
+
+    const userMessage: ChatMessage = { sender: 'user', text: userInput };
+    setMessages(prev => [...prev, userMessage]);
+    const currentInput = userInput;
+    setUserInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await chat.sendMessage({ message: currentInput });
+      const aiMessage: ChatMessage = { sender: 'ai', text: response.text };
+      setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      console.error("Gemini API error:", error);
+      const errorMessage: ChatMessage = { sender: 'ai', text: "Sorry, I'm having trouble connecting right now. Please try again in a moment." };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (!isVisible) return null;
 
   return (
     <div className="relative">
-      {/* Chat Window */}
       <div
         className={`
           w-[calc(100vw-3rem)] max-w-sm h-auto bg-[var(--color-background)] rounded-lg shadow-xl border border-[var(--color-border)] flex flex-col
@@ -59,42 +111,61 @@ const ContactFAB: React.FC = () => {
         aria-hidden={!isOpen}
       >
         <div className="p-4 bg-[var(--color-primary)] text-white flex items-center gap-3 rounded-t-lg">
-          <Logo className="h-10 w-auto" />
+          <Logo className="h-10 w-auto flex-shrink-0" />
           <div>
-            <h3 className="font-bold text-lg">EMPHZ Support</h3>
-            <p className="text-xs text-gray-300">Typically replies within minutes</p>
+            <h3 className="font-bold text-lg">EMPHZ AI Assistant</h3>
+            <p className="text-xs text-gray-300">Typically replies instantly</p>
           </div>
         </div>
-        <div className="p-4 flex-grow bg-[var(--color-surface)]">
-          <div className="bg-white p-3 rounded-lg shadow-sm text-[var(--color-text-primary)] max-w-xs">
-            <p className="text-sm">{welcomeMessage}</p>
-          </div>
+        
+        <div className="p-3 flex-grow bg-[var(--color-surface)] h-96 overflow-y-auto flex flex-col gap-3">
+          {messages.map((msg, index) => (
+            <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`rounded-2xl px-4 py-2 max-w-[80%] whitespace-pre-wrap ${msg.sender === 'user' ? 'bg-[var(--color-brand)] text-white rounded-br-none' : 'bg-white text-[var(--color-text-primary)] rounded-bl-none shadow-sm'}`}>
+                {msg.text}
+              </div>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex justify-start">
+                <div className="rounded-2xl px-4 py-2 bg-white text-[var(--color-text-primary)] rounded-bl-none shadow-sm">
+                    <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0s'}}></span>
+                        <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></span>
+                        <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></span>
+                    </div>
+                </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
+
         <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-white flex items-center gap-2 rounded-b-lg">
           <input
             type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type a message..."
-            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Ask a question..."
+            disabled={isLoading || !chat}
+            className="flex-grow w-full px-4 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm disabled:bg-gray-100"
             aria-label="Your message"
           />
           <button
             type="submit"
-            aria-label="Start Chat on WhatsApp"
-            className="flex-shrink-0 bg-[var(--color-brand)] hover:bg-[var(--color-accent)] text-white p-2.5 rounded-full transition-transform transform hover:scale-110"
+            disabled={isLoading || !userInput.trim() || !chat}
+            aria-label="Send message"
+            className="flex-shrink-0 bg-[var(--color-brand)] hover:bg-[var(--color-accent)] text-white p-2.5 rounded-full transition-all transform hover:scale-110 disabled:bg-gray-400 disabled:scale-100"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
           </button>
         </form>
       </div>
 
-      {/* Main Toggle Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
         className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-500/50"
         aria-expanded={isOpen}
-        aria-label={isOpen ? 'Close chat widget' : 'Open chat widget'}
+        aria-label={isOpen ? 'Close AI chat' : 'Open AI chat'}
       >
         {isOpen ? <CloseIcon /> : <WhatsAppIcon />}
       </button>
