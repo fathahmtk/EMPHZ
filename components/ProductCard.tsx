@@ -16,12 +16,11 @@ const ImagePlaceholder: React.FC = () => (
 
 // New component for error state
 const ImageError: React.FC = () => (
-    <div className="w-full h-full bg-gray-100 flex items-center justify-center p-4">
-        <img
-            src="https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1"
-            alt="Image unavailable"
-            className="max-w-full max-h-full object-contain"
-        />
+    <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center p-4 text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span className="text-xs font-medium">Image unavailable</span>
     </div>
 );
 
@@ -30,34 +29,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
   const descriptionText = product.description || product.useCase || product.innovation;
   const cardRef = useRef<HTMLDivElement>(null);
   const isVisible = useIntersectionObserver(cardRef);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [loadingStatus, setLoadingStatus] = useState<'pending' | 'loading' | 'loaded' | 'error'>('pending');
 
   const finalImageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
 
   // Reset loading state if the product prop changes
   useEffect(() => {
-    setImageLoaded(false);
-    setImageError(false);
-    setImageSrc(null);
+    setLoadingStatus('pending');
   }, [product.code]);
 
   // Start loading image only when the card becomes visible
   useEffect(() => {
-    if (isVisible && finalImageSrc) {
-      setImageSrc(finalImageSrc);
+    // Only trigger once, when visibility is gained and status is pending.
+    if (isVisible && loadingStatus === 'pending') {
+      if (finalImageSrc) {
+        setLoadingStatus('loading');
+      } else {
+        setLoadingStatus('error'); // No image source available
+      }
     }
-  }, [isVisible, finalImageSrc]);
+  }, [isVisible, loadingStatus, finalImageSrc]);
 
   const handleImageLoad = () => {
-    setImageLoaded(true);
-    setImageError(false);
+    setLoadingStatus('loaded');
   };
   
   const handleImageError = () => {
-    setImageLoaded(true); // Treat as "loaded" to hide the placeholder
-    setImageError(true);
+    setLoadingStatus('error');
   };
 
   return (
@@ -87,16 +85,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
         </div>
         
         <Link to={`/products/${product.code}`} className="mt-4 rounded-md overflow-hidden aspect-[3/2] block bg-gray-100 relative">
-            {/* Placeholder and Error states are overlays */}
             <div className="absolute inset-0">
-                {!imageLoaded && !imageError && finalImageSrc && <ImagePlaceholder />}
-                {(imageError || !finalImageSrc) && <ImageError />}
+                {loadingStatus === 'loading' && <ImagePlaceholder />}
+                {loadingStatus === 'error' && <ImageError />}
             </div>
             
-            {/* Image is also an overlay that fades in */}
-            {imageSrc && !imageError && (
+            {(loadingStatus === 'loading' || loadingStatus === 'loaded') && (
                 <img 
-                    src={imageSrc}
+                    src={finalImageSrc!}
                     alt={product.name} 
                     onLoad={handleImageLoad}
                     onError={handleImageError}
@@ -104,7 +100,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
                     fetchPriority="low"
                     width="600"
                     height="400"
-                    className={`absolute inset-0 w-full h-full object-cover rounded-md transition-opacity duration-500 ease-in-out group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover rounded-md transition-opacity duration-500 ease-in-out group-hover:scale-110 ${loadingStatus === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
                 />
             )}
         </Link>
