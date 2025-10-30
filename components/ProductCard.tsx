@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useRef, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Product } from '../types';
 import Button from './Button';
@@ -10,10 +10,25 @@ interface ProductCardProps {
   categoryName?: string;
 }
 
+const ImagePlaceholder: React.FC = () => (
+    <div className="w-full h-full bg-gray-100 animate-skeleton-pulse"></div>
+);
+
 const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, categoryName }) => {
   const descriptionText = product.description || product.useCase || product.innovation;
   const cardRef = useRef<HTMLDivElement>(null);
   const isVisible = useIntersectionObserver(cardRef);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+
+  const finalImageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+
+  useEffect(() => {
+    // Start loading image only when the card is visible
+    if (isVisible && finalImageSrc) {
+      setImageSrc(finalImageSrc);
+    }
+  }, [isVisible, finalImageSrc]);
 
   return (
     <div
@@ -41,45 +56,34 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
           )}
         </div>
         
-        {product.image && (
-          <Link to={`/products/${product.code}`} className="mt-4 rounded-md overflow-hidden aspect-[3/2] block">
+        {finalImageSrc && (
+          <Link to={`/products/${product.code}`} className="mt-4 rounded-md overflow-hidden aspect-[3/2] block bg-gray-100">
+            {!imageLoaded && <ImagePlaceholder />}
             <img 
-              src={Array.isArray(product.image) ? product.image[0] : product.image} 
+              src={imageSrc || undefined} // Load src only when visible
               alt={product.name} 
-              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
               decoding="async"
               fetchPriority="low"
               width="600"
               height="400"
-              className="w-full h-full object-cover rounded-md transition-transform duration-500 ease-in-out group-hover:scale-110" 
+              className={`w-full h-full object-cover rounded-md transition-all duration-500 ease-in-out group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             />
           </Link>
         )}
 
-        <div className="mt-6 pt-4 border-t border-[var(--color-border)] flex items-stretch justify-center gap-2">
+        <div className="mt-6 pt-4 border-t border-[var(--color-border)] flex items-center justify-between gap-2">
           <Button
               href={`/products/${product.code}`}
               variant="outline"
-              className="px-2 py-2 text-xs flex-1"
+              className="px-4 py-2 text-sm flex-1"
           >
               Details
           </Button>
           <Button
-              href="/contact"
-              state={{ 
-                  productName: product.name, 
-                  productCode: product.code,
-                  scrollTo: 'rfq-form'
-              }}
-              variant="secondary"
-              className="px-2 py-2 text-xs flex-1"
-          >
-              Quote
-          </Button>
-          <Button
               onClick={() => onQuickViewClick(product)}
-              variant="primary"
-              className="px-2 py-2 text-xs flex-1"
+              variant="secondary"
+              className="px-4 py-2 text-sm flex-1"
           >
               Quick View
           </Button>

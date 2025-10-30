@@ -45,6 +45,8 @@ const HeroSection: React.FC = () => {
               src={src}
               alt={`EMPHZ Background ${index + 1}`}
               loading={index === 0 ? 'eager' : 'lazy'}
+              decoding={index === 0 ? 'auto' : 'async'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
               className={`w-full h-full object-cover ${
                 index === currentIndex ? 'animate-hero-zoom' : ''
               }`}
@@ -63,10 +65,10 @@ const HeroSection: React.FC = () => {
           {HERO_SECTION.subline}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          <Button variant="glass" href="/products" className="px-6 py-3">
+          <Button variant="glass-subtle" href="/products" className="px-6 py-3">
             {HERO_SECTION.cta1}
           </Button>
-          <Button variant="glass" href="/contact" className="px-6 py-3">
+          <Button variant="glass-cta" href="/contact" className="px-6 py-3">
             {HERO_SECTION.cta2}
           </Button>
         </div>

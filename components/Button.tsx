@@ -5,11 +5,10 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'outline' | 'glass';
+  variant?: 'primary' | 'secondary' | 'outline' | 'glass' | 'glass-cta' | 'glass-subtle';
   className?: string;
   href?: string;
   disabled?: boolean;
-  state?: any;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,7 +19,6 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   href,
   disabled = false,
-  state,
 }) => {
   const baseStyles = `inline-block px-8 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
 
@@ -28,6 +26,8 @@ const Button: React.FC<ButtonProps> = ({
   const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
   const outlineStyles = `bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white focus:ring-[var(--color-primary)]/50 shadow-[var(--shadow-sm)]`;
   const glassStyles = `bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 focus:ring-white/50 shadow-[var(--shadow-md)]`;
+  const glassCtaStyles = `bg-white/80 backdrop-blur-sm border-2 border-transparent text-[var(--color-primary)] hover:bg-white focus:ring-white/50 shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)]`;
+  const glassSubtleStyles = `bg-transparent backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/80 focus:ring-white/50`;
 
   let variantStyles = '';
   switch (variant) {
@@ -42,6 +42,12 @@ const Button: React.FC<ButtonProps> = ({
       break;
     case 'glass':
       variantStyles = glassStyles;
+      break;
+    case 'glass-cta':
+      variantStyles = glassCtaStyles;
+      break;
+    case 'glass-subtle':
+      variantStyles = glassSubtleStyles;
       break;
   }
 
@@ -85,7 +91,6 @@ const Button: React.FC<ButtonProps> = ({
         className={`${finalClassName} text-center ${isDisabled ? 'pointer-events-none' : ''}`}
         aria-disabled={isDisabled}
         title={tooltip}
-        state={state}
       >
         {children}
       </Link>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCategoryBySlug } from '../hooks/useCategoryBySlug';
@@ -9,6 +8,7 @@ import ProductCard from '../components/ProductCard';
 import { useUIState } from '../UIStateContext';
 import { Product } from '../types';
 import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
+import SkeletonProductCard from '../components/SkeletonProductCard';
 
 const ProductCategoryPage: React.FC = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
@@ -18,9 +18,13 @@ const ProductCategoryPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-40 text-center flex flex-col justify-center items-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-accent)]"></div>
-        <p className="mt-4 text-lg text-[var(--color-text-secondary)]">Loading Category...</p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+         <div className="h-6 bg-gray-200 rounded-full w-1/3 mb-12 animate-skeleton-pulse"></div>
+         <div className="h-10 bg-gray-300 rounded-full w-2/3 mb-4 animate-skeleton-pulse"></div>
+         <div className="h-6 bg-gray-200 rounded-full w-1/2 mb-16 animate-skeleton-pulse"></div>
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {Array.from({ length: 8 }).map((_, index) => <SkeletonProductCard key={index} />)}
+         </div>
       </div>
     );
   }
@@ -32,9 +36,14 @@ const ProductCategoryPage: React.FC = () => {
         <p className="text-lg text-[var(--color-text-secondary)] mb-8 max-w-md">
           There was a problem fetching the details for this product category. Please try again.
         </p>
-        <Button onClick={() => window.location.reload()} variant="primary">
-          Retry
-        </Button>
+        <div className="flex space-x-4">
+            <Button onClick={() => window.location.reload()} variant="primary">
+            Retry
+            </Button>
+            <Button onClick={() => navigate('/products')} variant="outline">
+            Back to Products
+            </Button>
+        </div>
       </div>
     );
   }
