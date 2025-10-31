@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Button from './Button';
 import { CORPORATE_DETAILS, CERTIFICATE_DOWNLOADS } from '../constants';
@@ -14,7 +13,7 @@ const CorporateGovernance: React.FC = () => {
             <h3 className="text-2xl font-semibold mb-6">Corporate Details</h3>
             <ul className="space-y-4">
               {CORPORATE_DETAILS.map((detail, index) => (
-                <li key={index} className="text-[var(--color-text-secondary)]">
+                <li key={index} className="text-[var(--color-secondary)]">
                   <span className="font-semibold block text-[var(--color-primary)]">{detail.parameter}:</span> {detail.detail}
                 </li>
               ))}
@@ -25,12 +24,12 @@ const CorporateGovernance: React.FC = () => {
             <h3 className="text-2xl font-semibold mb-6">Certifications & Legal</h3>
             <div className="space-y-4">
               {CERTIFICATE_DOWNLOADS.map((doc, index) => (
-                <Button key={index} variant="outline" href={doc.link} className="w-full justify-center">
+                <Button key={index} variant="secondary" href={doc.link} className="w-full justify-center">
                   {doc.name}
                 </Button>
               ))}
             </div>
-            <p className="text-[var(--color-text-secondary)] text-sm mt-6">
+            <p className="text-[var(--color-secondary)] text-sm mt-6">
               EMPHZ is committed to transparency and adherence to global and national standards.
               Download our official documents for detailed compliance information.
             </p>

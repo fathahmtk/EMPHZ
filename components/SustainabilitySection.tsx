@@ -32,7 +32,7 @@ const SustainabilitySection: React.FC = () => {
         <h2 className="text-3xl lg:text-4xl font-bold mb-4">
           Sustainability is not an option
         </h2>
-        <p className="text-xl text-[var(--color-text-secondary)] mb-16 max-w-3xl mx-auto">
+        <p className="text-xl text-[var(--color-secondary)] mb-16 max-w-3xl mx-auto">
            — it’s our engineering standard. See how our GRP solutions offer a lower Total Cost of Ownership and a superior lifecycle advantage.
         </p>
 
@@ -45,23 +45,23 @@ const SustainabilitySection: React.FC = () => {
               <h3 className="text-xl font-semibold mb-4 w-full text-left">{item.factor}</h3>
               <div className="w-full space-y-4">
                 <div className="flex items-center space-x-4">
-                  <span className="text-md font-medium w-28 text-right">EMPHZ:</span>
-                  <div className="relative flex-grow h-8 bg-gray-200 rounded-full overflow-hidden">
+                  <span className="text-md font-medium w-28 text-right text-[var(--color-primary)]">EMPHZ:</span>
+                  <div className="relative flex-grow h-8 bg-[var(--color-section-bg)] rounded-full overflow-hidden">
                     <div
-                      className="absolute inset-y-0 left-0 bg-[var(--color-accent)] rounded-full transition-all duration-1000 ease-out"
+                      className="absolute inset-y-0 left-0 bg-[var(--color-brand)] rounded-full transition-all duration-1000 ease-out"
                       style={{ width: animated ? '80%' : '0%' }}
                     ></div>
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white font-semibold text-sm">{item.emphzAdvantage}</span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <span className="text-md font-medium text-[var(--color-text-secondary)] w-28 text-right">Competitor:</span>
-                  <div className="relative flex-grow h-8 bg-gray-200 rounded-full overflow-hidden">
+                  <span className="text-md font-medium text-[var(--color-secondary)] w-28 text-right">Competitor:</span>
+                  <div className="relative flex-grow h-8 bg-[var(--color-section-bg)] rounded-full overflow-hidden">
                     <div
-                      className="absolute inset-y-0 left-0 bg-gray-400 rounded-full transition-all duration-1000 ease-out"
+                      className="absolute inset-y-0 left-0 bg-gray-200 rounded-full transition-all duration-1000 ease-out"
                       style={{ width: animated ? '30%' : '0%' }}
                     ></div>
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white font-semibold text-sm">{item.competitor}</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700 font-semibold text-sm">{item.competitor}</span>
                   </div>
                 </div>
               </div>

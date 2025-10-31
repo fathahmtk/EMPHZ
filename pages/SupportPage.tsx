@@ -1,4 +1,3 @@
-
 import React from 'react';
 import WarrantyService from '../components/WarrantyService';
 import MetaTags from '../components/MetaTags';
@@ -11,7 +10,9 @@ const SupportPage: React.FC = () => {
         title={SEO_DATA.support.title}
         description={SEO_DATA.support.description}
       />
-      <WarrantyService />
+      <div className="bg-[var(--color-background)]">
+        <WarrantyService />
+      </div>
     </>
   );
 };

@@ -99,8 +99,8 @@ const ContactPage: React.FC = () => {
     formData.message.trim() !== '' &&
     Object.values(formErrors).every(error => error === '');
   
-  const inputBaseClasses = `w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-offset-1 transition-colors duration-200 bg-[var(--color-background)] text-[var(--color-primary)] placeholder-[var(--color-text-secondary)]`;
-  const inputBorderClasses = `border-[var(--color-border)] focus:ring-[var(--color-accent)]/80 focus:border-[var(--color-accent)]`;
+  const inputBaseClasses = `w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-offset-1 transition-colors duration-200 bg-[var(--color-background)] text-[var(--color-primary)] placeholder-[var(--color-secondary)]`;
+  const inputBorderClasses = `border-[var(--color-border)] focus:ring-[var(--color-brand)]/80 focus:border-[var(--color-brand)]`;
   const inputErrorBorderClasses = `border-red-500 focus:ring-red-400`;
 
   return (
@@ -116,7 +116,7 @@ const ContactPage: React.FC = () => {
         <section id="rfq-form" className="py-16">
           <div className="max-w-3xl mx-auto p-8 lg:p-10 bg-[var(--color-surface)] rounded-lg shadow-lg border border-[var(--color-border)]">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">Request a Quote</h2>
-            <p className="text-center text-[var(--color-text-secondary)] mb-10">
+            <p className="text-center text-[var(--color-secondary)] mb-10">
               Tell us about your project, and our engineering team will get back to you with a tailored solution.
             </p>
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
@@ -216,7 +216,7 @@ const ContactPage: React.FC = () => {
               </div>
               <Button
                 type="submit"
-                variant="secondary"
+                variant="primary"
                 className="w-full text-lg"
                 disabled={!isFormValid}
               >

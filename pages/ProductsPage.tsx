@@ -15,7 +15,7 @@ const ProductsPage: React.FC = () => {
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
             Our Product Categories
           </h1>
-          <p className="text-lg text-[var(--color-text-secondary)] max-w-3xl mx-auto">
+          <p className="text-lg text-[var(--color-secondary)] max-w-3xl mx-auto">
             Pioneering corrosion-proof, high-performance composite products built for power, infrastructure, and sustainability. Explore our specialized product lines below.
           </p>
         </div>
@@ -29,35 +29,35 @@ const ProductsPage: React.FC = () => {
               <Link
                 key={category.code}
                 to={`/products/category/${category.slug}`}
-                className="block group bg-[var(--color-background)] rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1 flex flex-col"
+                className="block group bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1 flex flex-col hover:border-[var(--color-brand)]/50"
               >
-                <div className={`relative h-56 overflow-hidden ${!hasRealImage ? 'bg-gray-100' : ''}`}>
+                <div className={`relative h-56 overflow-hidden ${!hasRealImage ? 'bg-[var(--color-background)]' : ''}`}>
                   <img
                     src={imageUrl}
                     alt={category.name}
                     loading="lazy"
-                    className={`w-full h-full ${hasRealImage ? 'object-cover transition-transform duration-500 group-hover:scale-110' : 'object-contain p-8'}`}
+                    className={`w-full h-full ${hasRealImage ? 'object-cover transition-transform duration-500 group-hover:scale-110' : 'object-contain p-8 opacity-50'}`}
                   />
-                  {hasRealImage && <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>}
+                  {hasRealImage && <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>}
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
                   <h2 className="text-xl font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
                     {category.name}
                   </h2>
-                  <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 flex-grow">
+                  <p className="text-sm text-[var(--color-secondary)] line-clamp-2 flex-grow">
                     {category.tagline}
                   </p>
                   {/* Product Previews */}
                   <div className="mt-4 border-t border-[var(--color-border)] pt-3">
-                    <p className="text-xs font-semibold text-[var(--color-text-primary)] mb-2">Includes:</p>
+                    <p className="text-xs font-semibold text-[var(--color-primary)] mb-2">Includes:</p>
                     <ul className="space-y-1">
                       {category.products.slice(0, 3).map(p => (
-                          <li key={p.code} className="text-xs text-[var(--color-text-secondary)] truncate">
+                          <li key={p.code} className="text-xs text-[var(--color-secondary)] truncate">
                               &bull; {p.name}
                           </li>
                       ))}
                       {category.products.length > 3 && (
-                          <li className="text-xs text-[var(--color-text-secondary)]">...and more.</li>
+                          <li className="text-xs text-[var(--color-secondary)]">...and more.</li>
                       )}
                     </ul>
                   </div>

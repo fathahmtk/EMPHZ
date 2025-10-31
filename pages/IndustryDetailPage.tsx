@@ -73,7 +73,7 @@ const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({ industry }) => 
                 {industry.details.map((detail, index) => (
                     <div key={index} className="flex items-start p-4 bg-[var(--color-surface)] rounded-lg border border-[var(--color-border)]">
                         <svg className="w-6 h-6 mr-4 text-[var(--color-brand)] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <p className="text-[var(--color-text-primary)]">{detail}</p>
+                        <p className="text-[var(--color-secondary)]">{detail}</p>
                     </div>
                 ))}
             </div>
@@ -99,7 +99,7 @@ const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({ industry }) => 
               {relatedCategories.map(category => (
                 <Link key={category.code} to={`/products/category/${category.slug}`} className="block text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-lg border border-transparent hover:border-[var(--color-brand)] transition-all transform hover:-translate-y-1">
                   <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">{category.name}</h3>
-                  <p className="text-sm text-[var(--color-text-secondary)]">{category.tagline}</p>
+                  <p className="text-sm text-[var(--color-secondary)]">{category.tagline}</p>
                   <span className="mt-4 inline-block text-[var(--color-brand)] text-sm font-medium">Explore Category &rarr;</span>
                 </Link>
               ))}
@@ -110,7 +110,7 @@ const IndustryDetailPage: React.FC<IndustryDetailPageProps> = ({ industry }) => 
         {/* CTA */}
         <section className="text-center">
             <h2 className="text-2xl font-semibold mb-4">Have a project in the {industry.name} sector?</h2>
-            <p className="text-lg text-[var(--color-text-secondary)] mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-[var(--color-secondary)] mb-8 max-w-2xl mx-auto">
                 Our team can provide a tailored GRP composite solution to meet your specific requirements.
             </p>
             <Button href="/contact" variant="secondary" className="text-lg">

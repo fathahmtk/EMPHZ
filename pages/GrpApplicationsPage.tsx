@@ -71,13 +71,13 @@ const GrpApplicationsPage: React.FC = () => {
         <>
             <MetaTags title={SEO_DATA.grpApplications.title} description={SEO_DATA.grpApplications.description} />
             
-            <div className="bg-white">
+            <div className="bg-[var(--color-background)]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
                     <Breadcrumbs items={breadcrumbItems} className="mb-8" />
                     <header className="text-center max-w-4xl mx-auto mb-16">
                         <h1 className="text-4xl lg:text-5xl font-bold mb-3">{content.title}</h1>
-                        <p className="text-2xl text-[var(--color-text-secondary)]">{content.subtitle}</p>
-                        <p className="text-lg text-[var(--color-text-primary)] mt-6 leading-relaxed">{content.intro}</p>
+                        <p className="text-2xl text-[var(--color-secondary)]">{content.subtitle}</p>
+                        <p className="text-lg text-[var(--color-secondary)] mt-6 leading-relaxed">{content.intro}</p>
                     </header>
                     
                     <main className="max-w-4xl mx-auto">
@@ -89,7 +89,7 @@ const GrpApplicationsPage: React.FC = () => {
                                         {category.subcategories.map(subcategory => (
                                             <div key={subcategory.name}>
                                                 <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-4">{subcategory.name}</h3>
-                                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-[var(--color-text-primary)]">
+                                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-[var(--color-secondary)]">
                                                     {subcategory.items.map((item, i) => <li key={i}>{item}</li>)}
                                                 </ul>
                                             </div>

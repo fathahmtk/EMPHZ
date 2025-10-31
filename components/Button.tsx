@@ -22,36 +22,21 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const baseStyles = `inline-block px-8 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
 
-  const primaryStyles = `bg-[var(--color-primary)] text-white hover:bg-slate-800 focus:ring-slate-500/50 shadow-[var(--shadow-md)]`;
-  const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
-  const outlineStyles = `bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white focus:ring-[var(--color-primary)]/50 shadow-[var(--shadow-sm)]`;
-  const outlineLightStyles = `bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--color-primary)] focus:ring-white/50 shadow-[var(--shadow-sm)]`;
-  const glassStyles = `bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 focus:ring-white/50 shadow-[var(--shadow-md)]`;
-  const glassCtaStyles = `bg-white text-[var(--color-primary)] hover:bg-slate-100 focus:ring-slate-300 shadow-[var(--shadow-lg)]`;
-  const glassSubtleStyles = `bg-transparent backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/80 focus:ring-white/50`;
-
+  const primaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
+  const secondaryStyles = `bg-transparent border-2 border-[var(--color-border)] text-[var(--color-primary)] hover:bg-[var(--color-section-bg)] focus:ring-[var(--color-secondary)]/50 shadow-[var(--shadow-sm)]`;
+  
   let variantStyles = '';
   switch (variant) {
     case 'primary':
+    case 'glass-cta':
+    case 'glass':
       variantStyles = primaryStyles;
       break;
     case 'secondary':
-      variantStyles = secondaryStyles;
-      break;
     case 'outline':
-      variantStyles = outlineStyles;
-      break;
     case 'outline-light':
-      variantStyles = outlineLightStyles;
-      break;
-    case 'glass':
-      variantStyles = glassStyles;
-      break;
-    case 'glass-cta':
-      variantStyles = glassCtaStyles;
-      break;
     case 'glass-subtle':
-      variantStyles = glassSubtleStyles;
+      variantStyles = secondaryStyles;
       break;
   }
 

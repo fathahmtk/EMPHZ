@@ -54,7 +54,7 @@ const AutomobileIndustryPage: React.FC = () => {
       />
       
       {/* Video Hero Section */}
-      <section className="relative h-[50vh] flex items-center justify-center text-center text-white overflow-hidden bg-gray-900">
+      <section className="relative h-[60vh] flex items-center justify-center text-center text-white overflow-hidden bg-[var(--color-background)]">
         <video
           autoPlay
           loop
@@ -65,12 +65,12 @@ const AutomobileIndustryPage: React.FC = () => {
           <source src={industryData.hero.videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 hero-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20"></div>
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 animate-fadeInUp text-shadow-strong">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 animate-fadeInUp">
             {industryData.hero.title}
           </h1>
-          <p className="text-lg sm:text-xl font-light animate-fadeInUp text-shadow-strong" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl font-light animate-fadeInUp text-[var(--color-secondary)]" style={{ animationDelay: '0.2s' }}>
             {industryData.hero.subtitle}
           </p>
         </div>
@@ -82,7 +82,7 @@ const AutomobileIndustryPage: React.FC = () => {
         {/* Introduction Section */}
         <section className="mb-20 text-center max-w-4xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">{industryData.introduction.title}</h2>
-            <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">{industryData.introduction.content}</p>
+            <p className="text-lg text-[var(--color-secondary)] leading-relaxed">{industryData.introduction.content}</p>
         </section>
 
         {/* Solutions Section */}
@@ -94,7 +94,7 @@ const AutomobileIndustryPage: React.FC = () => {
                 <img src={solution.image} alt={solution.title} className="w-full md:w-1/3 h-48 object-cover rounded-md flex-shrink-0"/>
                 <div>
                   <h3 className="text-xl font-semibold mb-3">{solution.title}</h3>
-                  <p className="text-[var(--color-text-secondary)]">{solution.description}</p>
+                  <p className="text-[var(--color-secondary)]">{solution.description}</p>
                 </div>
               </div>
             ))}
@@ -113,7 +113,7 @@ const AutomobileIndustryPage: React.FC = () => {
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-[var(--color-primary)]">{advantage.title}</h3>
-                <p className="text-sm text-[var(--color-text-secondary)]">{advantage.description}</p>
+                <p className="text-sm text-[var(--color-secondary)]">{advantage.description}</p>
               </div>
             ))}
           </div>
@@ -131,7 +131,7 @@ const AutomobileIndustryPage: React.FC = () => {
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-[var(--color-primary)]">{advantage.title}</h3>
-                <p className="text-sm text-[var(--color-text-secondary)]">{advantage.description}</p>
+                <p className="text-sm text-[var(--color-secondary)]">{advantage.description}</p>
               </div>
             ))}
           </div>
@@ -174,7 +174,7 @@ const AutomobileIndustryPage: React.FC = () => {
               ))}
             </div>
             <div className="text-center mt-12">
-              <Button href="/products/category/grp-transport-automotive" variant="outline">View All Automotive Products</Button>
+              <Button href="/products/category/grp-transport-automotive" variant="secondary">View All Automotive Products</Button>
             </div>
           </section>
         )}

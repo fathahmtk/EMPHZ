@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CorporateGovernance from '../components/CorporateGovernance';
 import MetaTags from '../components/MetaTags';
@@ -11,7 +10,9 @@ const CorporatePage: React.FC = () => {
         title={SEO_DATA.corporate.title}
         description={SEO_DATA.corporate.description}
       />
-      <CorporateGovernance />
+      <div className="bg-[var(--color-background)]">
+        <CorporateGovernance />
+      </div>
     </>
   );
 };

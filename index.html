@@ -20,27 +20,25 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         
-        /* Professional & Modern Theme Overhaul */
+        /* New Light Corporate Theme */
         :root {
-            /* New, more vibrant and professional color palette */
-            --color-primary: #0F172A;       /* Richer, almost-black for headings (slate-900) */
-            --color-brand: #14B8A6;          /* Vibrant Teal (teal-500) */
-            --color-accent: #0D9488;        /* Darker Teal for hover/accent (teal-600) */
-            --color-background: #FFFFFF;    /* White background */
-            --color-surface: #F8FAFC;       /* Very light, clean gray for cards/sections (slate-50) */
-            --color-text-primary: #334155;  /* Softer dark gray for body text (slate-700) */
-            --color-text-secondary: #64748B;/* Softer, more readable secondary gray (slate-500) */
-            --color-border: #E2E8F0;        /* Subtle border color (slate-200) */
+            --color-background: #FFFFFF;
+            --color-surface: #FFFFFF;
+            --color-section-bg: #F9FAFB; /* Light gray for subtle section breaks */
+            --color-border: #E5E7EB;
+            --color-primary: #1F2937;    /* Dark gray for headings */
+            --color-secondary: #4B5563;  /* Softer gray for body text */
+            
+            --color-brand: #0052CC;       /* Professional Blue */
+            --color-brand-accent: #0065FF; /* Lighter Blue for hover */
 
-            /* Softer, more modern shadows */
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.04);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
-            /* Modernized Border Radius */
             --radius: 0.5rem; /* 8px */
         }
 
@@ -54,29 +52,24 @@
         }
 
         body {
-            font-family: 'Manrope', sans-serif; /* New body font */
-            color: var(--color-text-primary);
+            font-family: 'Inter', sans-serif;
+            color: var(--color-secondary);
             background-color: var(--color-background);
             transition: background-color 0.3s ease, color 0.3s ease;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            overflow-x: hidden;
         }
+        
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Plus Jakarta Sans', sans-serif; /* New heading font */
+            font-family: 'Inter', sans-serif;
             color: var(--color-primary);
             letter-spacing: -0.025em;
             font-weight: 800;
-            text-wrap: balance; /* Improve text wrapping aesthetics */
-        }
-        .hero-overlay {
-            /* Refined gradient for better text contrast */
-            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, transparent 40%, transparent 60%, rgba(15, 23, 42, 0.85) 100%);
+            text-wrap: balance;
         }
         
-        .text-shadow-strong {
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -91,6 +84,20 @@
             animation: fadeInUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .animate-fadeInScaleUp {
+            animation: fadeInScaleUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -99,29 +106,6 @@
             animation: fadeIn 0.5s ease-in-out forwards;
         }
 
-        /* NEW: Hero Progress Bar */
-        @keyframes progressBar {
-            from { width: 0%; }
-            to { width: 100%; }
-        }
-        .animate-progress-bar {
-            animation: progressBar 7s linear forwards;
-        }
-
-        /* NEW: Dynamic Zoom-Out Effect for Hero Background */
-        @keyframes zoomOutEffect {
-            from {
-                transform: scale(1.1);
-            }
-            to {
-                transform: scale(1);
-            }
-        }
-        .animate-zoom-out {
-            /* Match the slide duration for a seamless loop */
-            animation: zoomOutEffect 7s ease-out forwards;
-        }
-        
         @keyframes lightbox-fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -132,7 +116,7 @@
         }
 
         @keyframes skeleton-pulse {
-            50% { background-color: #e2e8f0; } /* slate-200 */
+            50% { background-color: #F3F4F6; } /* Light gray for skeleton pulse */
         }
         .animate-skeleton-pulse {
             animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;

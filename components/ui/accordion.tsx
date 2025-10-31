@@ -1,4 +1,3 @@
-
 import { forwardRef } from 'react';
 import type { ElementRef, ComponentPropsWithoutRef } from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
@@ -12,7 +11,7 @@ const AccordionItem = forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={clsx('border-b border-[var(--color-border)] transition-colors data-[state=open]:bg-slate-100', className)}
+    className={clsx('border-b border-[var(--color-border)] transition-colors data-[state=open]:bg-white/5', className)}
     {...props}
   />
 ));
@@ -26,7 +25,7 @@ const AccordionTrigger = forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={clsx(
-        'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+        'flex flex-1 items-center justify-between py-4 font-medium transition-all text-[var(--color-primary)] hover:text-[var(--color-brand)] [&[data-state=open]>svg]:rotate-180',
         className
       )}
       {...props}

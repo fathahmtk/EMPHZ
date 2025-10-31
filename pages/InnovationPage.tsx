@@ -1,4 +1,3 @@
-
 import React from 'react';
 import QualitySection from '../components/QualitySection';
 import MetaTags from '../components/MetaTags';
@@ -11,7 +10,9 @@ const InnovationPage: React.FC = () => {
         title={SEO_DATA.innovation.title}
         description={SEO_DATA.innovation.description}
       />
-      <QualitySection />
+      <div className="bg-[var(--color-background)]">
+        <QualitySection />
+      </div>
     </>
   );
 };

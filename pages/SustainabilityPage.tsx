@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SustainabilitySection from '../components/SustainabilitySection';
 import MetaTags from '../components/MetaTags';
@@ -11,7 +10,9 @@ const SustainabilityPage: React.FC = () => {
         title={SEO_DATA.sustainability.title}
         description={SEO_DATA.sustainability.description}
       />
-      <SustainabilitySection />
+       <div className="bg-[var(--color-background)]">
+        <SustainabilitySection />
+      </div>
     </>
   );
 };

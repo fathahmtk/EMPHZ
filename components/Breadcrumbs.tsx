@@ -23,7 +23,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className = '' }) => {
   }
 
   return (
-    <nav className={`text-sm text-[var(--color-text-secondary)] ${className}`} aria-label="Breadcrumb">
+    <nav className={`text-sm text-[var(--color-secondary)] ${className}`} aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex items-center flex-wrap">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;

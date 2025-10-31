@@ -1,4 +1,3 @@
-
 import React from 'react';
 import InsightsKnowledge from '../components/InsightsKnowledge';
 import MetaTags from '../components/MetaTags';
@@ -11,7 +10,9 @@ const KnowledgePage: React.FC = () => {
         title={SEO_DATA.knowledge.title}
         description={SEO_DATA.knowledge.description}
       />
-      <InsightsKnowledge />
+      <div className="bg-[var(--color-background)]">
+        <InsightsKnowledge />
+      </div>
     </>
   );
 };

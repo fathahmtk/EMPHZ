@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--color-surface)] text-[var(--color-text-secondary)] py-16 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[var(--color-section-bg)] text-[var(--color-secondary)] py-16 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Company Info */}
         <div className="md:col-span-1">
@@ -18,13 +18,13 @@ const Footer: React.FC = () => {
             Engineering Tomorrow’s Infrastructure — Today.
           </p>
           <div className="mt-6 flex space-x-4">
-            <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--color-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
               <Icon name="linkedin" className="h-6 w-6" />
             </a>
-            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-400 hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-[var(--color-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
               <Icon name="twitter" className="h-6 w-6" />
             </a>
-            <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile" className="text-gray-400 hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile" className="text-[var(--color-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
                <Icon name="google" className="h-6 w-6" />
             </a>
           </div>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-t border-[var(--color-border)] mt-12 pt-8 text-center text-sm text-[var(--color-text-secondary)]">
+      <div className="border-t border-[var(--color-border)] mt-12 pt-8 text-center text-sm text-[var(--color-secondary)]">
         &copy; {currentYear} {config.companyName}. All rights reserved.
       </div>
     </footer>

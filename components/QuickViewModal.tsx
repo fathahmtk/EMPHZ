@@ -48,12 +48,12 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
       aria-labelledby="quick-view-title"
     >
       <div
-        className="relative bg-[var(--color-background)] w-full max-w-4xl rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row"
+        className="relative bg-[var(--color-surface)] w-full max-w-4xl rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row border border-[var(--color-border)]"
         onClick={e => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-10 p-2 rounded-full hover:bg-gray-100"
+          className="absolute top-3 right-3 text-[var(--color-secondary)] hover:text-[var(--color-primary)] transition-colors z-10 p-2 rounded-full hover:bg-white/5"
           aria-label="Close quick view"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,27 +61,27 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
           </svg>
         </button>
 
-        <div className={`w-full md:w-1/2 ${!hasRealImage ? 'bg-gray-100 p-8' : ''}`}>
+        <div className={`w-full md:w-1/2 ${!hasRealImage ? 'bg-[var(--color-background)] p-8' : ''}`}>
           <img
             src={imageUrl}
             alt={product.name}
             loading="lazy"
-            className={`w-full h-64 md:h-full ${hasRealImage ? 'object-cover' : 'object-contain'}`}
+            className={`w-full h-64 md:h-full ${hasRealImage ? 'object-cover' : 'object-contain opacity-50'}`}
           />
         </div>
 
         <div className="w-full md:w-1/2 p-8 flex flex-col">
           <h2 id="quick-view-title" className="text-2xl lg:text-3xl font-bold text-[var(--color-primary)] mb-2">{product.name}</h2>
-          <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-4">Code: {product.code}</p>
+          <p className="text-sm text-[var(--color-secondary)] font-medium mb-4">Code: {product.code}</p>
           
           <div className="flex-grow overflow-y-auto pr-2" style={{ maxHeight: 'calc(80vh - 200px)' }}>
             {descriptionText && (
-              <p className="text-[var(--color-text-primary)] leading-relaxed">{descriptionText}</p>
+              <p className="text-[var(--color-secondary)] leading-relaxed">{descriptionText}</p>
             )}
           </div>
           
           <div className="mt-6 pt-6 border-t border-[var(--color-border)]">
-            <Button href={`/products/${product.code}`} onClick={onClose} variant="secondary" className="w-full">
+            <Button href={`/products/${product.code}`} onClick={onClose} variant="primary" className="w-full">
               View Full Details
             </Button>
           </div>

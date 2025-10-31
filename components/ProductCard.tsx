@@ -12,18 +12,18 @@ interface ProductCardProps {
 }
 
 const ImagePlaceholder: React.FC = () => (
-    <div className="w-full h-full bg-slate-200 animate-skeleton-pulse"></div>
+    <div className="w-full h-full bg-[var(--color-border)] animate-skeleton-pulse"></div>
 );
 
 // REFINED: Use a more informative fallback with a centralized URL.
 const ImageError: React.FC = () => (
-    <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center p-4 text-center">
+    <div className="w-full h-full bg-[var(--color-surface)] flex flex-col items-center justify-center p-4 text-center">
         <img
             src={FALLBACK_LOGO_URL}
             alt="EMPHZ Logo"
             className="w-1/2 h-auto object-contain opacity-40 mb-2"
         />
-        <p className="text-xs text-slate-500">Image not available</p>
+        <p className="text-xs text-[var(--color-secondary)]">Image not available</p>
     </div>
 );
 
@@ -85,9 +85,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
   return (
     <div
       ref={cardRef}
-      className={`h-full group opacity-0 ${isVisible ? 'animate-fadeInUp' : ''}`}
+      className={`h-full group opacity-0 ${isVisible ? 'animate-fadeInScaleUp' : ''}`}
     >
-      <div className="bg-[var(--color-background)] p-6 rounded-lg shadow-[var(--shadow-md)] group-hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col hover:-translate-y-1">
+      <div className="bg-[var(--color-surface)] p-6 rounded-lg shadow-[var(--shadow-md)] group-hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col hover:-translate-y-1 group-hover:border-[var(--color-brand)] group-hover:shadow-[var(--color-brand-glow)]">
         <div className="flex-grow">
           {categoryName && (
               <p className="text-xs font-bold text-[var(--color-brand)] uppercase tracking-wider mb-2">
@@ -97,18 +97,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
           <Link to={`/products/${product.code}`} className="block">
               <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">{product.name}</h4>
           </Link>
-          <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-3">Code: {product.code}</p>
+          <p className="text-sm text-[var(--color-secondary)] font-medium mb-3">Code: {product.code}</p>
           
-          {descriptionText && <p className="text-[var(--color-text-primary)] text-sm mb-4 line-clamp-3">{descriptionText}</p>}
+          {descriptionText && <p className="text-[var(--color-secondary)] text-sm mb-4 line-clamp-3">{descriptionText}</p>}
           
           {product.applications && product.applications.length > 0 && (
-              <p className="text-[var(--color-text-primary)] text-sm mt-2 line-clamp-2">
+              <p className="text-[var(--color-secondary)] text-sm mt-2 line-clamp-2">
               <span className="font-semibold text-[var(--color-primary)]">Applications:</span> {product.applications.join(', ')}
               </p>
           )}
         </div>
         
-        <Link to={`/products/${product.code}`} className="mt-4 rounded-md overflow-hidden aspect-square block bg-gray-100 relative group/image">
+        <Link to={`/products/${product.code}`} className="mt-4 rounded-md overflow-hidden aspect-square block bg-[var(--color-background)] relative group/image">
             <div className="absolute inset-0">
                 {(loadingStatus === 'pending' || loadingStatus === 'loading') && <ImagePlaceholder />}
                 {loadingStatus === 'error' && <ImageError />}
@@ -152,7 +152,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
         <div className="mt-6 pt-4 border-t border-[var(--color-border)] space-y-3">
             <Button
                 href="/contact"
-                variant="secondary"
+                variant="primary"
                 className="w-full py-2 text-sm"
             >
                 Get a Quote
@@ -160,7 +160,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
             <div className="flex items-center justify-between gap-2">
                 <Button
                     href={`/products/${product.code}`}
-                    variant="outline"
+                    variant="secondary"
                     className="px-4 py-2 text-sm flex-1"
                 >
                     Details

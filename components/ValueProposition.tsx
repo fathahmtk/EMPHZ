@@ -1,12 +1,10 @@
-
-
 import React from 'react';
 import { KEY_VALUE_PROPOSITIONS } from '../constants';
 import Icon from './Icon';
 
 const ValueProposition: React.FC = () => {
   return (
-    <section className="py-24 bg-[var(--color-background)]">
+    <section className="py-24 bg-[var(--color-section-bg)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold mb-16">Why EMPHZ? Our Core Advantages</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -16,7 +14,7 @@ const ValueProposition: React.FC = () => {
                  <Icon name={prop.icon} className="h-10 w-10 text-[var(--color-brand)]" />
               </div>
               <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-4">{prop.coreValue}</h3>
-              <p className="text-[var(--color-text-secondary)]">{prop.description}</p>
+              <p className="text-[var(--color-secondary)]">{prop.description}</p>
             </div>
           ))}
         </div>

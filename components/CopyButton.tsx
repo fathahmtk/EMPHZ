@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useToast } from '../ToastContext';
 
@@ -46,12 +45,12 @@ const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy }) => {
   return (
     <button 
         onClick={handleCopy} 
-        className="inline-flex items-center justify-center ml-2 p-1.5 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[var(--color-brand)]" 
+        className="inline-flex items-center justify-center ml-2 p-1.5 rounded-md text-[var(--color-secondary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[var(--color-brand)]" 
         aria-label={`Copy product code ${textToCopy}`}
         title={`Copy ${textToCopy}`}
     >
       {copied ? (
-        <CheckIcon className="h-4 w-4 text-green-600" />
+        <CheckIcon className="h-4 w-4 text-green-500" />
       ) : (
         <CopyIcon className="h-4 w-4" />
       )}

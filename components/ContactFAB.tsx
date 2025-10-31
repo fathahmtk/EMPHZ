@@ -58,31 +58,31 @@ const ContactFAB: React.FC = () => {
         `}
         aria-hidden={!isOpen}
       >
-        <div className="p-4 bg-[var(--color-primary)] text-white flex items-center gap-3 rounded-t-lg">
+        <div className="p-4 bg-[var(--color-brand)] text-white flex items-center gap-3 rounded-t-lg">
           <Logo className="h-10 w-auto" />
           <div>
             <h3 className="font-bold text-lg">EMPHZ Support</h3>
-            <p className="text-xs text-gray-300">Typically replies within minutes</p>
+            <p className="text-xs text-white/70">Typically replies within minutes</p>
           </div>
         </div>
-        <div className="p-4 flex-grow bg-[var(--color-surface)]">
-          <div className="bg-white p-3 rounded-lg shadow-sm text-[var(--color-text-primary)] max-w-xs">
+        <div className="p-4 flex-grow bg-[var(--color-background)]">
+          <div className="bg-[var(--color-surface)] p-3 rounded-lg shadow-sm text-[var(--color-primary)] max-w-xs">
             <p className="text-sm">{welcomeMessage}</p>
           </div>
         </div>
-        <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-white flex items-center gap-2 rounded-b-lg">
+        <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2 rounded-b-lg">
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm"
+            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm bg-[var(--color-background)] text-[var(--color-primary)] placeholder-[var(--color-secondary)] border-[var(--color-border)]"
             aria-label="Your message"
           />
           <button
             type="submit"
             aria-label="Start Chat on WhatsApp"
-            className="flex-shrink-0 bg-[var(--color-brand)] hover:bg-[var(--color-accent)] text-white p-2.5 rounded-full transition-transform transform hover:scale-110"
+            className="flex-shrink-0 bg-green-500 hover:bg-green-600 text-white p-2.5 rounded-full transition-transform transform hover:scale-110"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
           </button>
