@@ -60,7 +60,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
     <div className="flex flex-col gap-4">
       {/* Main Image Viewer */}
       <div
-        className={`relative group aspect-square overflow-hidden rounded-lg shadow-[var(--shadow-lg)] border border-[var(--color-border)] ${hasRealImages ? 'cursor-pointer' : ''} ${!hasRealImages ? 'bg-[var(--color-surface)]' : ''}`}
+        className={`relative group aspect-square overflow-hidden rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)] ${hasRealImages ? 'cursor-pointer' : ''} ${!hasRealImages ? 'bg-[var(--color-surface-secondary)]' : ''}`}
         onClick={hasRealImages ? () => setIsLightboxOpen(true) : undefined}
         role={hasRealImages ? "button" : "img"}
         aria-label={hasRealImages ? `View ${productName} images in fullscreen` : productName}
@@ -72,7 +72,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
           fetchPriority="high"
           width="800"
           height="800"
-          className={`block w-full h-full ${hasRealImages ? 'object-cover transition-transform duration-300 ease-out group-hover:scale-110' : 'object-contain p-10 opacity-50'}`}
+          className={`block w-full h-full ${hasRealImages ? 'object-cover transition-transform duration-300 ease-out group-hover:scale-110' : 'object-contain p-10 opacity-40'}`}
         />
         {hasRealImages && (
             <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -92,7 +92,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
           {canScrollLeft && (
             <button
               onClick={() => handleScroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-gray-800/50 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-gray-700/70 border border-[var(--color-border)] text-[var(--color-primary)]"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-[var(--color-surface-primary)] backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-[var(--color-surface-secondary)] border border-[var(--color-border)] text-[var(--color-text-primary)]"
               aria-label="Scroll thumbnails left"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
@@ -112,7 +112,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
                 className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 snap-center rounded-md overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-brand)] ${
                   activeIndex === index
                     ? 'border-[var(--color-brand)]'
-                    : 'border-transparent hover:border-gray-500'
+                    : 'border-transparent hover:border-[var(--color-text-secondary)]'
                 }`}
                 aria-label={`View image ${index + 1} of ${productName}`}
                 aria-current={activeIndex === index ? 'true' : 'false'}
@@ -133,7 +133,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
            {canScrollRight && (
             <button
               onClick={() => handleScroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-gray-800/50 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-gray-700/70 border border-[var(--color-border)] text-[var(--color-primary)]"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-[var(--color-surface-primary)] backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-[var(--color-surface-secondary)] border border-[var(--color-border)] text-[var(--color-text-primary)]"
               aria-label="Scroll thumbnails right"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>

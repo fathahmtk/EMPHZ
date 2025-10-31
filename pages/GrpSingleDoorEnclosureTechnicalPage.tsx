@@ -142,7 +142,7 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
         <>
             <MetaTags title={SEO_DATA.grpTechnicalData.title} description={SEO_DATA.grpTechnicalData.description} />
             
-            <div className="bg-[var(--color-background)]">
+            <div className="bg-transparent">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
                     <Breadcrumbs items={breadcrumbItems} className="mb-8" />
                     <header className="text-center max-w-4xl mx-auto mb-16">
@@ -153,24 +153,24 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
 
                         <Section title={technicalData.dimensionGuide.title}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                                <div className="p-6 bg-[var(--color-surface)] rounded-lg border border-[var(--color-border)]">
-                                    <h3 className="font-semibold text-lg mb-3 text-[var(--color-primary)]">Dimension Codes Explained</h3>
-                                    <ul className="space-y-1 text-sm text-[var(--color-secondary)]">
+                                <div className="p-6 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-lg border border-[var(--color-border)]">
+                                    <h3 className="font-semibold text-lg mb-3 text-[var(--color-text-primary)]">Dimension Codes Explained</h3>
+                                    <ul className="space-y-1 text-sm text-[var(--color-text-secondary)]">
                                         {technicalData.dimensionGuide.codes.map(code => (
-                                            <li key={code.code}><strong className="font-semibold text-[var(--color-primary)]">{code.code}</strong> = {code.desc}</li>
+                                            <li key={code.code}><strong className="font-semibold text-[var(--color-text-primary)]">{code.code}</strong> = {code.desc}</li>
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="p-6 bg-[var(--color-surface)] rounded-lg border border-[var(--color-border)]">
-                                    <h3 className="font-semibold text-lg mb-3 text-[var(--color-primary)]">Draft Angles</h3>
-                                    <ul className="list-disc list-inside space-y-1 text-[var(--color-secondary)]">
+                                <div className="p-6 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-lg border border-[var(--color-border)]">
+                                    <h3 className="font-semibold text-lg mb-3 text-[var(--color-text-primary)]">Draft Angles</h3>
+                                    <ul className="list-disc list-inside space-y-1 text-[var(--color-text-secondary)]">
                                         {technicalData.dimensionGuide.draftAngles.map((angle, i) => <li key={i}>{angle}</li>)}
                                     </ul>
                                 </div>
                             </div>
                         </Section>
 
-                        <Section title={technicalData.materialSpecs.title} className="bg-[var(--color-surface)] rounded-lg">
+                        <Section title={technicalData.materialSpecs.title} className="bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-lg">
                             <Accordion type="multiple" className="w-full" defaultValue={materialSpecItemValues}>
                             {technicalData.materialSpecs.sections.map((section, index) => (
                                 <AccordionItem value={`item-${index}`} key={index}>
@@ -179,8 +179,8 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             {section.items.map(item => (
                                                 <div key={item.prop} className="p-4 bg-[var(--color-background)] rounded-md border border-[var(--color-border)]">
-                                                    <h4 className="font-bold text-[var(--color-primary)]">{item.prop}: <span className="font-semibold text-[var(--color-secondary)]">{item.value}</span></h4>
-                                                    <ul className="mt-2 list-disc list-inside text-sm text-[var(--color-secondary)] space-y-1">
+                                                    <h4 className="font-bold text-[var(--color-text-primary)]">{item.prop}: <span className="font-semibold text-[var(--color-text-secondary)]">{item.value}</span></h4>
+                                                    <ul className="mt-2 list-disc list-inside text-sm text-[var(--color-text-secondary)] space-y-1">
                                                         {item.analysis.map((point, i) => <li key={i}>{point}</li>)}
                                                     </ul>
                                                 </div>
@@ -195,14 +195,14 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                         <Section title={technicalData.technicalAdvantages.title}>
                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {technicalData.technicalAdvantages.advantages.map(adv => (
-                                    <div key={adv.title} className="bg-[var(--color-surface)] p-6 rounded-lg shadow-sm border border-[var(--color-border)] text-center">
+                                    <div key={adv.title} className="bg-[var(--color-surface-primary)] backdrop-blur-lg p-6 rounded-lg shadow-sm border border-[var(--color-border)] text-center">
                                         <div className="flex justify-center mb-4">
                                             <div className="p-3 bg-[var(--color-brand)]/10 rounded-full">
                                                 <Icon name={adv.icon as IconName} className="h-8 w-8 text-[var(--color-brand)]" />
                                             </div>
                                         </div>
                                         <h3 className="font-bold text-lg mb-2">{adv.title}</h3>
-                                        <ul className="text-sm text-[var(--color-secondary)] list-disc list-inside text-left space-y-1">
+                                        <ul className="text-sm text-[var(--color-text-secondary)] list-disc list-inside text-left space-y-1">
                                             {adv.points.map((p,i) => <li key={i}>{p}</li>)}
                                         </ul>
                                     </div>
@@ -210,18 +210,18 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                             </div>
                         </Section>
                         
-                        <Section title={technicalData.certifications.title} className="bg-[var(--color-surface)] rounded-lg">
+                        <Section title={technicalData.certifications.title} className="bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-lg">
                              <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
                                 {technicalData.certifications.sections.map((section, index) => (
                                     <AccordionItem value={`item-${index}`} key={index}>
                                         <AccordionTrigger className="text-xl font-semibold hover:no-underline">{section.title}</AccordionTrigger>
-                                        <AccordionContent className="text-[var(--color-secondary)] leading-relaxed pt-2 space-y-4">
+                                        <AccordionContent className="text-[var(--color-text-secondary)] leading-relaxed pt-2 space-y-4">
                                             {'description' in section ? (
                                                 <p>{section.description}</p>
                                             ) : (
                                                 section.items?.map(item => (
                                                      <div key={item.rating}>
-                                                        <h4 className="font-bold text-[var(--color-primary)]">{item.rating}</h4>
+                                                        <h4 className="font-bold text-[var(--color-text-primary)]">{item.rating}</h4>
                                                         <ul className="mt-1 list-disc list-inside text-sm space-y-1">
                                                             {item.details.map((d, i) => <li key={i}>{d}</li>)}
                                                         </ul>
@@ -257,14 +257,14 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                         <Section title={technicalData.sizeGuide.title}>
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                                 {technicalData.sizeGuide.categories.map(cat => (
-                                    <div key={cat.title} className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)]">
-                                        <h3 className="font-bold text-xl mb-4 text-[var(--color-primary)]">{cat.title}</h3>
-                                        <h4 className="font-semibold text-sm mb-2 text-[var(--color-primary)]">Best for:</h4>
-                                        <ul className="list-disc list-inside space-y-1 text-sm text-[var(--color-secondary)] mb-4">
+                                    <div key={cat.title} className="bg-[var(--color-surface-primary)] backdrop-blur-lg p-6 rounded-lg border border-[var(--color-border)]">
+                                        <h3 className="font-bold text-xl mb-4 text-[var(--color-text-primary)]">{cat.title}</h3>
+                                        <h4 className="font-semibold text-sm mb-2 text-[var(--color-text-primary)]">Best for:</h4>
+                                        <ul className="list-disc list-inside space-y-1 text-sm text-[var(--color-text-secondary)] mb-4">
                                             {cat.bestFor.map((use, i) => <li key={i}>{use}</li>)}
                                         </ul>
-                                         <h4 className="font-semibold text-sm mb-2 text-[var(--color-primary)]">Popular models:</h4>
-                                        <ul className="list-disc list-inside space-y-1 text-sm text-[var(--color-secondary)]">
+                                         <h4 className="font-semibold text-sm mb-2 text-[var(--color-text-primary)]">Popular models:</h4>
+                                        <ul className="list-disc list-inside space-y-1 text-sm text-[var(--color-text-secondary)]">
                                             {cat.popularModels.map((model, i) => {
                                                 const modelCodeMatch = model.match(/^([^\s]+)/);
                                                 const modelCode = modelCodeMatch ? modelCodeMatch[1] : '';
@@ -283,9 +283,9 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                             </div>
                         </Section>
 
-                        <Section title={technicalData.accessoriesIndex.title} className="bg-[var(--color-surface)] rounded-lg">
-                           <ol className="columns-2 md:columns-3 lg:columns-4 gap-x-8 text-sm text-[var(--color-secondary)] space-y-2">
-                            {technicalData.accessoriesIndex.materials.map((mat, i) => <li key={i}><span className="font-semibold text-[var(--color-primary)]">{i + 1}.</span> {mat}</li>)}
+                        <Section title={technicalData.accessoriesIndex.title} className="bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-lg">
+                           <ol className="columns-2 md:columns-3 lg:columns-4 gap-x-8 text-sm text-[var(--color-text-secondary)] space-y-2">
+                            {technicalData.accessoriesIndex.materials.map((mat, i) => <li key={i}><span className="font-semibold text-[var(--color-text-primary)]">{i + 1}.</span> {mat}</li>)}
                            </ol>
                         </Section>
 

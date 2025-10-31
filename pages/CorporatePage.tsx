@@ -10,7 +10,7 @@ const CorporatePage: React.FC = () => {
         title={SEO_DATA.corporate.title}
         description={SEO_DATA.corporate.description}
       />
-      <div className="bg-[var(--color-background)]">
+      <div className="bg-transparent">
         <CorporateGovernance />
       </div>
     </>

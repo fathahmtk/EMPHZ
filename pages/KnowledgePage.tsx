@@ -10,7 +10,7 @@ const KnowledgePage: React.FC = () => {
         title={SEO_DATA.knowledge.title}
         description={SEO_DATA.knowledge.description}
       />
-      <div className="bg-[var(--color-background)]">
+      <div className="bg-transparent">
         <InsightsKnowledge />
       </div>
     </>

@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
         description={SEO_DATA.home.description}
       />
       <HeroSection />
-      <div>
+      <div className="bg-[var(--color-background)]">
         <ValueProposition />
         <BrandPillars />
         <FeaturedProducts />

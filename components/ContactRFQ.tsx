@@ -17,25 +17,25 @@ const ContactRFQ: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
           {/* Contact Options */}
-          <div className="text-left bg-[var(--color-surface)] p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
-            <h3 className="text-2xl font-semibold mb-6 text-[var(--color-primary)]">Get in Touch</h3>
+          <div className="text-left bg-[var(--color-surface-primary)] backdrop-blur-lg p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
+            <h3 className="text-2xl font-semibold mb-6 text-[var(--color-text-primary)]">Get in Touch</h3>
             <div className="space-y-4">
-              <p className="text-[var(--color-secondary)]">
-                <span className="font-semibold block text-[var(--color-primary)]">General Enquiry:</span>{' '}
-                <a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-primary)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a>
+              <p className="text-[var(--color-text-secondary)]">
+                <span className="font-semibold block text-[var(--color-text-primary)]">General Enquiry:</span>{' '}
+                <a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-text-primary)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a>
               </p>
-              <p className="text-[var(--color-secondary)]">
-                <span className="font-semibold block text-[var(--color-primary)]">Technical Support:</span>{' '}
-                <a href={`mailto:${CONTACT_OPTIONS.technicalSupport}`} className="hover:text-[var(--color-primary)] transition-colors duration-200">{CONTACT_OPTIONS.technicalSupport}</a>
+              <p className="text-[var(--color-text-secondary)]">
+                <span className="font-semibold block text-[var(--color-text-primary)]">Technical Support:</span>{' '}
+                <a href={`mailto:${CONTACT_OPTIONS.technicalSupport}`} className="hover:text-[var(--color-text-primary)] transition-colors duration-200">{CONTACT_OPTIONS.technicalSupport}</a>
               </p>
-              <p className="text-[var(--color-secondary)]">
-                <span className="font-semibold block text-[var(--color-primary)]">WhatsApp Channel:</span>{' '}
-                <a href={CONTACT_OPTIONS.whatsApp} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-primary)] transition-colors duration-200">EMPHZ Support Link</a>
+              <p className="text-[var(--color-text-secondary)]">
+                <span className="font-semibold block text-[var(--color-text-primary)]">WhatsApp Channel:</span>{' '}
+                <a href={CONTACT_OPTIONS.whatsApp} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-text-primary)] transition-colors duration-200">EMPHZ Support Link</a>
               </p>
             </div>
             <div className="mt-8">
-              <h4 className="text-xl font-semibold mb-3 text-[var(--color-primary)]">Office Locations:</h4>
-              <ul className="list-none space-y-2 text-[var(--color-secondary)]">
+              <h4 className="text-xl font-semibold mb-3 text-[var(--color-text-primary)]">Office Locations:</h4>
+              <ul className="list-none space-y-2 text-[var(--color-text-secondary)]">
                 {OFFICE_LOCATIONS.map((location, index) => (
                   <li key={index} className="flex items-center">
                     <span className="mr-2 text-xl">📍</span> {location}
@@ -46,8 +46,8 @@ const ContactRFQ: React.FC = () => {
           </div>
 
           {/* Call to Action Buttons */}
-          <div className="text-center md:text-left bg-[var(--color-surface)] p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)] flex flex-col justify-center">
-            <h3 className="text-2xl font-semibold mb-6 text-[var(--color-primary)]">Ready to Partner?</h3>
+          <div className="text-center md:text-left bg-[var(--color-surface-primary)] backdrop-blur-lg p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)] flex flex-col justify-center">
+            <h3 className="text-2xl font-semibold mb-6 text-[var(--color-text-primary)]">Ready to Partner?</h3>
             <div className="space-y-4">
               <Button variant="primary" onClick={handleRequestQuoteClick} className="w-full justify-center">
                 Request a Quote
@@ -56,7 +56,7 @@ const ContactRFQ: React.FC = () => {
                 Download Company Profile PDF
               </Button>
             </div>
-            <p className="text-[var(--color-secondary)] text-sm mt-6">
+            <p className="text-[var(--color-text-secondary)] text-sm mt-6">
               Our team is available to discuss your specific project requirements and provide tailored composite solutions.
             </p>
           </div>

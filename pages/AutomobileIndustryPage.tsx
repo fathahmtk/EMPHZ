@@ -70,7 +70,7 @@ const AutomobileIndustryPage: React.FC = () => {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 animate-fadeInUp">
             {industryData.hero.title}
           </h1>
-          <p className="text-lg sm:text-xl font-light animate-fadeInUp text-[var(--color-secondary)]" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg sm:text-xl font-light animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             {industryData.hero.subtitle}
           </p>
         </div>
@@ -82,7 +82,7 @@ const AutomobileIndustryPage: React.FC = () => {
         {/* Introduction Section */}
         <section className="mb-20 text-center max-w-4xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">{industryData.introduction.title}</h2>
-            <p className="text-lg text-[var(--color-secondary)] leading-relaxed">{industryData.introduction.content}</p>
+            <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">{industryData.introduction.content}</p>
         </section>
 
         {/* Solutions Section */}
@@ -90,11 +90,11 @@ const AutomobileIndustryPage: React.FC = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Our GRP Solutions in Action</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {industryData.solutions.map((solution, index) => (
-              <div key={index} className="flex flex-col md:flex-row items-center gap-8 bg-[var(--color-surface)] p-6 rounded-lg shadow-sm border border-[var(--color-border)]">
+              <div key={index} className="flex flex-col md:flex-row items-center gap-8 bg-[var(--color-surface-primary)] backdrop-blur-md p-6 rounded-[var(--radius)] shadow-sm border border-[var(--color-border)]">
                 <img src={solution.image} alt={solution.title} className="w-full md:w-1/3 h-48 object-cover rounded-md flex-shrink-0"/>
                 <div>
                   <h3 className="text-xl font-semibold mb-3">{solution.title}</h3>
-                  <p className="text-[var(--color-secondary)]">{solution.description}</p>
+                  <p className="text-[var(--color-text-secondary)]">{solution.description}</p>
                 </div>
               </div>
             ))}
@@ -106,14 +106,14 @@ const AutomobileIndustryPage: React.FC = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Why Choose GRP Composites for Automotive?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {whyGrpAdvantages.map((advantage, index) => (
-              <div key={index} className="bg-[var(--color-surface)] p-6 rounded-lg shadow-sm border border-[var(--color-border)] text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col items-center">
+              <div key={index} className="bg-[var(--color-surface-primary)] backdrop-blur-md p-6 rounded-[var(--radius)] shadow-sm border border-[var(--color-border)] text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col items-center">
                 <div className="flex justify-center mb-4">
                   <div className="p-4 bg-[var(--color-brand)]/10 rounded-full">
                     <Icon name={advantage.icon} className="h-10 w-10 text-[var(--color-brand)]" />
                   </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-[var(--color-primary)]">{advantage.title}</h3>
-                <p className="text-sm text-[var(--color-secondary)]">{advantage.description}</p>
+                <h3 className="text-lg font-semibold mb-2 text-[var(--color-text-primary)]">{advantage.title}</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">{advantage.description}</p>
               </div>
             ))}
           </div>
@@ -124,14 +124,14 @@ const AutomobileIndustryPage: React.FC = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Key Advantages of EMPHZ Composites</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {industryData.advantages.map((advantage, index) => (
-              <div key={index} className="bg-[var(--color-surface)] p-6 rounded-lg shadow-sm border border-[var(--color-border)] text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div key={index} className="bg-[var(--color-surface-primary)] backdrop-blur-md p-6 rounded-[var(--radius)] shadow-sm border border-[var(--color-border)] text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 <div className="flex justify-center mb-4">
                   <div className="p-4 bg-[var(--color-brand)]/10 rounded-full">
                     <Icon name={advantage.icon} className="h-10 w-10 text-[var(--color-brand)]" />
                   </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-[var(--color-primary)]">{advantage.title}</h3>
-                <p className="text-sm text-[var(--color-secondary)]">{advantage.description}</p>
+                <h3 className="text-lg font-semibold mb-2 text-[var(--color-text-primary)]">{advantage.title}</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">{advantage.description}</p>
               </div>
             ))}
           </div>

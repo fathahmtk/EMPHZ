@@ -71,25 +71,25 @@ const GrpApplicationsPage: React.FC = () => {
         <>
             <MetaTags title={SEO_DATA.grpApplications.title} description={SEO_DATA.grpApplications.description} />
             
-            <div className="bg-[var(--color-background)]">
+            <div className="bg-transparent">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
                     <Breadcrumbs items={breadcrumbItems} className="mb-8" />
                     <header className="text-center max-w-4xl mx-auto mb-16">
                         <h1 className="text-4xl lg:text-5xl font-bold mb-3">{content.title}</h1>
-                        <p className="text-2xl text-[var(--color-secondary)]">{content.subtitle}</p>
-                        <p className="text-lg text-[var(--color-secondary)] mt-6 leading-relaxed">{content.intro}</p>
+                        <p className="text-2xl text-[var(--color-text-secondary)]">{content.subtitle}</p>
+                        <p className="text-lg text-[var(--color-text-secondary)] mt-6 leading-relaxed">{content.intro}</p>
                     </header>
                     
                     <main className="max-w-4xl mx-auto">
                         <div className="space-y-16">
                             {content.categories.map(category => (
-                                <section key={category.name} className="p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">
+                                <section key={category.name} className="p-8 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-sm border border-[var(--color-border)]">
                                     <h2 className="text-3xl font-bold mb-8 border-b-2 border-[var(--color-brand)] pb-3">{category.name}</h2>
                                     <div className="space-y-8">
                                         {category.subcategories.map(subcategory => (
                                             <div key={subcategory.name}>
-                                                <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-4">{subcategory.name}</h3>
-                                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-[var(--color-secondary)]">
+                                                <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-4">{subcategory.name}</h3>
+                                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-[var(--color-text-secondary)]">
                                                     {subcategory.items.map((item, i) => <li key={i}>{item}</li>)}
                                                 </ul>
                                             </div>

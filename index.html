@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPHZ Private Limited - Engineering Tomorrow in Composites</title>
+    <title>EMPHZ | Engineering Tomorrow in Advanced Composites</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/M7cR4Zg/emphz-icon.png">
 
     <!-- Preconnect for performance -->
@@ -14,37 +14,40 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="EMPHZ Private Limited - Engineering Tomorrow in Composites">
+    <meta property="og:title" content="EMPHZ | Engineering Tomorrow in Advanced Composites">
     <meta property="og:description" content="EMPHZ is a global engineering manufacturer specializing in GRP composite enclosures, modular structures, and engineered infrastructure solutions.">
     <meta property="og:image" content="https://i.ibb.co/M7cR4Zg/emphz-icon.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
-        /* New Light Corporate Theme */
+        /* New Modern Dark "Tech Engineering" Theme */
         :root {
-            --color-background: #FFFFFF;
-            --color-surface: #FFFFFF;
-            --color-section-bg: #F9FAFB; /* Light gray for subtle section breaks */
-            --color-border: #E5E7EB;
-            --color-primary: #1F2937;    /* Dark gray for headings */
-            --color-secondary: #4B5563;  /* Softer gray for body text */
+            --color-background: #0D1117; /* GitHub Dark Dimmed */
+            --color-surface-primary: rgba(22, 27, 34, 0.7); /* Semi-transparent surface for glass effects */
+            --color-surface-secondary: #161B22; /* Solid surface color */
+            --color-border: rgba(255, 255, 255, 0.1);
+            --color-border-hover: rgba(56, 189, 248, 0.5);
+
+            --color-text-primary: #F0F6FC;   /* Bright off-white for headings */
+            --color-text-secondary: #8B949E; /* Softer gray for body text */
             
-            --color-brand: #0052CC;       /* Professional Blue */
-            --color-brand-accent: #0065FF; /* Lighter Blue for hover */
+            --color-brand: #38BDF8;      /* Sky 400 */
+            --color-brand-accent: #0EA5E9; /* Sky 500 */
 
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-            --radius: 0.5rem; /* 8px */
+            --glow-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+            
+            --radius: 0.75rem; /* 12px for a more modern feel */
         }
 
         ::selection {
             background-color: var(--color-brand);
-            color: white;
+            color: var(--color-background);
         }
 
         html {
@@ -53,7 +56,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--color-secondary);
+            color: var(--color-text-secondary);
             background-color: var(--color-background);
             transition: background-color 0.3s ease, color 0.3s ease;
             -webkit-font-smoothing: antialiased;
@@ -61,10 +64,37 @@
             position: relative;
             overflow-x: hidden;
         }
+
+        /* Animated Aurora Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 15% 25%, var(--color-brand), transparent 25%),
+                radial-gradient(circle at 85% 75%, #4f46e5, transparent 25%);
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+            animation: moveAurora 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveAurora {
+            from {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            to {
+                transform: translate(5vw, 10vh) rotate(15deg);
+            }
+        }
         
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Inter', sans-serif;
-            color: var(--color-primary);
+            color: var(--color-text-primary);
             letter-spacing: -0.025em;
             font-weight: 800;
             text-wrap: balance;
@@ -116,7 +146,7 @@
         }
 
         @keyframes skeleton-pulse {
-            50% { background-color: #F3F4F6; } /* Light gray for skeleton pulse */
+            50% { background-color: #30363d; }
         }
         .animate-skeleton-pulse {
             animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -147,7 +177,7 @@
             top: -100px;
             left: 0.5rem;
             background: var(--color-brand);
-            color: white;
+            color: var(--color-background);
             padding: 0.5rem 1rem;
             z-index: 1000;
             transition: top 0.3s ease-in-out;

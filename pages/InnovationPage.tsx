@@ -10,7 +10,7 @@ const InnovationPage: React.FC = () => {
         title={SEO_DATA.innovation.title}
         description={SEO_DATA.innovation.description}
       />
-      <div className="bg-[var(--color-background)]">
+      <div className="bg-transparent">
         <QualitySection />
       </div>
     </>

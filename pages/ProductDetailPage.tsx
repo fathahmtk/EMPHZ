@@ -27,7 +27,7 @@ const ProductDetailPage: React.FC = () => {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-40 text-center flex flex-col justify-center items-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[var(--color-brand)]"></div>
-        <p className="mt-4 text-lg text-[var(--color-secondary)]">Loading Product Details...</p>
+        <p className="mt-4 text-lg text-[var(--color-text-secondary)]">Loading Product Details...</p>
       </div>
     );
   }
@@ -36,7 +36,7 @@ const ProductDetailPage: React.FC = () => {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center justify-center min-h-[60vh]">
         <h1 className="text-4xl font-bold text-red-500 mb-4">Error Loading Product</h1>
-        <p className="text-lg text-[var(--color-secondary)] mb-8 max-w-md">
+        <p className="text-lg text-[var(--color-text-secondary)] mb-8 max-w-md">
           There was a problem fetching the details for this product. Please try again.
         </p>
         <div className="flex space-x-4">
@@ -57,7 +57,7 @@ const ProductDetailPage: React.FC = () => {
         <MetaTags title="Product Not Found" description="The requested product could not be found." />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
-          <p className="text-lg text-[var(--color-secondary)] mb-8">Sorry, we couldn't find the product you're looking for.</p>
+          <p className="text-lg text-[var(--color-text-secondary)] mb-8">Sorry, we couldn't find the product you're looking for.</p>
           <Button href="/products" variant="primary">
             Back to All Products
           </Button>
@@ -93,8 +93,8 @@ const ProductDetailPage: React.FC = () => {
           <div className="animate-fadeInUp">
             <span className="text-sm font-semibold text-[var(--color-brand)] uppercase tracking-wider">{category.name}</span>
             <h1 className="text-4xl font-bold mt-2 mb-4">{product.name}</h1>
-            <p className="text-lg text-[var(--color-secondary)] mb-6">Product Code: {product.code}</p>
-            {descriptionText && <p className="text-[var(--color-secondary)] leading-relaxed mb-6">{descriptionText}</p>}
+            <p className="text-lg text-[var(--color-text-secondary)] mb-6">Product Code: {product.code}</p>
+            {descriptionText && <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">{descriptionText}</p>}
             <div className="mt-8">
               <Button href="/contact" variant="primary">Request a Quote</Button>
             </div>
@@ -103,9 +103,9 @@ const ProductDetailPage: React.FC = () => {
         
         {/* Key Applications Section */}
         {product.applications && product.applications.length > 0 && (
-            <section className="my-20 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
+            <section className="my-20 p-8 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
               <h2 className="text-2xl font-semibold text-center mb-6">Key Applications</h2>
-              <ul className="columns-1 md:columns-2 lg:columns-3 gap-x-8 text-[var(--color-secondary)] max-w-5xl mx-auto space-y-2">
+              <ul className="columns-1 md:columns-2 lg:columns-3 gap-x-8 text-[var(--color-text-secondary)] max-w-5xl mx-auto space-y-2">
                 {product.applications.map((app, index) => (
                   <li key={index} className="flex items-start break-inside-avoid">
                      <svg className="w-5 h-5 mr-2 text-[var(--color-brand)] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
@@ -118,9 +118,9 @@ const ProductDetailPage: React.FC = () => {
 
         {/* Technical Highlights from Category */}
         {(category.sharedHighlights && category.sharedHighlights.length > 0) && (
-            <div className="my-20 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
+            <div className="my-20 p-8 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
               <h4 className="text-2xl font-semibold text-center mb-6">Technical Highlights</h4>
-              <ul className="columns-1 md:columns-2 lg:columns-3 gap-x-8 text-[var(--color-secondary)] max-w-5xl mx-auto space-y-2">
+              <ul className="columns-1 md:columns-2 lg:columns-3 gap-x-8 text-[var(--color-text-secondary)] max-w-5xl mx-auto space-y-2">
                 {category.sharedHighlights.map((highlight, index) => (
                   <li key={index} className="flex items-start break-inside-avoid">
                     <svg className="w-5 h-5 mr-2 text-[var(--color-brand)] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
@@ -135,17 +135,17 @@ const ProductDetailPage: React.FC = () => {
         {(category.technicalSnapshot && category.technicalSnapshot.length > 0) && (
           <section className="mb-20">
             <h2 className="text-3xl font-bold text-center mb-10">Technical Specifications</h2>
-            <div className="overflow-x-auto bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
+            <div className="overflow-x-auto bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
               <table className="min-w-full">
-                <thead className="bg-[var(--color-background)]">
+                <thead className="bg-[var(--color-surface-secondary)]">
                   <tr>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
                       Parameter
                     </th>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
                       Specification
                     </th>
-                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
                       Certification / Standard
                     </th>
                   </tr>
@@ -153,9 +153,9 @@ const ProductDetailPage: React.FC = () => {
                 <tbody className="divide-y divide-[var(--color-border)]">
                   {category.technicalSnapshot.map((spec, index) => (
                     <tr key={index} className="hover:bg-white/5 transition-colors duration-200">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--color-primary)]">{spec.parameter}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-secondary)]">{spec.specification}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-secondary)]">{spec.certification}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--color-text-primary)]">{spec.parameter}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)]">{spec.specification}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text-secondary)]">{spec.certification}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -167,14 +167,14 @@ const ProductDetailPage: React.FC = () => {
         {/* FAQ Section */}
         <section className="my-20">
           <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
-          <div className="max-w-4xl mx-auto bg-[var(--color-surface)] p-4 sm:p-8 rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
+          <div className="max-w-4xl mx-auto bg-[var(--color-surface-primary)] backdrop-blur-lg p-4 sm:p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
             <Accordion type="single" collapsible className="w-full">
               {PRODUCT_FAQS.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index}>
                   <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[var(--color-secondary)] leading-relaxed pt-2">
+                  <AccordionContent className="text-[var(--color-text-secondary)] leading-relaxed pt-2">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

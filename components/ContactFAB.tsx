@@ -52,7 +52,7 @@ const ContactFAB: React.FC = () => {
       {/* Chat Window */}
       <div
         className={`
-          w-[calc(100vw-3rem)] max-w-sm h-auto bg-[var(--color-background)] rounded-lg shadow-xl border border-[var(--color-border)] flex flex-col
+          w-[calc(100vw-3rem)] max-w-sm h-auto bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-xl border border-[var(--color-border)] flex flex-col
           transition-[transform,opacity] duration-300 ease-in-out origin-bottom-right absolute bottom-[calc(100%+1rem)] right-0
           ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
         `}
@@ -66,17 +66,17 @@ const ContactFAB: React.FC = () => {
           </div>
         </div>
         <div className="p-4 flex-grow bg-[var(--color-background)]">
-          <div className="bg-[var(--color-surface)] p-3 rounded-lg shadow-sm text-[var(--color-primary)] max-w-xs">
+          <div className="bg-[var(--color-surface-secondary)] p-3 rounded-lg shadow-sm text-[var(--color-text-primary)] max-w-xs">
             <p className="text-sm">{welcomeMessage}</p>
           </div>
         </div>
-        <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-[var(--color-surface)] flex items-center gap-2 rounded-b-lg">
+        <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-[var(--color-surface-secondary)] flex items-center gap-2 rounded-b-lg">
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm bg-[var(--color-background)] text-[var(--color-primary)] placeholder-[var(--color-secondary)] border-[var(--color-border)]"
+            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm bg-[var(--color-background)] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)] border-[var(--color-border)]"
             aria-label="Your message"
           />
           <button

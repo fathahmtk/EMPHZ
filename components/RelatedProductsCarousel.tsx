@@ -59,7 +59,7 @@ const RelatedProductsCarousel: React.FC<RelatedProductsCarouselProps> = ({ curre
       {canScrollLeft && (
         <button
           onClick={() => handleScroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 bg-gray-800/50 backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-gray-700/70 border border-[var(--color-border)] text-[var(--color-primary)]"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 bg-[var(--color-surface-primary)] backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-[var(--color-surface-secondary)] border border-[var(--color-border)] text-[var(--color-text-primary)]"
           aria-label="Scroll left"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,7 +83,7 @@ const RelatedProductsCarousel: React.FC<RelatedProductsCarouselProps> = ({ curre
       {canScrollRight && (
         <button
           onClick={() => handleScroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 bg-gray-800/50 backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-gray-700/70 border border-[var(--color-border)] text-[var(--color-primary)]"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 bg-[var(--color-surface-primary)] backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-[var(--color-surface-secondary)] border border-[var(--color-border)] text-[var(--color-text-primary)]"
           aria-label="Scroll right"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

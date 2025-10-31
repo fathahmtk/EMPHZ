@@ -12,18 +12,18 @@ interface ProductCardProps {
 }
 
 const ImagePlaceholder: React.FC = () => (
-    <div className="w-full h-full bg-[var(--color-border)] animate-skeleton-pulse"></div>
+    <div className="w-full h-full bg-[var(--color-surface-secondary)] animate-skeleton-pulse"></div>
 );
 
 // REFINED: Use a more informative fallback with a centralized URL.
 const ImageError: React.FC = () => (
-    <div className="w-full h-full bg-[var(--color-surface)] flex flex-col items-center justify-center p-4 text-center">
+    <div className="w-full h-full bg-[var(--color-surface-secondary)] flex flex-col items-center justify-center p-4 text-center">
         <img
             src={FALLBACK_LOGO_URL}
             alt="EMPHZ Logo"
-            className="w-1/2 h-auto object-contain opacity-40 mb-2"
+            className="w-1/2 h-auto object-contain opacity-20 mb-2"
         />
-        <p className="text-xs text-[var(--color-secondary)]">Image not available</p>
+        <p className="text-xs text-[var(--color-text-secondary)]">Image not available</p>
     </div>
 );
 
@@ -87,7 +87,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
       ref={cardRef}
       className={`h-full group opacity-0 ${isVisible ? 'animate-fadeInScaleUp' : ''}`}
     >
-      <div className="bg-[var(--color-surface)] p-6 rounded-lg shadow-[var(--shadow-md)] group-hover:shadow-[var(--shadow-xl)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col hover:-translate-y-1 group-hover:border-[var(--color-brand)] group-hover:shadow-[var(--color-brand-glow)]">
+      <div className="bg-[var(--color-surface-primary)] backdrop-blur-lg p-6 rounded-[var(--radius)] shadow-[var(--shadow-md)] group-hover:shadow-[var(--glow-shadow)] transition-all duration-300 border border-[var(--color-border)] h-full flex flex-col hover:-translate-y-1 group-hover:border-[var(--color-border-hover)]">
         <div className="flex-grow">
           {categoryName && (
               <p className="text-xs font-bold text-[var(--color-brand)] uppercase tracking-wider mb-2">
@@ -95,15 +95,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
               </p>
           )}
           <Link to={`/products/${product.code}`} className="block">
-              <h4 className="text-lg font-bold text-[var(--color-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">{product.name}</h4>
+              <h4 className="text-lg font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">{product.name}</h4>
           </Link>
-          <p className="text-sm text-[var(--color-secondary)] font-medium mb-3">Code: {product.code}</p>
+          <p className="text-sm text-[var(--color-text-secondary)] font-medium mb-3">Code: {product.code}</p>
           
-          {descriptionText && <p className="text-[var(--color-secondary)] text-sm mb-4 line-clamp-3">{descriptionText}</p>}
+          {descriptionText && <p className="text-[var(--color-text-secondary)] text-sm mb-4 line-clamp-3">{descriptionText}</p>}
           
           {product.applications && product.applications.length > 0 && (
-              <p className="text-[var(--color-secondary)] text-sm mt-2 line-clamp-2">
-              <span className="font-semibold text-[var(--color-primary)]">Applications:</span> {product.applications.join(', ')}
+              <p className="text-[var(--color-text-secondary)] text-sm mt-2 line-clamp-2">
+              <span className="font-semibold text-[var(--color-text-primary)]">Applications:</span> {product.applications.join(', ')}
               </p>
           )}
         </div>
@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
                 />
             )}
             
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" aria-hidden="true"></div>
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300" aria-hidden="true"></div>
             
             {/* Controls for multiple images */}
             {images.length > 1 && (

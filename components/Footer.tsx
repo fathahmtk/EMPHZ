@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--color-section-bg)] text-[var(--color-secondary)] py-16 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[var(--color-surface-secondary)] text-[var(--color-text-secondary)] py-16 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Company Info */}
         <div className="md:col-span-1">
@@ -18,13 +18,13 @@ const Footer: React.FC = () => {
             Engineering Tomorrow’s Infrastructure — Today.
           </p>
           <div className="mt-6 flex space-x-4">
-            <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--color-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--color-text-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
               <Icon name="linkedin" className="h-6 w-6" />
             </a>
-            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-[var(--color-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-[var(--color-text-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
               <Icon name="twitter" className="h-6 w-6" />
             </a>
-            <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile" className="text-[var(--color-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile" className="text-[var(--color-text-secondary)] hover:text-[var(--color-brand)] transition-colors duration-200">
                <Icon name="google" className="h-6 w-6" />
             </a>
           </div>
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-lg font-semibold text-[var(--color-primary)] mb-4">Quick Links</h3>
+          <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li><Link to="/products" className="hover:text-[var(--color-brand)] transition-colors duration-200">Products</Link></li>
             <li><Link to="/industries" className="hover:text-[var(--color-brand)] transition-colors duration-200">Industries</Link></li>
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
 
         {/* Contact Us */}
         <div>
-          <h3 className="text-lg font-semibold text-[var(--color-primary)] mb-4">Contact Us</h3>
+          <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Contact Us</h3>
           <ul className="space-y-2 text-sm">
              <li><a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a></li>
              <li><a href={`tel:${config.supportPhone}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{config.supportPhone}</a></li>
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 
         {/* Locations */}
         <div>
-          <h3 className="text-lg font-semibold text-[var(--color-primary)] mb-4">Our Locations</h3>
+          <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Our Locations</h3>
           <ul className="space-y-2 text-sm">
             {OFFICE_LOCATIONS.map((location, index) => (
               <li key={index} className="flex items-start">
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-t border-[var(--color-border)] mt-12 pt-8 text-center text-sm text-[var(--color-secondary)]">
+      <div className="border-t border-[var(--color-border)] mt-12 pt-8 text-center text-sm text-[var(--color-text-secondary)]">
         &copy; {currentYear} {config.companyName}. All rights reserved.
       </div>
     </footer>

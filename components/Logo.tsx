@@ -11,15 +11,15 @@ const Logo: React.FC<{ className?: string }> = ({ className = 'h-12 w-auto' }) =
         aria-labelledby="logo-title-light logo-desc-light"
       >
         <title id="logo-title-light">EMPHZ Logo</title>
-        <desc id="logo-desc-light">The official logo for EMPHZ Private Limited, featuring a clean, geometric icon and modern wordmark in a professional blue and dark gray color scheme.</desc>
+        <desc id="logo-desc-light">The official logo for EMPHZ Private Limited, featuring a clean, geometric icon and modern wordmark in a professional blue and light gray color scheme for dark mode.</desc>
         <g style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800 }}>
           <g>
-            <path fill="#0052CC" d="M0 0 H18 V18 H0 Z" transform="translate(0 0)"/>
-            <path fill="#0052CC" d="M0 0 H18 V18 H0 Z" transform="translate(22 0)"/>
-            <path fill="#1F2937" d="M0 0 H18 V18 H0 Z" transform="translate(0 22)"/>
-            <path fill="#0052CC" d="M0 0 H18 V18 H0 Z" transform="translate(22 22)"/>
+            <path fill="var(--color-brand)" d="M0 0 H18 V18 H0 Z" transform="translate(0 0)"/>
+            <path fill="var(--color-brand)" d="M0 0 H18 V18 H0 Z" transform="translate(22 0)"/>
+            <path fill="var(--color-text-primary)" d="M0 0 H18 V18 H0 Z" transform="translate(0 22)"/>
+            <path fill="var(--color-brand)" d="M0 0 H18 V18 H0 Z" transform="translate(22 22)"/>
           </g>
-          <text x="52" y="34" style={{ fontSize: "32px", fill: "#1F2937" }}>EMPHZ</text>
+          <text x="52" y="34" style={{ fontSize: "32px", fill: "var(--color-text-primary)" }}>EMPHZ</text>
         </g>
       </svg>
     </div>

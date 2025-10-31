@@ -156,7 +156,7 @@ const SearchModal: React.FC<{ isOpen: boolean; onClose: () => void; }> = ({ isOp
       aria-modal="true"
     >
       <div
-        className="relative bg-[var(--color-background)] w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden flex flex-col border border-[var(--color-border)]"
+        className="relative bg-[var(--color-surface-primary)] backdrop-blur-lg w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden flex flex-col border border-[var(--color-border)]"
         onClick={e => e.stopPropagation()}
       >
         <div className="relative flex-shrink-0">
@@ -166,23 +166,23 @@ const SearchModal: React.FC<{ isOpen: boolean; onClose: () => void; }> = ({ isOp
             placeholder="Search products, categories, etc."
             value={query}
             onChange={e => setQuery(e.target.value)}
-            className="w-full py-4 pl-12 pr-4 text-lg border-b border-[var(--color-border)] focus:outline-none bg-transparent text-[var(--color-primary)] placeholder-[var(--color-secondary)]"
+            className="w-full py-4 pl-12 pr-4 text-lg border-b border-[var(--color-border)] focus:outline-none bg-transparent text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]"
           />
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[var(--color-secondary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[var(--color-text-secondary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
         
         <div className="flex-grow overflow-y-auto max-h-[60vh]">
           {isIndexLoading ? (
-             <div className="p-8 text-center text-[var(--color-secondary)]"><p>Building search index...</p></div>
+             <div className="p-8 text-center text-[var(--color-text-secondary)]"><p>Building search index...</p></div>
           ) : indexError ? (
              <div className="p-8 text-center text-red-500"><p className="font-semibold">Could not build search index.</p><p className="text-sm mt-1">{indexError.message}</p></div>
           ) : debouncedQuery.trim() && sortedResults.length === 0 ? (
-            <div className="p-8 text-center text-[var(--color-secondary)]"><p>No results found for "{debouncedQuery}".</p></div>
+            <div className="p-8 text-center text-[var(--color-text-secondary)]"><p>No results found for "{debouncedQuery}".</p></div>
           ) : sortedResults.length > 0 && (
             <>
-              <div className="p-2 bg-[var(--color-surface)] border-b border-[var(--color-border)] flex items-center justify-between text-sm sticky top-0 z-10">
-                <span className="text-[var(--color-secondary)] font-medium px-2">{sortedResults.length} results</span>
-                <select value={sortOrder} onChange={e => setSortOrder(e.target.value as any)} className="text-sm rounded border-[var(--color-border)] focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] p-1 bg-[var(--color-background)] text-[var(--color-secondary)]">
+              <div className="p-2 bg-[var(--color-surface-secondary)] border-b border-[var(--color-border)] flex items-center justify-between text-sm sticky top-0 z-10">
+                <span className="text-[var(--color-text-secondary)] font-medium px-2">{sortedResults.length} results</span>
+                <select value={sortOrder} onChange={e => setSortOrder(e.target.value as any)} className="text-sm rounded border-[var(--color-border)] focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] p-1 bg-[var(--color-background)] text-[var(--color-text-secondary)]">
                   <option value="relevance">Sort by: Relevance</option>
                   <option value="name-asc">Name (A-Z)</option>
                   <option value="name-desc">Name (Z-A)</option>
@@ -194,12 +194,12 @@ const SearchModal: React.FC<{ isOpen: boolean; onClose: () => void; }> = ({ isOp
                 {sortedResults.map((result, index) => (
                   <li key={`${result.type}-${result.code}`}>
                     <Link to={result.link} onClick={onClose} className={`flex items-start gap-4 p-4 border-b border-[var(--color-border)] transition-colors duration-150 ${activeIndex === index ? 'bg-[var(--color-brand)]/10' : 'hover:bg-white/5'}`}>
-                      <div className={`mt-1 flex-shrink-0 rounded-md flex items-center justify-center h-8 w-8 ${result.type === 'Product' ? 'bg-[var(--color-brand)]/20 text-[var(--color-brand)]' : 'bg-[var(--color-secondary)]/20 text-[var(--color-secondary)]'}`}>
+                      <div className={`mt-1 flex-shrink-0 rounded-md flex items-center justify-center h-8 w-8 ${result.type === 'Product' ? 'bg-[var(--color-brand)]/20 text-[var(--color-brand)]' : 'bg-[var(--color-text-secondary)]/20 text-[var(--color-text-secondary)]'}`}>
                         {result.type === 'Product' ? <Icon name="engineering" className="h-5 w-5" /> : <Icon name="customization" className="h-5 w-5" />}
                       </div>
                       <div className="flex-grow">
-                          <h3 className="font-semibold text-[var(--color-primary)]">{result.title}</h3>
-                          <p className="text-sm text-[var(--color-secondary)] line-clamp-1">{result.description}</p>
+                          <h3 className="font-semibold text-[var(--color-text-primary)]">{result.title}</h3>
+                          <p className="text-sm text-[var(--color-text-secondary)] line-clamp-1">{result.description}</p>
                           <p className="text-xs text-gray-500 mt-1">{result.type === 'Product' ? `In: ${result.categoryName}` : 'Product Category'}</p>
                       </div>
                     </Link>
@@ -209,7 +209,7 @@ const SearchModal: React.FC<{ isOpen: boolean; onClose: () => void; }> = ({ isOp
             </>
           )}
         </div>
-        <div className="text-xs text-center p-2 bg-[var(--color-surface)] text-[var(--color-secondary)] flex-shrink-0 border-t border-[var(--color-border)]">
+        <div className="text-xs text-center p-2 bg-[var(--color-surface-secondary)] text-[var(--color-text-secondary)] flex-shrink-0 border-t border-[var(--color-border)]">
           Tip: Press <kbd className="font-sans border rounded px-1.5 py-0.5 bg-black border-gray-500 shadow-sm">Ctrl+K</kbd> to open search.
         </div>
       </div>

@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { useToast } from '../ToastContext';
 import Toast from './Toast';
@@ -11,7 +12,7 @@ const ToastContainer: React.FC = () => {
   }
 
   return (
-    <div className="fixed top-6 right-6 z-[200] w-full max-w-sm space-y-3">
+    <div className="fixed bottom-6 right-6 z-[200] w-full max-w-sm space-y-3">
       {toasts.map(toast => (
         <Toast key={toast.id} toast={toast} onDismiss={removeToast} />
       ))}

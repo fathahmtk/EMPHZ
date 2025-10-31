@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <section
-      className="relative h-[85vh] flex items-center justify-center text-center overflow-hidden"
+      className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden"
     >
       {/* Parallax Background */}
       <div
@@ -19,14 +19,15 @@ const HeroSection: React.FC = () => {
         }}
         aria-hidden="true"
       />
-      {/* Subtle Overlay to enhance text readability */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-sm z-0"></div>
+      {/* Dark Gradient Overlay to enhance text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent z-10"></div>
 
-      <div className="relative z-10 p-8 max-w-5xl mx-auto">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6 animate-fadeInUp text-[var(--color-primary)]">
+
+      <div className="relative z-20 p-8 max-w-5xl mx-auto">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6 animate-fadeInUp text-[var(--color-text-primary)]">
           {HERO_SECTION.headline}
         </h1>
-        <p className="text-lg lg:text-xl font-normal text-[var(--color-secondary)] max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+        <p className="text-lg lg:text-xl font-normal text-[var(--color-text-secondary)] max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
           {HERO_SECTION.subline}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>

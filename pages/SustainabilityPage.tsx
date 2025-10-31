@@ -10,7 +10,7 @@ const SustainabilityPage: React.FC = () => {
         title={SEO_DATA.sustainability.title}
         description={SEO_DATA.sustainability.description}
       />
-       <div className="bg-[var(--color-background)]">
+       <div className="bg-transparent">
         <SustainabilitySection />
       </div>
     </>
