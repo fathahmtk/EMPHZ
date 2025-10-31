@@ -12,18 +12,18 @@ interface ProductCardProps {
 }
 
 const ImagePlaceholder: React.FC = () => (
-    <div className="w-full h-full bg-gray-200 animate-skeleton-pulse"></div>
+    <div className="w-full h-full bg-slate-200 animate-skeleton-pulse"></div>
 );
 
 // REFINED: Use a more informative fallback with a centralized URL.
 const ImageError: React.FC = () => (
-    <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center p-4 text-center">
+    <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center p-4 text-center">
         <img
             src={FALLBACK_LOGO_URL}
             alt="EMPHZ Logo"
             className="w-1/2 h-auto object-contain opacity-40 mb-2"
         />
-        <p className="text-xs text-gray-500">Image not available</p>
+        <p className="text-xs text-slate-500">Image not available</p>
     </div>
 );
 
@@ -127,6 +127,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickViewClick, ca
                     className={`absolute inset-0 w-full h-full object-cover rounded-md transition-all duration-500 ease-in-out group-hover:scale-110 ${loadingStatus === 'loaded' ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
                 />
             )}
+            
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" aria-hidden="true"></div>
             
             {/* Controls for multiple images */}
             {images.length > 1 && (

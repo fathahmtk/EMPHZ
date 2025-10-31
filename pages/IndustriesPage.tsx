@@ -34,7 +34,7 @@ const IndustriesPage: React.FC = () => {
                 loading="lazy"
                 className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent group-hover:from-black/85 transition-colors duration-300 flex items-end p-6">
                 <div className="text-left text-white">
                   <h3 className="text-2xl font-semibold mb-2">{industry.name}</h3>
                   <p className="text-sm opacity-90">{industry.applicationExample}</p>

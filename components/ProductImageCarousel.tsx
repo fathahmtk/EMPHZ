@@ -72,7 +72,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
           fetchPriority="high"
           width="800"
           height="800"
-          className={`block w-full h-full ${hasRealImages ? 'object-cover transition-transform duration-300 ease-out group-hover:scale-105' : 'object-contain p-10'}`}
+          className={`block w-full h-full ${hasRealImages ? 'object-cover transition-transform duration-300 ease-out group-hover:scale-110' : 'object-contain p-10'}`}
         />
         {hasRealImages && (
             <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -121,6 +121,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
                   src={img}
                   alt={`${productName} thumbnail ${index + 1}`}
                   loading="lazy"
+                  decoding="async"
                   fetchPriority="low"
                   width="150"
                   height="150"

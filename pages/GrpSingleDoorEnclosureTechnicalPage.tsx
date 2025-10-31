@@ -1,3 +1,4 @@
+
 import React from 'react';
 import MetaTags from '../components/MetaTags';
 import { SEO_DATA } from '../constants';
@@ -6,6 +7,7 @@ import CTABanner from '../components/CTABanner';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
 import Icon from '../components/Icon';
 import { IconName } from '../types';
+import CopyButton from '../components/CopyButton';
 
 // Data structured from the provided markdown
 const technicalData = {
@@ -134,6 +136,8 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
         { label: 'Technical Data: GRP Single Door Enclosures' },
     ];
     
+    const materialSpecItemValues = technicalData.materialSpecs.sections.map((_, index) => `item-${index}`);
+
     return (
         <>
             <MetaTags title={SEO_DATA.grpTechnicalData.title} description={SEO_DATA.grpTechnicalData.description} />
@@ -167,7 +171,7 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                         </Section>
 
                         <Section title={technicalData.materialSpecs.title} className="bg-[var(--color-surface)] rounded-lg">
-                            <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
+                            <Accordion type="multiple" className="w-full" defaultValue={materialSpecItemValues}>
                             {technicalData.materialSpecs.sections.map((section, index) => (
                                 <AccordionItem value={`item-${index}`} key={index}>
                                     <AccordionTrigger className="text-xl font-semibold hover:no-underline">{section.title}</AccordionTrigger>
@@ -261,7 +265,18 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                                         </ul>
                                          <h4 className="font-semibold text-sm mb-2 text-[var(--color-primary)]">Popular models:</h4>
                                         <ul className="list-disc list-inside space-y-1 text-sm text-[var(--color-text-secondary)]">
-                                            {cat.popularModels.map((model, i) => <li key={i}>{model}</li>)}
+                                            {cat.popularModels.map((model, i) => {
+                                                const modelCodeMatch = model.match(/^([^\s]+)/);
+                                                const modelCode = modelCodeMatch ? modelCodeMatch[1] : '';
+                                                const shouldShowButton = modelCode === '050050020' || modelCode === '060060045';
+                                                
+                                                return (
+                                                    <li key={i} className="flex items-center">
+                                                        <span>{model}</span>
+                                                        {shouldShowButton && <CopyButton textToCopy={modelCode} />}
+                                                    </li>
+                                                );
+                                            })}
                                         </ul>
                                     </div>
                                 ))}

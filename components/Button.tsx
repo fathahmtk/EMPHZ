@@ -5,7 +5,7 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'outline' | 'glass' | 'glass-cta' | 'glass-subtle';
+  variant?: 'primary' | 'secondary' | 'outline' | 'glass' | 'glass-cta' | 'glass-subtle' | 'outline-light';
   className?: string;
   href?: string;
   disabled?: boolean;
@@ -25,8 +25,9 @@ const Button: React.FC<ButtonProps> = ({
   const primaryStyles = `bg-[var(--color-primary)] text-white hover:bg-slate-800 focus:ring-slate-500/50 shadow-[var(--shadow-md)]`;
   const secondaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
   const outlineStyles = `bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white focus:ring-[var(--color-primary)]/50 shadow-[var(--shadow-sm)]`;
+  const outlineLightStyles = `bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--color-primary)] focus:ring-white/50 shadow-[var(--shadow-sm)]`;
   const glassStyles = `bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 focus:ring-white/50 shadow-[var(--shadow-md)]`;
-  const glassCtaStyles = `bg-white/80 backdrop-blur-sm border-2 border-transparent text-[var(--color-primary)] hover:bg-white focus:ring-white/50 shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)]`;
+  const glassCtaStyles = `bg-white text-[var(--color-primary)] hover:bg-slate-100 focus:ring-slate-300 shadow-[var(--shadow-lg)]`;
   const glassSubtleStyles = `bg-transparent backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/80 focus:ring-white/50`;
 
   let variantStyles = '';
@@ -39,6 +40,9 @@ const Button: React.FC<ButtonProps> = ({
       break;
     case 'outline':
       variantStyles = outlineStyles;
+      break;
+    case 'outline-light':
+      variantStyles = outlineLightStyles;
       break;
     case 'glass':
       variantStyles = glassStyles;

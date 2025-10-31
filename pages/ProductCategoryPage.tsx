@@ -4,16 +4,13 @@ import { useCategoryBySlug } from '../hooks/useCategoryBySlug';
 import MetaTags from '../components/MetaTags';
 import { SEO_DATA, FALLBACK_LOGO_URL } from '../constants';
 import Button from '../components/Button';
-import ProductCard from '../components/ProductCard';
-import { useUIState } from '../UIStateContext';
-import { Product } from '../types';
 import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
 import SkeletonProductCard from '../components/SkeletonProductCard';
+import VirtualProductGrid from '../components/VirtualProductGrid';
 
 const ProductCategoryPage: React.FC = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
   const { category, isLoading, error } = useCategoryBySlug(categorySlug);
-  const { openQuickView } = useUIState();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -104,15 +101,7 @@ const ProductCategoryPage: React.FC = () => {
         <Breadcrumbs items={breadcrumbItems} className="mb-12" />
         
         <main>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {category.products.map((product: Product) => (
-              <ProductCard
-                key={product.code}
-                product={product}
-                onQuickViewClick={() => openQuickView(product)}
-              />
-            ))}
-          </div>
+          <VirtualProductGrid products={category.products} categoryName={category.name} />
 
           {(category.sharedHighlights && category.sharedHighlights.length > 0) && (
             <div className="mt-20 p-8 bg-[var(--color-surface)] rounded-lg shadow-sm border border-[var(--color-border)]">

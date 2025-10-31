@@ -8,6 +8,7 @@ import { useUIState } from '../UIStateContext';
 import Button from '../components/Button';
 import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
 import Lightbox from '../components/Lightbox';
+import { IconName } from '../types';
 
 const AutomobileIndustryPage: React.FC = () => {
   const { openQuickView } = useUIState();
@@ -19,6 +20,13 @@ const AutomobileIndustryPage: React.FC = () => {
     setLightboxStartIndex(index);
     setIsLightboxOpen(true);
   };
+  
+  const whyGrpAdvantages: { icon: IconName; title: string; description: string }[] = [
+    { icon: "lightweight", title: "Significant Weight Reduction", description: "GRP is up to 75% lighter than steel and 30% lighter than aluminum. This drastic weight saving directly translates to improved fuel efficiency, increased payload capacity, and better vehicle dynamics." },
+    { icon: "durability", title: "Unmatched Durability & Longevity", description: "Immune to rust and corrosion, GRP components withstand harsh weather, road salt, and chemical exposure, drastically reducing maintenance costs and extending vehicle life." },
+    { icon: "design", title: "Ultimate Design Freedom", description: "GRP can be molded into complex, aerodynamic, and single-piece parts. This allows for innovative designs, part consolidation, and aesthetically superior vehicle bodies that are difficult or expensive to achieve with metal." },
+    { icon: "nvh", title: "Superior NVH Performance", description: "The inherent damping properties of GRP composites absorb vibrations and noise, leading to a significantly quieter cabin and a more comfortable ride for passengers and drivers." },
+  ];
 
   const featuredProducts = React.useMemo(() => {
     const products = [];
@@ -88,6 +96,24 @@ const AutomobileIndustryPage: React.FC = () => {
                   <h3 className="text-xl font-semibold mb-3">{solution.title}</h3>
                   <p className="text-[var(--color-text-secondary)]">{solution.description}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* NEW 'Why Choose GRP' Section */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose GRP Composites for Automotive?</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {whyGrpAdvantages.map((advantage, index) => (
+              <div key={index} className="bg-[var(--color-surface)] p-6 rounded-lg shadow-sm border border-[var(--color-border)] text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col items-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-4 bg-[var(--color-brand)]/10 rounded-full">
+                    <Icon name={advantage.icon} className="h-10 w-10 text-[var(--color-brand)]" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-[var(--color-primary)]">{advantage.title}</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">{advantage.description}</p>
               </div>
             ))}
           </div>

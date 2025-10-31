@@ -70,25 +70,25 @@
         }
         .hero-overlay {
             /* Refined gradient for better text contrast */
-            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, transparent 40%, transparent 60%, rgba(15, 23, 42, 0.8) 100%);
+            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, transparent 40%, transparent 60%, rgba(15, 23, 42, 0.85) 100%);
         }
         
         .text-shadow-strong {
-            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(25px) scale(0.97);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
         .animate-fadeInUp {
-            animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation: fadeInUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         
         @keyframes fadeIn {
@@ -108,29 +108,18 @@
             animation: progressBar 7s linear forwards;
         }
 
-        /* NEW: Ken Burns Effects */
-        @keyframes kenBurnsCenter {
-            0% { transform: scale(1.05); }
-            100% { transform: scale(1.15); }
+        /* NEW: Dynamic Zoom-Out Effect for Hero Background */
+        @keyframes zoomOutEffect {
+            from {
+                transform: scale(1.1);
+            }
+            to {
+                transform: scale(1);
+            }
         }
-        .animate-ken-burns-center {
-            animation: kenBurnsCenter 20s ease-out forwards;
-        }
-        
-        @keyframes kenBurnsTopRight {
-            0% { transform: scale(1.05) translate(0, 0); transform-origin: top right; }
-            100% { transform: scale(1.15) translate(-2%, 2%); transform-origin: top right; }
-        }
-        .animate-ken-burns-top-right {
-            animation: kenBurnsTopRight 20s ease-out forwards;
-        }
-        
-        @keyframes kenBurnsBottomLeft {
-            0% { transform: scale(1.05) translate(0, 0); transform-origin: bottom left; }
-            100% { transform: scale(1.15) translate(2%, -2%); transform-origin: bottom left; }
-        }
-        .animate-ken-burns-bottom-left {
-            animation: kenBurnsBottomLeft 20s ease-out forwards;
+        .animate-zoom-out {
+            /* Match the slide duration for a seamless loop */
+            animation: zoomOutEffect 7s ease-out forwards;
         }
         
         @keyframes lightbox-fade-in {
@@ -195,7 +184,8 @@
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.4",
     "@radix-ui/react-accordion": "https://aistudiocdn.com/@radix-ui/react-accordion@^1.2.12",
-    "clsx": "https://aistudiocdn.com/clsx@^2.1.1"
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1",
+    "@tanstack/react-virtual": "https://aistudiocdn.com/@tanstack/react-virtual@^3.9.0"
   }
 }
 </script>

@@ -95,20 +95,27 @@ const ProductDetailPage: React.FC = () => {
             <h1 className="text-4xl font-bold mt-2 mb-4">{product.name}</h1>
             <p className="text-lg text-[var(--color-text-secondary)] mb-6">Product Code: {product.code}</p>
             {descriptionText && <p className="text-[var(--color-text-primary)] leading-relaxed mb-6">{descriptionText}</p>}
-            {product.applications && (
-              <div className="mb-4">
-                <h4 className="text-lg font-semibold mb-2">Key Applications:</h4>
-                <ul className="list-disc list-inside text-[var(--color-text-primary)]">
-                  {product.applications.map((app, index) => <li key={index}>{app}</li>)}
-                </ul>
-              </div>
-            )}
             <div className="mt-8">
               <Button href="/contact" variant="secondary">Request a Quote</Button>
             </div>
           </div>
         </div>
         
+        {/* Key Applications Section */}
+        {product.applications && product.applications.length > 0 && (
+            <section className="my-20 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">
+              <h2 className="text-2xl font-semibold text-center mb-6">Key Applications</h2>
+              <ul className="columns-1 md:columns-2 lg:columns-3 gap-x-8 text-[var(--color-text-primary)] max-w-5xl mx-auto space-y-2">
+                {product.applications.map((app, index) => (
+                  <li key={index} className="flex items-start break-inside-avoid">
+                     <svg className="w-5 h-5 mr-2 text-[var(--color-brand)] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                    <span>{app}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+        )}
+
         {/* Technical Highlights from Category */}
         {(category.sharedHighlights && category.sharedHighlights.length > 0) && (
             <div className="my-20 p-8 bg-[var(--color-surface)] rounded-lg shadow-[var(--shadow-md)] border border-[var(--color-border)]">

@@ -22,11 +22,11 @@ export const HERO_SECTION = {
   cta1: "View Product Catalog",
   cta2: "Get a Project Quote",
   backgroundImages: [
-    "https://www.dropbox.com/scl/fi/3q4zsq0vxb6bscss6j98z/Emphz-GRP-Portable-Toilet.png?rlkey=cjq4lyp3emeqwj7hf0q1cchxe&st=135v3dzm&dl=1",
-    "https://www.dropbox.com/scl/fi/i0r4s035cvcc8v8ykg9ba/Emphz-GRP-Hero-Image-3.png?rlkey=obfwaz3804vodjbnk2rpgmdj9&st=2kcxqe9b&dl=1",
-    "https://www.dropbox.com/scl/fi/p9nv1veh2fxa52ymwtghl/Emphz-GRP-Hero-Image-1.png?rlkey=dxhpiufpindtycgfv0ch48w48&st=14k83l73&dl=1",
-    "https://www.dropbox.com/scl/fi/rdjc4ppeb575uu4jzp9sw/Emphz-GRP-Electrical-Enclosures.png?rlkey=qk70gdenb7dhcxyajkerv4q0o&st=fwzq5iyr&dl=1",
-    "https://www.dropbox.com/scl/fi/i3jblkxsh97yoq6b61i1k/Emphz-GRP-Hero-Image-2.png?rlkey=wudzy7fl1pquzayw3yd2865mt&st=aznaxs17&dl=1",
+    "https://i.ibb.co/qD4D6qY/industry-electrical.jpg", // Electrical & Utilities
+    "https://i.ibb.co/PNSc9Cf/industry-renewable.jpg", // Renewable Energy
+    "https://i.ibb.co/N2cZ9N6/industry-automotive.jpg", // Automobile & Transport
+    "https://i.ibb.co/3d2C7Kq/industry-marine.jpg", // Marine & Offshore
+    "https://i.ibb.co/yQjD4sR/industry-construction.jpg", // Construction & Infrastructure
   ],
 };
 
