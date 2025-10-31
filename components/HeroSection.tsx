@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
         <p className="text-lg lg:text-xl font-normal text-[var(--color-secondary)] max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
           {HERO_SECTION.subline}
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.7s' }}>
+        <div className="flex flex-wrap items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
           <Button variant="primary" href="/contact" className="px-8 py-4 text-lg">
             {HERO_SECTION.cta1}
           </Button>
