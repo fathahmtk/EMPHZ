@@ -11,6 +11,10 @@ import {
   AutomobilePageData
 } from './types';
 
+// --- Global Constants ---
+export const FALLBACK_LOGO_URL = 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=zyd83amo&raw=1';
+
+
 // --- Homepage Content ---
 export const HERO_SECTION = {
   headline: "Engineering a Resilient Future. Today.",
@@ -721,6 +725,16 @@ export const AUTOMOBILE_PAGE_DATA: AutomobilePageData = {
     { icon: "safety", title: "Enhanced Safety", description: "High strength-to-weight ratio contributes to safer vehicle structures with excellent impact absorption properties." },
     { icon: "assembly", title: "Faster Production Cycles", description: "Consolidated parts and lightweight modules simplify the assembly process, reducing manufacturing time and costs." },
   ],
+  galleryImages: [
+    'https://i.ibb.co/6r0M5kQ/emphz-grp-bus-body.png',
+    'https://i.ibb.co/hXN0GfW/emphz-grp-auto-rickshaw-body.png',
+    'https://i.ibb.co/fDbPNSb/emphz-grp-truck-fairing.png',
+    'https://i.ibb.co/hK5J9ZJ/emphz-grp-ambulance-body.png',
+    'https://i.ibb.co/QcxLgJr/emphz-grp-custom-molding.png',
+    'https://i.ibb.co/yS54N0d/emphz-grp-ev-shelter.png',
+    'https://i.ibb.co/pwnWvYQ/emphz-grp-battery-cabinet.png',
+    'https://i.ibb.co/JqKxZ0H/emphz-grp-nacelle-cover.png',
+  ],
   featuredProducts: ['A-701', 'A-702', 'A-703', 'A-704']
 };
 
@@ -775,6 +789,16 @@ export const INSTALLATION_REQUIREMENTS = [
 
 // --- Insights & Knowledge Center ---
 export const BLOG_ARTICLES = [
+  {
+    title: "Technical Deep-Dive: GRP Single Door Enclosures",
+    link: "/knowledge/grp-single-door-enclosure-technical-data",
+    description: "Explore detailed material specifications, certifications, and technical advantages of our GRP single door enclosures.",
+  },
+  {
+    title: "The Ultimate Guide to GRP: A Comprehensive List of Applications",
+    link: "/knowledge/grp-applications",
+    description: "Explore the vast applications of Glass Reinforced Polymer across industries like construction, automotive, renewable energy, and more.",
+  },
   {
     title: "The Future Is Composite: Why GRP Outlasts Metal",
     link: "#",
@@ -904,6 +928,14 @@ export const SEO_DATA = {
   knowledge: {
     title: "EMPHZ Knowledge Hub - GRP Technology Articles & Whitepapers",
     description: "Access thought leadership articles, industry whitepapers, test reports, and CAD drawings from EMPHZ, your partner in composite engineering.",
+  },
+  grpApplications: {
+    title: "Comprehensive Guide to GRP Applications | EMPHZ Knowledge Hub",
+    description: "Explore the vast applications of Glass Reinforced Polymer (GRP) across dozens of industries, from construction and automotive to renewable energy and marine.",
+  },
+  grpTechnicalData: {
+    title: "Technical Data: GRP Single Door Enclosures | EMPHZ",
+    description: "In-depth technical specifications for EMPHZ GRP single door enclosures, including material properties, certifications (IP, IK, UL), dimensions, and performance data.",
   },
   contact: {
     title: "GRP Composite Solutions for Your Project - EMPHZ Sales & Support",

@@ -4,21 +4,39 @@ import { HERO_SECTION } from '../constants';
 
 const HeroSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [progressKey, setProgressKey] = useState(0); // Key to reset progress bar animation
   const images = HERO_SECTION.backgroundImages;
+
+  // Array of different Ken Burns effect classes to cycle through
+  const kenBurnsClasses = [
+    'animate-ken-burns-center',
+    'animate-ken-burns-top-right',
+    'animate-ken-burns-bottom-left',
+    'animate-ken-burns-center', // Repeat for more variety if needed
+    'animate-ken-burns-top-right',
+  ];
+
+  const resetProgress = () => {
+    setProgressKey(prevKey => prevKey + 1);
+  };
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    resetProgress();
   }, [images.length]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    resetProgress();
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+    resetProgress();
   };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, 7000); // Auto-cycle every 7 seconds
-
+    const timer = setInterval(handleNext, 7000); // Auto-cycle every 7 seconds
     return () => clearInterval(timer); // Cleanup on unmount
   }, [handleNext]);
 
@@ -48,7 +66,7 @@ const HeroSection: React.FC = () => {
               decoding={index === 0 ? 'auto' : 'async'}
               fetchPriority={index === 0 ? 'high' : 'low'}
               className={`w-full h-full object-cover ${
-                index === currentIndex ? 'animate-hero-zoom' : ''
+                index === currentIndex ? kenBurnsClasses[index % kenBurnsClasses.length] : ''
               }`}
             />
           </div>
@@ -94,19 +112,26 @@ const HeroSection: React.FC = () => {
         </button>
       </div>
 
-      {/* Carousel Dot Indicators */}
-      <div className="absolute z-20 bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-3.5 h-3.5 rounded-full transition-all duration-300 backdrop-blur-md border border-white/40 ${
-              index === currentIndex ? 'bg-white scale-110' : 'bg-white/40 hover:bg-white/70'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-            aria-current={index === currentIndex}
-          />
-        ))}
+      {/* Bottom Controls Wrapper */}
+      <div className="absolute z-20 bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-xs flex flex-col items-center gap-3">
+        {/* Progress Bar */}
+        <div className="w-full bg-white/30 backdrop-blur-sm rounded-full h-1 overflow-hidden">
+            <div key={progressKey} className="h-full bg-[var(--color-brand)] animate-progress-bar"></div>
+        </div>
+        {/* Carousel Dot Indicators */}
+        <div className="flex space-x-3">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 backdrop-blur-md border border-white/40 ${
+                index === currentIndex ? 'bg-white scale-110' : 'bg-white/40 hover:bg-white/70'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === currentIndex}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

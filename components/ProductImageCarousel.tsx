@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Lightbox from './Lightbox';
+import { FALLBACK_LOGO_URL } from '../constants';
 
 interface ProductImageCarouselProps {
   images: string[];
@@ -13,7 +14,6 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({ images, pro
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   
-  const FALLBACK_LOGO_URL = 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
   const hasRealImages = images.length > 0;
   const displayImages = hasRealImages ? images : [FALLBACK_LOGO_URL];
 

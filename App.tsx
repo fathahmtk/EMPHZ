@@ -24,6 +24,8 @@ const SustainabilityPage = lazy(() => import('./pages/SustainabilityPage'));
 const CorporatePage = lazy(() => import('./pages/CorporatePage'));
 const SupportPage = lazy(() => import('./pages/SupportPage'));
 const KnowledgePage = lazy(() => import('./pages/KnowledgePage'));
+const GrpApplicationsPage = lazy(() => import('./pages/GrpApplicationsPage'));
+const GrpSingleDoorEnclosureTechnicalPage = lazy(() => import('./pages/GrpSingleDoorEnclosureTechnicalPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -108,6 +110,8 @@ const App: React.FC = () => {
               <Route path="/corporate" element={<CorporatePage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/knowledge" element={<KnowledgePage />} />
+              <Route path="/knowledge/grp-applications" element={<GrpApplicationsPage />} />
+              <Route path="/knowledge/grp-single-door-enclosure-technical-data" element={<GrpSingleDoorEnclosureTechnicalPage />} />
               <Route path="/contact" element={<ContactPage />} />
               {config.isAdminPortalEnabled && <Route path="/admin" element={<AdminPage />} />}
               <Route path="*" element={<NotFoundPage />} />

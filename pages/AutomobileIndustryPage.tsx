@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AUTOMOBILE_PAGE_DATA, PRODUCT_CATALOG, SEO_DATA } from '../constants';
 import MetaTags from '../components/MetaTags';
@@ -7,10 +7,18 @@ import ProductCard from '../components/ProductCard';
 import { useUIState } from '../UIStateContext';
 import Button from '../components/Button';
 import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
+import Lightbox from '../components/Lightbox';
 
 const AutomobileIndustryPage: React.FC = () => {
   const { openQuickView } = useUIState();
   const industryData = AUTOMOBILE_PAGE_DATA;
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxStartIndex, setLightboxStartIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setLightboxStartIndex(index);
+    setIsLightboxOpen(true);
+  };
 
   const featuredProducts = React.useMemo(() => {
     const products = [];
@@ -103,6 +111,33 @@ const AutomobileIndustryPage: React.FC = () => {
           </div>
         </section>
 
+        {/* NEW: Image Gallery Section */}
+        <section className="mb-20">
+            <h2 className="text-3xl font-bold text-center mb-12">Automotive Solutions Gallery</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {industryData.galleryImages.map((image, index) => (
+                    <button 
+                        key={index} 
+                        className="group relative aspect-square overflow-hidden rounded-lg shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-[var(--color-brand)]" 
+                        onClick={() => openLightbox(index)}
+                        aria-label={`View image ${index + 1} of automotive solutions`}
+                    >
+                        <img 
+                            src={image} 
+                            alt={`Automotive Solution ${index + 1}`} 
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                            loading="lazy" 
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <svg className="w-12 h-12 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                            </svg>
+                        </div>
+                    </button>
+                ))}
+            </div>
+        </section>
+
         {/* Featured Products */}
         {featuredProducts.length > 0 && (
           <section>
@@ -118,6 +153,14 @@ const AutomobileIndustryPage: React.FC = () => {
           </section>
         )}
       </div>
+
+      {isLightboxOpen && (
+        <Lightbox
+          images={industryData.galleryImages}
+          startIndex={lightboxStartIndex}
+          onClose={() => setIsLightboxOpen(false)}
+        />
+      )}
     </>
   );
 };

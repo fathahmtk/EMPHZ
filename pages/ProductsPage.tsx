@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCT_CATALOG, SEO_DATA } from '../constants';
+import { PRODUCT_CATALOG, SEO_DATA, FALLBACK_LOGO_URL } from '../constants';
 import MetaTags from '../components/MetaTags';
 
 const ProductsPage: React.FC = () => {
@@ -23,7 +23,7 @@ const ProductsPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PRODUCT_CATALOG.map((category) => {
             const hasRealImage = !!category.image;
-            const imageUrl = category.image || 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
+            const imageUrl = category.image || FALLBACK_LOGO_URL;
             
             return (
               <Link

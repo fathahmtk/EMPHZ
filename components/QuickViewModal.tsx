@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { Product } from '../types';
 import Button from './Button';
+import { FALLBACK_LOGO_URL } from '../constants';
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -34,7 +35,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose }) => 
 
   const descriptionText = product.description || product.useCase || product.innovation;
   const rawImage = Array.isArray(product.image) ? product.image[0] : product.image;
-  const imageUrl = rawImage || 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
+  const imageUrl = rawImage || FALLBACK_LOGO_URL;
   const hasRealImage = !!rawImage;
 
   return (

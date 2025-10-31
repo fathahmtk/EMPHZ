@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCategoryBySlug } from '../hooks/useCategoryBySlug';
 import MetaTags from '../components/MetaTags';
-import { SEO_DATA } from '../constants';
+import { SEO_DATA, FALLBACK_LOGO_URL } from '../constants';
 import Button from '../components/Button';
 import ProductCard from '../components/ProductCard';
 import { useUIState } from '../UIStateContext';
@@ -70,7 +70,7 @@ const ProductCategoryPage: React.FC = () => {
   ];
   
   const hasRealImage = !!category.image;
-  const imageUrl = category.image || 'https://www.dropbox.com/scl/fi/bh1jo6bw2oh2xquo5f6p0/Emphz-Logo-Design.png?rlkey=y56kz2aobqiypxlgnyzzrmo9m&st=9u7ljxbt&dl=1';
+  const imageUrl = category.image || FALLBACK_LOGO_URL;
 
   return (
     <>

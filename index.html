@@ -69,8 +69,8 @@
             text-wrap: balance; /* Improve text wrapping aesthetics */
         }
         .hero-overlay {
-            /* Enhanced gradient for better contrast */
-            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, transparent 50%, rgba(15, 23, 42, 0.75) 100%);
+            /* Refined gradient for better text contrast */
+            background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, transparent 40%, transparent 60%, rgba(15, 23, 42, 0.8) 100%);
         }
         
         .text-shadow-strong {
@@ -99,16 +99,38 @@
             animation: fadeIn 0.5s ease-in-out forwards;
         }
 
-        @keyframes heroZoom {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.05);
-            }
+        /* NEW: Hero Progress Bar */
+        @keyframes progressBar {
+            from { width: 0%; }
+            to { width: 100%; }
         }
-        .animate-hero-zoom {
-            animation: heroZoom 25s ease-out forwards; /* More cinematic zoom */
+        .animate-progress-bar {
+            animation: progressBar 7s linear forwards;
+        }
+
+        /* NEW: Ken Burns Effects */
+        @keyframes kenBurnsCenter {
+            0% { transform: scale(1.05); }
+            100% { transform: scale(1.15); }
+        }
+        .animate-ken-burns-center {
+            animation: kenBurnsCenter 20s ease-out forwards;
+        }
+        
+        @keyframes kenBurnsTopRight {
+            0% { transform: scale(1.05) translate(0, 0); transform-origin: top right; }
+            100% { transform: scale(1.15) translate(-2%, 2%); transform-origin: top right; }
+        }
+        .animate-ken-burns-top-right {
+            animation: kenBurnsTopRight 20s ease-out forwards;
+        }
+        
+        @keyframes kenBurnsBottomLeft {
+            0% { transform: scale(1.05) translate(0, 0); transform-origin: bottom left; }
+            100% { transform: scale(1.15) translate(2%, -2%); transform-origin: bottom left; }
+        }
+        .animate-ken-burns-bottom-left {
+            animation: kenBurnsBottomLeft 20s ease-out forwards;
         }
         
         @keyframes lightbox-fade-in {

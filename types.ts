@@ -102,5 +102,6 @@ export interface AutomobilePageData {
     };
     solutions: AutomobileSolution[];
     advantages: AutomobileAdvantage[];
+    galleryImages: string[];
     featuredProducts: string[];
 }
