@@ -12,6 +12,7 @@ import RelatedProductsCarousel from '../components/RelatedProductsCarousel';
 // Data structured from the provided markdown
 const technicalData = {
     title: "Technical Deep-Dive: GRP Single Door Enclosures",
+    heroImage: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?q=80&w=2070&auto=format&fit=crop",
     dimensionGuide: {
       title: "Dimension Reference Guide",
       codes: [
@@ -142,15 +143,25 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
         <>
             <MetaTags title={SEO_DATA.grpTechnicalData.title} description={SEO_DATA.grpTechnicalData.description} />
             
-            <div className="bg-transparent">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
-                    <Breadcrumbs items={breadcrumbItems} className="mb-8" />
-                    <header className="text-center max-w-4xl mx-auto mb-16">
-                        <h1 className="text-4xl lg:text-5xl font-bold mb-3">{technicalData.title}</h1>
-                    </header>
-                    
-                    <main className="space-y-8">
+            {/* New Hero Section */}
+            <section className="relative h-[50vh] bg-[var(--color-surface-secondary)] text-white flex items-center justify-center text-center overflow-hidden">
+                <img
+                    src={technicalData.heroImage}
+                    alt="Technical illustration of GRP enclosures"
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="relative z-10 p-8 max-w-4xl mx-auto">
+                    <h1 className="text-4xl lg:text-5xl font-bold animate-fadeInUp">
+                        {technicalData.title}
+                    </h1>
+                </div>
+            </section>
 
+            <div className="bg-transparent">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <Breadcrumbs items={breadcrumbItems} className="mb-12" />
+                    <main>
                         <Section title={technicalData.dimensionGuide.title}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                                 <div className="p-6 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-lg border border-[var(--color-border)]">
@@ -235,8 +246,8 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                         </Section>
 
                         <Section title={technicalData.weightComparison.title}>
-                            <div className="bg-gradient-to-r from-[var(--color-brand)] to-[#15a494] text-black p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                                <div className="text-center border-b-2 md:border-b-0 md:border-r-2 border-black/20 pb-4 md:pb-0 md:pr-8">
+                            <div className="bg-gradient-to-r from-[var(--color-brand)] to-[#D76C54] text-white p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                                <div className="text-center border-b-2 md:border-b-0 md:border-r-2 border-white/20 pb-4 md:pb-0 md:pr-8">
                                     <p className="text-lg opacity-90">{technicalData.weightComparison.example}</p>
                                     <p><span className="font-bold text-2xl">{technicalData.weightComparison.weights[0].value}</span> (GRP)</p>
                                     <p className="text-sm">vs <span className="font-semibold">{technicalData.weightComparison.weights[1].value}</span> (Steel)</p>
@@ -245,7 +256,7 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                                      <p className="text-6xl font-extrabold">{technicalData.weightComparison.savings}</p>
                                      <p className="text-xl font-semibold">Weight Savings</p>
                                 </div>
-                                <div className="text-center border-t-2 md:border-t-0 md:border-l-2 border-black/20 pt-4 md:pt-0 md:pl-8">
+                                <div className="text-center border-t-2 md:border-t-0 md:border-l-2 border-white/20 pt-4 md:pt-0 md:pl-8">
                                     <p className="text-lg font-semibold mb-2">Key Benefits</p>
                                     <ul className="space-y-1">
                                         {technicalData.weightComparison.benefits.map((b,i) => <li key={i}>{b}</li>)}
@@ -268,12 +279,11 @@ const GrpSingleDoorEnclosureTechnicalPage: React.FC = () => {
                                             {cat.popularModels.map((model, i) => {
                                                 const modelCodeMatch = model.match(/^([^\s]+)/);
                                                 const modelCode = modelCodeMatch ? modelCodeMatch[1] : '';
-                                                const shouldShowButton = modelCode === '050050020' || modelCode === '060060045';
                                                 
                                                 return (
                                                     <li key={i} className="flex items-center">
                                                         <span>{model}</span>
-                                                        {shouldShowButton && <CopyButton textToCopy={modelCode} />}
+                                                        <CopyButton textToCopy={modelCode} />
                                                     </li>
                                                 );
                                             })}

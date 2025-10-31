@@ -11,7 +11,7 @@ const Logo: React.FC<{ className?: string }> = ({ className = 'h-12 w-auto' }) =
         aria-labelledby="logo-title-light logo-desc-light"
       >
         <title id="logo-title-light">EMPHZ Logo</title>
-        <desc id="logo-desc-light">The official logo for EMPHZ Private Limited, featuring a clean, geometric icon and modern wordmark in a professional blue and light gray color scheme for dark mode.</desc>
+        <desc id="logo-desc-light">The official logo for EMPHZ Private Limited, featuring a clean, geometric icon and modern wordmark.</desc>
         <g style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800 }}>
           <g>
             <path fill="var(--color-brand)" d="M0 0 H18 V18 H0 Z" transform="translate(0 0)"/>

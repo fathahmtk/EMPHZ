@@ -32,7 +32,7 @@ const ScrollToTopButton: React.FC = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="bg-[var(--color-surface-primary)] backdrop-blur-md hover:bg-[var(--color-surface-secondary)] text-[var(--color-text-primary)] p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[var(--color-brand)]/50 border border-[var(--color-border)]"
+      className="bg-[var(--color-surface-primary)] hover:bg-gray-100 text-[var(--color-text-primary)] p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[var(--color-brand)]/50 border border-[var(--color-border)]"
       aria-label="Scroll to top"
     >
       <svg

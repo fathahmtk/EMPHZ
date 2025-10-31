@@ -9,6 +9,7 @@ interface ButtonProps {
   className?: string;
   href?: string;
   disabled?: boolean;
+  [key: string]: any; // Allow other props like aria-label
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,13 +20,15 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   href,
   disabled = false,
+  ...props
 }) => {
-  const baseStyles = `inline-block px-8 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-sm`;
+  const baseStyles = `inline-block px-6 py-3 rounded-[var(--radius)] text-base font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 transform hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none`;
 
-  const primaryStyles = `bg-gradient-to-r from-[var(--color-brand)] to-[var(--color-brand-accent)] text-white hover:shadow-[var(--glow-shadow)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-md)]`;
-  const secondaryStyles = `bg-transparent border-2 border-[var(--color-border)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface-secondary)] hover:border-[var(--color-brand-accent)] hover:text-white focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-sm)]`;
+  const primaryStyles = `bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-accent)] focus:ring-[var(--color-brand)]/50 shadow-[var(--shadow-brand)]`;
+  const secondaryStyles = `bg-transparent border-2 border-[var(--color-border-hover)] text-[var(--color-text-primary)] hover:bg-[var(--color-background)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand)] focus:ring-[var(--color-brand)]/50 shadow-none`;
   
   let variantStyles = '';
+  // Map old variants to new ones for compatibility
   switch (variant) {
     case 'primary':
     case 'glass-cta':
@@ -38,6 +41,8 @@ const Button: React.FC<ButtonProps> = ({
     case 'glass-subtle':
       variantStyles = secondaryStyles;
       break;
+    default:
+      variantStyles = primaryStyles;
   }
 
   const isDisabled = disabled || href === '#';
@@ -67,6 +72,7 @@ const Button: React.FC<ButtonProps> = ({
           className={`${finalClassName} text-center`}
           aria-disabled={isDisabled}
           title={tooltip}
+          {...props}
         >
           {children}
         </a>
@@ -80,6 +86,7 @@ const Button: React.FC<ButtonProps> = ({
         className={`${finalClassName} text-center ${isDisabled ? 'pointer-events-none' : ''}`}
         aria-disabled={isDisabled}
         title={tooltip}
+        {...props}
       >
         {children}
       </Link>
@@ -93,6 +100,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={isDisabled}
       className={finalClassName}
       title={tooltip}
+      {...props}
     >
       {children}
     </button>

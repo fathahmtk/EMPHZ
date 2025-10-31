@@ -11,26 +11,26 @@ const ContactRFQ: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-transparent">
+    <section className="py-16 bg-[var(--color-background)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold mb-16">Let’s Engineer Your Next Project.</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
           {/* Contact Options */}
-          <div className="text-left bg-[var(--color-surface-primary)] backdrop-blur-lg p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
+          <div className="text-left bg-[var(--color-surface-primary)] p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
             <h3 className="text-2xl font-semibold mb-6 text-[var(--color-text-primary)]">Get in Touch</h3>
             <div className="space-y-4">
               <p className="text-[var(--color-text-secondary)]">
                 <span className="font-semibold block text-[var(--color-text-primary)]">General Enquiry:</span>{' '}
-                <a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-text-primary)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a>
+                <a href={`mailto:${CONTACT_OPTIONS.generalEnquiry}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{CONTACT_OPTIONS.generalEnquiry}</a>
               </p>
               <p className="text-[var(--color-text-secondary)]">
                 <span className="font-semibold block text-[var(--color-text-primary)]">Technical Support:</span>{' '}
-                <a href={`mailto:${CONTACT_OPTIONS.technicalSupport}`} className="hover:text-[var(--color-text-primary)] transition-colors duration-200">{CONTACT_OPTIONS.technicalSupport}</a>
+                <a href={`mailto:${CONTACT_OPTIONS.technicalSupport}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{CONTACT_OPTIONS.technicalSupport}</a>
               </p>
               <p className="text-[var(--color-text-secondary)]">
                 <span className="font-semibold block text-[var(--color-text-primary)]">WhatsApp Channel:</span>{' '}
-                <a href={CONTACT_OPTIONS.whatsApp} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-text-primary)] transition-colors duration-200">EMPHZ Support Link</a>
+                <a href={CONTACT_OPTIONS.whatsApp} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand)] transition-colors duration-200">EMPHZ Support Link</a>
               </p>
             </div>
             <div className="mt-8">
@@ -46,7 +46,7 @@ const ContactRFQ: React.FC = () => {
           </div>
 
           {/* Call to Action Buttons */}
-          <div className="text-center md:text-left bg-[var(--color-surface-primary)] backdrop-blur-lg p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)] flex flex-col justify-center">
+          <div className="text-center md:text-left bg-[var(--color-surface-primary)] p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)] flex flex-col justify-center">
             <h3 className="text-2xl font-semibold mb-6 text-[var(--color-text-primary)]">Ready to Partner?</h3>
             <div className="space-y-4">
               <Button variant="primary" onClick={handleRequestQuoteClick} className="w-full justify-center">

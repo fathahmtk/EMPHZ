@@ -1,54 +1,40 @@
 import React from 'react';
-import {
-  WARRANTY_COVERAGE,
-  WARRANTY_EXCLUSIONS,
-  INSTALLATION_REQUIREMENTS,
-} from '../constants';
+import { WARRANTY_INFO } from '../constants';
 import config from '../config';
 
 const WarrantyService: React.FC = () => {
   return (
-    <section className="py-24 bg-transparent">
+    <section className="py-24 bg-[var(--color-background)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           Confidence Engineered into Every Product.
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Warranty Coverage */}
-          <div className="p-8 bg-[var(--color-surface-primary)] backdrop-blur-md rounded-[var(--radius)] shadow-[var(--shadow-md)] border border-[var(--color-border)]">
-            <h3 className="text-xl font-semibold mb-4 text-[var(--color-text-primary)]">Warranty Coverage</h3>
-            <p className="text-[var(--color-text-secondary)] leading-relaxed">{WARRANTY_COVERAGE}</p>
-            <p className="text-xs text-gray-500 mt-4">
-              Our warranty reflects our commitment to product integrity and long-term performance.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {WARRANTY_INFO.map(card => (
+            <div key={card.title} className="bg-[var(--color-surface-primary)] rounded-[var(--radius)] shadow-[var(--shadow-md)] border border-[var(--color-border)] overflow-hidden flex flex-col">
+              <img src={card.image} alt={card.title} className="w-full h-56 object-cover" loading="lazy" />
+              <div className="p-8 flex-grow flex flex-col">
+                <h3 className="text-xl font-semibold mb-4 text-[var(--color-text-primary)]">{card.title}</h3>
+                
+                <div className="flex-grow">
+                  {typeof card.content === 'string' ? (
+                    <p className="text-[var(--color-text-secondary)] leading-relaxed">{card.content}</p>
+                  ) : (
+                    <ul className="list-disc list-inside space-y-2 text-[var(--color-text-secondary)]">
+                      {(card.content as string[]).map((item, index) => <li key={index}>{item}</li>)}
+                    </ul>
+                  )}
+                </div>
 
-          {/* Exclusions */}
-          <div className="p-8 bg-[var(--color-surface-primary)] backdrop-blur-md rounded-[var(--radius)] shadow-[var(--shadow-md)] border border-[var(--color-border)]">
-            <h3 className="text-xl font-semibold mb-4 text-[var(--color-text-primary)]">Exclusions</h3>
-            <p className="text-[var(--color-text-secondary)] leading-relaxed">{WARRANTY_EXCLUSIONS}</p>
-            <p className="text-xs text-gray-500 mt-4">
-              Please refer to our full warranty document for detailed terms and conditions.
-            </p>
-          </div>
-
-          {/* Installation Requirements */}
-          <div className="p-8 bg-[var(--color-surface-primary)] backdrop-blur-md rounded-[var(--radius)] shadow-[var(--shadow-md)] border border-[var(--color-border)]">
-            <h3 className="text-xl font-semibold mb-4 text-[var(--color-text-primary)]">Installation Requirements</h3>
-            <ul className="list-disc list-inside space-y-2 text-[var(--color-text-secondary)]">
-              {INSTALLATION_REQUIREMENTS.map((req, index) => (
-                <li key={index}>{req}</li>
-              ))}
-            </ul>
-            <p className="text-xs text-gray-500 mt-4">
-              Proper installation ensures optimal performance and warranty validity.
-            </p>
-          </div>
+                <p className="text-xs text-gray-400 mt-4 pt-4 border-t border-[var(--color-border)]">{card.note}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Support Contact */}
-        <div className="mt-20 text-center p-10 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
+        <div className="mt-20 text-center p-10 bg-[var(--color-surface-primary)] rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
           <h3 className="text-2xl font-bold mb-4 text-[var(--color-text-primary)]">Need Support?</h3>
           <p className="text-lg text-[var(--color-text-secondary)]">
             📞 Call us at: <a href={`tel:${config.supportPhone}`} className="hover:text-[var(--color-brand)] transition-colors duration-200">{config.supportPhone}</a>

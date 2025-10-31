@@ -1,10 +1,11 @@
 import React from 'react';
 import Button from './Button';
 import { BLOG_ARTICLES, KNOWLEDGE_RESOURCES } from '../constants';
+import { Link } from 'react-router-dom';
 
 const InsightsKnowledge: React.FC = () => {
   return (
-    <section className="py-24 bg-transparent">
+    <section className="py-24 bg-[var(--color-background)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">Thought Leadership in Composite Engineering.</h2>
 
@@ -14,19 +15,22 @@ const InsightsKnowledge: React.FC = () => {
             <h3 className="text-2xl font-semibold mb-6 text-[var(--color-text-primary)]">Latest Articles</h3>
             <div className="space-y-6">
               {BLOG_ARTICLES.map((article, index) => (
-                <a key={index} href={article.link} className="block p-6 bg-[var(--color-surface-primary)] backdrop-blur-md rounded-[var(--radius)] shadow-[var(--shadow-md)] hover:shadow-[var(--glow-shadow)] border border-[var(--color-border)] transition-all duration-300 group hover:-translate-y-1 hover:border-[var(--color-border-hover)]">
-                  <h4 className="text-xl font-semibold text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
-                    {article.title}
-                  </h4>
-                  <p className="text-[var(--color-text-secondary)] text-sm">{article.description}</p>
-                  <span className="mt-4 inline-block text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)] text-sm font-medium transition-colors duration-300">Read More &rarr;</span>
-                </a>
+                <Link key={index} to={article.link} className="block bg-[var(--color-surface-primary)] rounded-[var(--radius)] shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] border border-[var(--color-border)] transition-all duration-300 group hover:-translate-y-1 hover:border-[var(--color-border-hover)] overflow-hidden">
+                  <img src={article.image} alt={article.title} className="w-full h-48 object-cover" loading="lazy" />
+                  <div className="p-6">
+                    <h4 className="text-xl font-semibold text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
+                      {article.title}
+                    </h4>
+                    <p className="text-[var(--color-text-secondary)] text-sm">{article.description}</p>
+                    <span className="mt-4 inline-block text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)] text-sm font-medium transition-colors duration-300">Read More &rarr;</span>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
 
           {/* Downloadable Resources */}
-          <div className="bg-[var(--color-surface-primary)] backdrop-blur-lg p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
+          <div className="bg-[var(--color-surface-primary)] p-8 rounded-[var(--radius)] shadow-[var(--shadow-lg)] border border-[var(--color-border)]">
             <h3 className="text-2xl font-semibold mb-6 text-[var(--color-text-primary)]">Downloadable Resources</h3>
             <div className="space-y-4">
               {KNOWLEDGE_RESOURCES.map((resource, index) => (

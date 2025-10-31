@@ -52,7 +52,7 @@ const ContactFAB: React.FC = () => {
       {/* Chat Window */}
       <div
         className={`
-          w-[calc(100vw-3rem)] max-w-sm h-auto bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-xl border border-[var(--color-border)] flex flex-col
+          w-[calc(100vw-3rem)] max-w-sm h-auto bg-[var(--color-surface-primary)] rounded-[var(--radius)] shadow-xl border border-[var(--color-border)] flex flex-col
           transition-[transform,opacity] duration-300 ease-in-out origin-bottom-right absolute bottom-[calc(100%+1rem)] right-0
           ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
         `}
@@ -66,17 +66,17 @@ const ContactFAB: React.FC = () => {
           </div>
         </div>
         <div className="p-4 flex-grow bg-[var(--color-background)]">
-          <div className="bg-[var(--color-surface-secondary)] p-3 rounded-lg shadow-sm text-[var(--color-text-primary)] max-w-xs">
+          <div className="bg-[var(--color-surface-primary)] p-3 rounded-lg shadow-sm text-[var(--color-text-primary)] max-w-xs">
             <p className="text-sm">{welcomeMessage}</p>
           </div>
         </div>
-        <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-[var(--color-surface-secondary)] flex items-center gap-2 rounded-b-lg">
+        <form onSubmit={handleSendMessage} className="p-3 border-t border-[var(--color-border)] bg-[var(--color-surface-primary)] flex items-center gap-2 rounded-b-lg">
           <input
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm bg-[var(--color-background)] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)] border-[var(--color-border)]"
+            className="flex-grow w-full px-3 py-2 border rounded-full focus:ring-2 focus:ring-[var(--color-brand)]/50 focus:border-[var(--color-brand)] transition-colors duration-200 text-sm bg-white text-[var(--color-text-primary)] placeholder:text-gray-400 border-[var(--color-border)]"
             aria-label="Your message"
           />
           <button
@@ -84,19 +84,19 @@ const ContactFAB: React.FC = () => {
             aria-label="Start Chat on WhatsApp"
             className="flex-shrink-0 bg-green-500 hover:bg-green-600 text-white p-2.5 rounded-full transition-transform transform hover:scale-110"
           >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" stroke="none"><path d="M16.6,14.2l-1.5-0.7c-0.2-0.1-0.4-0.1-0.6,0.1l-0.7,0.8c-1.4-0.8-2.6-2-3.4-3.4l0.8-0.7c0.2-0.2,0.2-0.4,0.1-0.6 l-0.7-1.5c-0.1-0.3-0.4-0.5-0.7-0.5h-1.6c-0.4,0-0.7,0.3-0.7,0.7c0,0.1,0,2.1,1.9,4.1c1.9,1.9,3.9,2,4.1,1.9 c0.4,0,0.7-0.3,0.7-0.7v-1.6C17.1,14.6,16.9,14.3,16.6,14.2z M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10c5.5,0,10-4.5,10-10S17.5,2,12,2z"/></svg>
           </button>
         </form>
       </div>
 
-      {/* Main Toggle Button */}
+      {/* Floating Action Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-500/50"
+        className="w-16 h-16 rounded-full bg-[var(--color-brand)] text-white shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-xl"
+        aria-label={isOpen ? "Close chat widget" : "Open chat widget"}
         aria-expanded={isOpen}
-        aria-label={isOpen ? 'Close chat widget' : 'Open chat widget'}
       >
-        {isOpen ? <CloseIcon /> : <WhatsAppIcon />}
+        {isOpen ? <CloseIcon/> : <WhatsAppIcon />}
       </button>
     </div>
   );

@@ -10,7 +10,7 @@ const SupportPage: React.FC = () => {
         title={SEO_DATA.support.title}
         description={SEO_DATA.support.description}
       />
-      <div className="bg-transparent">
+      <div className="bg-[var(--color-background)]">
         <WarrantyService />
       </div>
     </>

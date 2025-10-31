@@ -3,7 +3,7 @@ import { QUALITY_FRAMEWORK, PROCESS_PHILOSOPHY, FACTORY_IMAGES } from '../consta
 
 const QualitySection: React.FC = () => {
   return (
-    <section className="py-24 bg-transparent">
+    <section className="py-24 bg-[var(--color-surface-primary)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">Precision in Every Layer.</h2>
 

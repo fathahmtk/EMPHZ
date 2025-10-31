@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ContactRFQ from '../components/ContactRFQ';
 import Button from '../components/Button';
 import MetaTags from '../components/MetaTags';
-import { SEO_DATA } from '../constants';
+import { SEO_DATA, PRODUCT_CATALOG } from '../constants';
 import { useToast } from '../ToastContext';
 
 const ContactPage: React.FC = () => {
   const { addToast } = useToast();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    }
+  }, [location.state]);
+
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -90,6 +105,8 @@ const ContactPage: React.FC = () => {
         phone: '',
         message: '',
       });
+    } else {
+      addToast('Please correct the errors in the form before submitting.', 'error');
     }
   };
 
@@ -99,7 +116,7 @@ const ContactPage: React.FC = () => {
     formData.message.trim() !== '' &&
     Object.values(formErrors).every(error => error === '');
   
-  const inputBaseClasses = `w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-offset-1 transition-colors duration-200 bg-[var(--color-surface-secondary)] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]`;
+  const inputBaseClasses = `w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-offset-1 transition-colors duration-200 bg-white text-[var(--color-text-primary)] placeholder:text-gray-400`;
   const inputBorderClasses = `border-[var(--color-border)] focus:ring-[var(--color-brand)]/80 focus:border-[var(--color-brand)]`;
   const inputErrorBorderClasses = `border-red-500 focus:ring-red-400`;
 
@@ -113,8 +130,8 @@ const ContactPage: React.FC = () => {
         <ContactRFQ />
 
         {/* RFQ Form Section */}
-        <section id="rfq-form" className="py-16">
-          <div className="max-w-3xl mx-auto p-8 lg:p-10 bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-lg border border-[var(--color-border)]">
+        <section id="rfq-form" className="py-16 scroll-mt-20">
+          <div className="max-w-3xl mx-auto p-8 lg:p-10 bg-[var(--color-surface-primary)] rounded-[var(--radius)] shadow-lg border border-[var(--color-border)]">
             <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">Request a Quote</h2>
             <p className="text-center text-[var(--color-text-secondary)] mb-10">
               Tell us about your project, and our engineering team will get back to you with a tailored solution.
@@ -188,13 +205,7 @@ const ContactPage: React.FC = () => {
                   className={`${inputBaseClasses} ${inputBorderClasses}`}
                 >
                   <option value="">Select a product or category</option>
-                  <option value="GRP Electrical & Utility Enclosures">GRP Electrical & Utility Enclosures</option>
-                  <option value="GRP Modular & Portable Structures">GRP Modular & Portable Structures</option>
-                  <option value="GRP Utility & Infrastructure Products">GRP Utility & Infrastructure Products</option>
-                  <option value="GRP Industrial Components & Custom Fabrication">GRP Industrial Components & Custom Fabrication</option>
-                  <option value="GRP Marine, Offshore & Energy Solutions">GRP Marine, Offshore & Energy Solutions</option>
-                  <option value="GRP Sustainable & Smart Solutions">GRP Sustainable & Smart Solutions</option>
-                  <option value="GRP Automobile">GRP Automobile</option>
+                  {PRODUCT_CATALOG.map(cat => <option key={cat.code} value={cat.name}>{cat.name}</option>)}
                   <option value="Other / Custom Project">Other / Custom Project</option>
                 </select>
               </div>

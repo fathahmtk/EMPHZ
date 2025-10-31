@@ -77,6 +77,43 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface BlogArticle {
+  title: string;
+  link: string;
+  description: string;
+  image: string;
+}
+
+export interface CertificateDownload {
+  name: string;
+  link: string;
+}
+
+export interface WarrantyInfoCard {
+  title: string;
+  content: string | string[];
+  note: string;
+  image: string;
+}
+
+export interface CorporatePageCard {
+  title: string;
+  image: string;
+  content: CorporateDetail[] | CertificateDownload[];
+  type: 'details' | 'downloads';
+}
+
+export interface GrpApplicationSubcategory {
+  name: string;
+  items: string[];
+}
+
+export interface GrpApplicationCategory {
+  name: string;
+  image: string;
+  subcategories: GrpApplicationSubcategory[];
+}
+
 // --- Types for dedicated Automobile Page ---
 export interface AutomobileSolution {
     title: string;

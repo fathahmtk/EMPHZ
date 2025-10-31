@@ -27,7 +27,7 @@ const SustainabilitySection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-transparent">
+    <section ref={sectionRef} className="py-24 bg-[var(--color-background)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold mb-4">
           Sustainability is not an option
@@ -46,7 +46,7 @@ const SustainabilitySection: React.FC = () => {
               <div className="w-full space-y-4">
                 <div className="flex items-center space-x-4">
                   <span className="text-md font-medium w-28 text-right text-[var(--color-text-primary)]">EMPHZ:</span>
-                  <div className="relative flex-grow h-8 bg-[var(--color-surface-secondary)] rounded-full overflow-hidden border border-[var(--color-border)]">
+                  <div className="relative flex-grow h-8 bg-gray-200 rounded-full overflow-hidden border border-[var(--color-border)]">
                     <div
                       className="absolute inset-y-0 left-0 bg-gradient-to-r from-[var(--color-brand)] to-[var(--color-brand-accent)] rounded-full transition-all duration-1000 ease-out"
                       style={{ width: animated ? '80%' : '0%' }}
@@ -56,12 +56,12 @@ const SustainabilitySection: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                   <span className="text-md font-medium text-[var(--color-text-secondary)] w-28 text-right">Competitor:</span>
-                  <div className="relative flex-grow h-8 bg-[var(--color-surface-secondary)] rounded-full overflow-hidden border border-[var(--color-border)]">
+                  <div className="relative flex-grow h-8 bg-gray-200 rounded-full overflow-hidden border border-[var(--color-border)]">
                     <div
-                      className="absolute inset-y-0 left-0 bg-gray-600 rounded-full transition-all duration-1000 ease-out"
+                      className="absolute inset-y-0 left-0 bg-gray-400 rounded-full transition-all duration-1000 ease-out"
                       style={{ width: animated ? '30%' : '0%' }}
                     ></div>
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-200 font-semibold text-sm">{item.competitor}</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-800 font-semibold text-sm">{item.competitor}</span>
                   </div>
                 </div>
               </div>

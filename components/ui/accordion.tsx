@@ -11,7 +11,7 @@ const AccordionItem = forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={clsx('border-b border-[var(--color-border)] transition-colors data-[state=open]:bg-white/5', className)}
+    className={clsx('border-b border-[var(--color-border)] last-of-type:border-b-0 transition-colors', className)}
     {...props}
   />
 ));

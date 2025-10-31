@@ -29,16 +29,15 @@ const ProductsPage: React.FC = () => {
               <Link
                 key={category.code}
                 to={`/products/category/${category.slug}`}
-                className="block group bg-[var(--color-surface-primary)] backdrop-blur-lg rounded-[var(--radius)] shadow-[var(--shadow-lg)] hover:shadow-[var(--glow-shadow)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1 flex flex-col hover:border-[var(--color-border-hover)]"
+                className="block group bg-[var(--color-surface-primary)] rounded-[var(--radius)] shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all duration-300 border border-[var(--color-border)] overflow-hidden transform hover:-translate-y-1 flex flex-col hover:border-[var(--color-border-hover)]"
               >
-                <div className={`relative h-56 overflow-hidden ${!hasRealImage ? 'bg-[var(--color-background)]' : ''}`}>
+                <div className={`relative h-56 overflow-hidden ${!hasRealImage ? 'bg-gray-100' : ''}`}>
                   <img
                     src={imageUrl}
                     alt={category.name}
                     loading="lazy"
                     className={`w-full h-full ${hasRealImage ? 'object-cover transition-transform duration-500 group-hover:scale-110' : 'object-contain p-8 opacity-40'}`}
                   />
-                  {hasRealImage && <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>}
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
                   <h2 className="text-xl font-bold text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)] transition-colors duration-300 mb-2">
@@ -47,20 +46,6 @@ const ProductsPage: React.FC = () => {
                   <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 flex-grow">
                     {category.tagline}
                   </p>
-                  {/* Product Previews */}
-                  <div className="mt-4 border-t border-[var(--color-border)] pt-3">
-                    <p className="text-xs font-semibold text-[var(--color-text-primary)] mb-2">Includes:</p>
-                    <ul className="space-y-1">
-                      {category.products.slice(0, 3).map(p => (
-                          <li key={p.code} className="text-xs text-[var(--color-text-secondary)] truncate">
-                              &bull; {p.name}
-                          </li>
-                      ))}
-                      {category.products.length > 3 && (
-                          <li className="text-xs text-[var(--color-text-secondary)]">...and more.</li>
-                      )}
-                    </ul>
-                  </div>
                   <div className="mt-auto pt-4 text-sm font-semibold text-[var(--color-brand)] group-hover:underline">
                     View Products &rarr;
                   </div>
