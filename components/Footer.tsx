@@ -21,8 +21,14 @@ const Footer: React.FC = () => {
             <a href={SOCIAL_LINKS.linkedIn} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-[var(--color-text-light)]/70 hover:text-[var(--color-brand)] transition-colors duration-200">
               <Icon name="linkedin" className="h-6 w-6" />
             </a>
-            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-[var(--color-text-light)]/70 hover:text-[var(--color-brand)] transition-colors duration-200">
+            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)" className="text-[var(--color-text-light)]/70 hover:text-[var(--color-brand)] transition-colors duration-200">
               <Icon name="twitter" className="h-6 w-6" />
+            </a>
+            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[var(--color-text-light)]/70 hover:text-[var(--color-brand)] transition-colors duration-200">
+              <Icon name="facebook" className="h-6 w-6" />
+            </a>
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[var(--color-text-light)]/70 hover:text-[var(--color-brand)] transition-colors duration-200">
+              <Icon name="instagram" className="h-6 w-6" />
             </a>
             <a href={SOCIAL_LINKS.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile" className="text-[var(--color-text-light)]/70 hover:text-[var(--color-brand)] transition-colors duration-200">
                <Icon name="google" className="h-6 w-6" />
