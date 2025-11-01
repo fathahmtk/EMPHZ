@@ -159,6 +159,7 @@ export interface DigitalBusinessCardData {
     linkedin: string;
     twitter: string;
     google: string;
+    whatsapp: string;
   };
   downloads: {
     profile: string;

@@ -163,7 +163,7 @@ export const PRODUCT_CATALOG: ProductCategory[] = [
         code: 'E-110',
         name: 'GRP Street-Light Control Panel',
         description: 'Smart controller housing with timer and IoT integration options.',
-        image: 'https://images.unsplash.com/photo-1599249336159-4a478a594041?q=80&w=1974&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1599249336159-4a4a78a594041?q=80&w=1974&auto=format&fit=crop',
       },
     ],
     sharedHighlights: [
@@ -935,6 +935,7 @@ export const DIGITAL_BUSINESS_CARD_DATA: DigitalBusinessCardData = {
     linkedin: "https://www.linkedin.com/company/emphz/", // Placeholder
     twitter: "https://twitter.com/emphz", // Placeholder
     google: "https://g.page/EMPHZ", // Placeholder for Google Business Profile
+    whatsapp: "https://wa.me/918648881888",
   },
   downloads: {
     profile: "#", // Placeholder
