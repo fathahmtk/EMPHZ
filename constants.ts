@@ -13,7 +13,8 @@ import {
   WarrantyInfoCard,
   CertificateDownload,
   CorporatePageCard,
-  GrpApplicationCategory
+  GrpApplicationCategory,
+  DigitalBusinessCardData
 } from './types';
 
 // --- Global Constants ---
@@ -917,6 +918,35 @@ export const PRODUCT_FAQS: FAQItem[] = [
     { question: 'Are these enclosures suitable for hazardous or explosive environments?', answer: 'Yes, we offer ATEX-certified versions of our enclosures with anti-static properties for use in Zone 1, 2, 21, and 22 hazardous areas.' },
     { question: 'How do I specify accessories like mounting plates or vents?', answer: 'All accessories can be specified at the time of order. Our sales team can assist you in selecting the appropriate options, including back plates, ventilation louvers, window kits, and gland plates, to meet your project needs.' },
 ];
+
+// --- Digital Business Card Page ---
+export const DIGITAL_BUSINESS_CARD_DATA: DigitalBusinessCardData = {
+  companyName: "EMPHZ Private Limited",
+  name: "R. Murali",
+  title: "Director",
+  logoUrl: FALLBACK_LOGO_URL,
+  websiteUrl: "https://xpod.co.in/", // Placeholder for the main website URL
+  contact: {
+    phone: "+91 86488 81888",
+    email: "sales@emphz.com",
+    whatsapp: "https://wa.me/918648881888", // Assuming the same number for WhatsApp
+  },
+  socials: {
+    linkedin: "https://www.linkedin.com/company/emphz/", // Placeholder
+    twitter: "https://twitter.com/emphz", // Placeholder
+    google: "https://g.page/EMPHZ", // Placeholder for Google Business Profile
+  },
+  downloads: {
+    profile: "#", // Placeholder
+    catalog: "#", // Placeholder
+    brochure: "#", // Placeholder
+  },
+  location: {
+    address: "Coimbatore, Tamil Nadu, India",
+    googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.79375794276!2d76.9922223147596!3d11.020165992178088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859a4f91b7e4b%3A0x33b43501a97e64b8!2sEMPHZ%20Private%20Limited!5e0!3m2!1sen!2sin!4v1628782875323!5m2!1sen!2sin",
+  },
+};
+
 
 // --- SEO Data ---
 export const SEO_DATA = {

@@ -29,6 +29,7 @@ const GrpSingleDoorEnclosureTechnicalPage = lazy(() => import('./pages/GrpSingle
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const DigitalBusinessCardPage = lazy(() => import('./pages/DigitalBusinessCardPage'));
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash, state } = useLocation();
@@ -64,6 +65,23 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <>
+    <a href="#main-content" className="skip-link">Skip to main content</a>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main id="main-content" className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center space-y-4">
+        <ScrollToTopButton />
+        <ContactFAB />
+      </div>
+    </div>
+  </>
+);
+
 
 const App: React.FC = () => {
   const {
@@ -91,43 +109,40 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main id="main-content" className="flex-grow">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/category/:categorySlug" element={<ProductCategoryPage />} />
-              <Route path="/products/:productCode" element={<ProductDetailPage />} />
-              <Route path="/industries" element={<IndustriesPage />} />
-              <Route path="/industries/automobile-transport" element={<AutomobileIndustryPage />} />
-              <Route path="/industries/:industrySlug" element={<IndustryLandingPage />} />
-              <Route path="/innovation" element={<InnovationPage />} />
-              <Route path="/sustainability" element={<SustainabilityPage />} />
-              <Route path="/corporate" element={<CorporatePage />} />
-              <Route path="/support" element={<SupportPage />} />
-              <Route path="/knowledge" element={<KnowledgePage />} />
-              <Route path="/knowledge/grp-applications" element={<GrpApplicationsPage />} />
-              <Route path="/knowledge/grp-single-door-enclosure-technical-data" element={<GrpSingleDoorEnclosureTechnicalPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              {config.isAdminPortalEnabled && <Route path="/admin" element={<AdminPage />} />}
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-        {/* Floating Action Buttons Container */}
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center space-y-4">
-            <ScrollToTopButton />
-            <ContactFAB />
-        </div>
-        <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
-        <QuickViewModal product={quickViewProduct} onClose={closeQuickView} />
-        <ToastContainer />
-      </div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/dbc" element={<DigitalBusinessCardPage />} />
+
+          {/* Main website routes with layout */}
+          <Route path="/*" element={
+            <MainLayout>
+              <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/products/category/:categorySlug" element={<ProductCategoryPage />} />
+                  <Route path="/products/:productCode" element={<ProductDetailPage />} />
+                  <Route path="/industries" element={<IndustriesPage />} />
+                  <Route path="/industries/automobile-transport" element={<AutomobileIndustryPage />} />
+                  <Route path="/industries/:industrySlug" element={<IndustryLandingPage />} />
+                  <Route path="/innovation" element={<InnovationPage />} />
+                  <Route path="/sustainability" element={<SustainabilityPage />} />
+                  <Route path="/corporate" element={<CorporatePage />} />
+                  <Route path="/support" element={<SupportPage />} />
+                  <Route path="/knowledge" element={<KnowledgePage />} />
+                  <Route path="/knowledge/grp-applications" element={<GrpApplicationsPage />} />
+                  <Route path="/knowledge/grp-single-door-enclosure-technical-data" element={<GrpSingleDoorEnclosureTechnicalPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  {config.isAdminPortalEnabled && <Route path="/admin" element={<AdminPage />} />}
+                  <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </MainLayout>
+          } />
+        </Routes>
+      </Suspense>
+      <SearchModal isOpen={isSearchOpen} onClose={closeSearch} />
+      <QuickViewModal product={quickViewProduct} onClose={closeQuickView} />
+      <ToastContainer />
     </Router>
   );
 };

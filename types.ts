@@ -142,3 +142,31 @@ export interface AutomobilePageData {
     galleryImages: string[];
     featuredProducts: string[];
 }
+
+// --- Type for Digital Business Card Page ---
+export interface DigitalBusinessCardData {
+  companyName: string;
+  name: string;
+  title: string;
+  logoUrl: string;
+  websiteUrl: string;
+  contact: {
+    phone: string;
+    email: string;
+    whatsapp: string;
+  };
+  socials: {
+    linkedin: string;
+    twitter: string;
+    google: string;
+  };
+  downloads: {
+    profile: string;
+    catalog: string;
+    brochure: string;
+  };
+  location: {
+    address: string;
+    googleMapsEmbedUrl: string;
+  };
+}

@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 const ImagePlaceholder: React.FC = () => (
-    <div className="w-full h-full bg-gray-200 animate-skeleton-pulse"></div>
+    <div className="w-full h-full bg-gray-200 animate-pulse"></div>
 );
 
 const ImageError: React.FC = () => (
