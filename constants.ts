@@ -825,67 +825,62 @@ export const KNOWLEDGE_RESOURCES = [
 ];
 
 // --- GRP Applications Page Content ---
-export const GRP_APPLICATIONS_CONTENT = {
-    title: "Comprehensive List of Products Made from GRP",
-    subtitle: "(Glass Reinforced Polymer)",
-    intro: "GRP's exceptional properties – including its high strength-to-weight ratio, corrosion resistance, electrical insulation, weather durability, and design flexibility – make it an incredibly versatile material. It is used to manufacture a vast array of products across almost every industry, often outperforming traditional materials like steel, concrete, and timber.",
-    categories: [
-        {
-            name: "1. Construction & Infrastructure",
-            image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop",
-            subcategories: [
-                { name: "Structural Elements", items: ["Beams, channels, angles, rods, and other structural profiles", "GRP rebar for concrete reinforcement (non-corrosive alternative to steel)", "Bridge decks and bridge rehabilitation components", "Modular bridge sections", "Walkways, platforms, and staircases (especially in corrosive environments)"] },
-                { name: "Building Envelopes & Cladding", items: ["Roofing sheets (corrugated, flat, opaque, translucent)", "Wall cladding panels and facades", "Decorative panels for interiors and exteriors", "Skylights and translucent roofing"] },
-                { name: "Water Management & Utilities", items: ["Water storage tanks (sectional, cylindrical, underground)", "Effluent treatment plant components (tanks, covers, pipes)", "Sewerage pipes and linings", "Gully pots and drainage channels", "Reservoir covers", "Manhole covers and frames (lightweight, non-corrosive, theft-resistant)", "Pump houses and kiosks"] },
-                { name: "Modular & Prefabricated Structures", items: ["Modular public toilets and shower units", "Bus shelters and tram stops", "Security guard rooms and check-posts", "Site offices and temporary accommodation units", "Cold storage panels"] },
-                { name: "Other Infrastructure", items: ["Sound barriers and acoustic panels", "Cable ducts and trenches", "Street light poles and utility poles (lighter, non-conductive)", "Signage boards and advertising hoardings", "Fencing and gates", "Road furniture (median barriers, crash barriers)"] },
-            ]
-        },
-        {
-            name: "2. Automotive & Transportation",
-            image: "https://images.unsplash.com/photo-1570125909232-eb263c186922?q=80&w=2070&auto=format&fit=crop",
-            subcategories: [
-                { name: "Vehicle Body Components", items: ["Lightweight body panels for buses, trucks, and commercial vehicles", "Auto-rickshaw and tractor components (e.g., cabins, hoods, fenders)", "Caravan and RV body parts", "Specialty vehicle enclosures (ambulances, fire tenders)", "Interior panels and seating for trains and buses"] },
-                { name: "Custom Enclosures", items: ["Genset (generator set) canopies and enclosures", "Battery boxes and covers"] },
-                { name: "Marine Transportation", items: ["Hulls and decks for boats, yachts, and fishing vessels", "Marine components (fenders, navigation aids)", "Lifeboats and rescue craft"] },
-            ]
-        },
-        {
-            name: "3. Water, Agriculture & Chemical Industries",
-            image: "https://images.unsplash.com/photo-1596700661874-3292b3820252?q=80&w=1974&auto=format&fit=crop",
-            subcategories: [
-                { name: "Water & Irrigation", items: ["Agricultural water channels and linings (prevents seepage)", "Irrigation pipes and fittings", "Silos and storage tanks for grains, feeds, and fertilizers", "Aquaculture tanks and fish farming equipment"] },
-                { name: "Chemical Storage & Processing", items: ["Tanks for agri-chemicals, fertilizers, and corrosive liquids", "Chemical processing equipment (vessels, scrubbers, ducting)", "Industrial pipes and fittings for chemical transfer", "Secondary containment systems"] },
-            ]
-        },
-        {
-            name: "4. Renewable Energy & Electrical",
-            image: "https://images.unsplash.com/photo-1622379329707-372a8f3a3c2b?q=80&w=1932&auto=format&fit=crop",
-            subcategories: [
-                { name: "Renewable Energy", items: ["Solar panel mounting structures (especially in corrosive environments)", "Wind turbine blades and nacelle covers", "Biogas plant components (digester covers, gas holders)"] },
-                { name: "Electrical & Electronics", items: ["Electrical enclosures, junction boxes, and cabinets (IP rated)", "Cable trays and ladders", "Electrical insulators and busbar supports", "Meter boxes and consumer units", "Distribution boards and feeder pillars", "Control panel housings", "Telecommunication cabinets and shelters", "Battery enclosures"] },
-            ]
-        },
-        {
-            name: "5. Marine, Offshore & Oil & Gas",
-            image: "https://images.unsplash.com/photo-1565538332159-07131a982998?q=80&w=2070&auto=format&fit=crop",
-            subcategories: [
-                { name: "Marine Structures", items: ["Boat and ship hulls, decks, superstructures", "Gangways and access platforms for marine environments", "Buoys, pontoons, and floating structures"] },
-                { name: "Offshore & Industrial", items: ["Offshore platform components (walkways, handrails, stair treads)", "Blast-resistant modules and buildings", "Piping systems for oil & gas (reduced weight, corrosion resistance)", "Cooling tower components", "Ventilation systems (hoods, ducts)"] },
-            ]
-        },
-        {
-            name: "6. Consumer & Specialty Goods",
-            image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1935&auto=format&fit=crop",
-            subcategories: [
-                { name: "Outdoor & Urban Furniture", items: ["Street furniture (benches, litter bins, planters)", "Outdoor and garden furniture", "Playground equipment", "Decorative elements and sculptures"] },
-                { name: "Home & Lifestyle", items: ["Bathroom fixtures (bathtubs, shower trays, washbasins)", "Septic tanks and water filters", "Decorative planters and garden features"] },
-                { name: "Sports & Recreation", items: ["Kayaks, canoes, surfboards, paddleboards", "Swimming pool slides and structures", "Sports equipment components (e.g., helmets, fairings)"] },
-                { name: "Miscellaneous", items: ["DIY kits and scale models", "Custom housings for machinery and equipment", "Theme park props and architectural features"] },
-            ]
-        }
-    ]
-};
+export const GRP_APPLICATIONS_CONTENT: GrpApplicationCategory[] = [
+    {
+        name: "1. Construction & Infrastructure",
+        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop",
+        subcategories: [
+            { name: "Structural Elements", items: ["Beams, channels, angles, rods, and other structural profiles", "GRP rebar for concrete reinforcement (non-corrosive alternative to steel)", "Bridge decks and bridge rehabilitation components", "Modular bridge sections", "Walkways, platforms, and staircases (especially in corrosive environments)"] },
+            { name: "Building Envelopes & Cladding", items: ["Roofing sheets (corrugated, flat, opaque, translucent)", "Wall cladding panels and facades", "Decorative panels for interiors and exteriors", "Skylights and translucent roofing"] },
+            { name: "Water Management & Utilities", items: ["Water storage tanks (sectional, cylindrical, underground)", "Effluent treatment plant components (tanks, covers, pipes)", "Sewerage pipes and linings", "Gully pots and drainage channels", "Reservoir covers", "Manhole covers and frames (lightweight, non-corrosive, theft-resistant)", "Pump houses and kiosks"] },
+            { name: "Modular & Prefabricated Structures", items: ["Modular public toilets and shower units", "Bus shelters and tram stops", "Security guard rooms and check-posts", "Site offices and temporary accommodation units", "Cold storage panels"] },
+            { name: "Other Infrastructure", items: ["Sound barriers and acoustic panels", "Cable ducts and trenches", "Street light poles and utility poles (lighter, non-conductive)", "Signage boards and advertising hoardings", "Fencing and gates", "Road furniture (median barriers, crash barriers)"] },
+        ]
+    },
+    {
+        name: "2. Automotive & Transportation",
+        image: "https://images.unsplash.com/photo-1570125909232-eb263c186922?q=80&w=2070&auto=format&fit=crop",
+        subcategories: [
+            { name: "Vehicle Body Components", items: ["Lightweight body panels for buses, trucks, and commercial vehicles", "Auto-rickshaw and tractor components (e.g., cabins, hoods, fenders)", "Caravan and RV body parts", "Specialty vehicle enclosures (ambulances, fire tenders)", "Interior panels and seating for trains and buses"] },
+            { name: "Custom Enclosures", items: ["Genset (generator set) canopies and enclosures", "Battery boxes and covers"] },
+            { name: "Marine Transportation", items: ["Hulls and decks for boats, yachts, and fishing vessels", "Marine components (fenders, navigation aids)", "Lifeboats and rescue craft"] },
+        ]
+    },
+    {
+        name: "3. Water, Agriculture & Chemical Industries",
+        image: "https://images.unsplash.com/photo-1596700661874-3292b3820252?q=80&w=1974&auto=format&fit=crop",
+        subcategories: [
+            { name: "Water & Irrigation", items: ["Agricultural water channels and linings (prevents seepage)", "Irrigation pipes and fittings", "Silos and storage tanks for grains, feeds, and fertilizers", "Aquaculture tanks and fish farming equipment"] },
+            { name: "Chemical Storage & Processing", items: ["Tanks for agri-chemicals, fertilizers, and corrosive liquids", "Chemical processing equipment (vessels, scrubbers, ducting)", "Industrial pipes and fittings for chemical transfer", "Secondary containment systems"] },
+        ]
+    },
+    {
+        name: "4. Renewable Energy & Electrical",
+        image: "https://images.unsplash.com/photo-1622379329707-372a8f3a3c2b?q=80&w=1932&auto=format&fit=crop",
+        subcategories: [
+            { name: "Renewable Energy", items: ["Solar panel mounting structures (especially in corrosive environments)", "Wind turbine blades and nacelle covers", "Biogas plant components (digester covers, gas holders)"] },
+            { name: "Electrical & Electronics", items: ["Electrical enclosures, junction boxes, and cabinets (IP rated)", "Cable trays and ladders", "Electrical insulators and busbar supports", "Meter boxes and consumer units", "Distribution boards and feeder pillars", "Control panel housings", "Telecommunication cabinets and shelters", "Battery enclosures"] },
+        ]
+    },
+    {
+        name: "5. Marine, Offshore & Oil & Gas",
+        image: "https://images.unsplash.com/photo-1565538332159-07131a982998?q=80&w=2070&auto=format&fit=crop",
+        subcategories: [
+            { name: "Marine Structures", items: ["Boat and ship hulls, decks, superstructures", "Gangways and access platforms for marine environments", "Buoys, pontoons, and floating structures"] },
+            { name: "Offshore & Industrial", items: ["Offshore platform components (walkways, handrails, stair treads)", "Blast-resistant modules and buildings", "Piping systems for oil & gas (reduced weight, corrosion resistance)", "Cooling tower components", "Ventilation systems (hoods, ducts)"] },
+        ]
+    },
+    {
+        name: "6. Consumer & Specialty Goods",
+        image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1935&auto=format&fit=crop",
+        subcategories: [
+            { name: "Outdoor & Urban Furniture", items: ["Street furniture (benches, litter bins, planters)", "Outdoor and garden furniture", "Playground equipment", "Decorative elements and sculptures"] },
+            { name: "Home & Lifestyle", items: ["Bathroom fixtures (bathtubs, shower trays, washbasins)", "Septic tanks and water filters", "Decorative planters and garden features"] },
+            { name: "Sports & Recreation", items: ["Kayaks, canoes, surfboards, paddleboards", "Swimming pool slides and structures", "Sports equipment components (e.g., helmets, fairings)"] },
+            { name: "Miscellaneous", items: ["DIY kits and scale models", "Custom housings for machinery and equipment", "Theme park props and architectural features"] },
+        ]
+    }
+];
 
 
 // --- Contact Page ---
@@ -900,9 +895,9 @@ export const OFFICE_LOCATIONS = [
   'Sharjah, UAE',
 ];
 export const SOCIAL_LINKS = {
-  linkedIn: '#',
-  twitter: '#',
-  googleBusiness: '#',
+  linkedIn: "https://www.linkedin.com/company/emphz/",
+  twitter: "https://twitter.com/emphz",
+  googleBusiness: "https://g.page/EMPHZ",
 };
 export const GENERAL_DOWNLOADS = [
   { name: 'Download Product Catalog', link: '#' },

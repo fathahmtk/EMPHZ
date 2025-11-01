@@ -5,7 +5,14 @@ import Breadcrumbs, { BreadcrumbItem } from '../components/Breadcrumbs';
 import CTABanner from '../components/CTABanner';
 
 const GrpApplicationsPage: React.FC = () => {
-    const content = GRP_APPLICATIONS_CONTENT;
+    // FIX: The component expects a content object with title, subtitle, etc., but GRP_APPLICATIONS_CONTENT is an array.
+    // We are creating the full content object here to match the component's structure.
+    const content = {
+      title: "Comprehensive Guide to GRP Applications",
+      subtitle: "Explore an extensive list of products and applications made possible by the versatility of GRP composites.",
+      intro: "From mission-critical infrastructure to everyday consumer goods, Glass Reinforced Plastic (GRP) offers a superior alternative to traditional materials. Its unique combination of strength, light weight, and durability opens up endless possibilities for innovation. Discover how EMPHZ leverages GRP to engineer solutions across a wide range of industries.",
+      categories: GRP_APPLICATIONS_CONTENT
+    };
     
     const breadcrumbItems: BreadcrumbItem[] = [
         { label: 'Home', path: '/' },
