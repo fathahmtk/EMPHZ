@@ -91,7 +91,7 @@ const ProductCategoryPage: React.FC = () => {
           <h1 className="text-4xl lg:text-5xl font-bold mb-4 animate-fadeInUp">
             {category.name}
           </h1>
-          <p className="text-xl text-[var(--color-text-secondary)] max-w-3xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <p className="text-xl text-white/90 max-w-3xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             {category.tagline}
           </p>
         </div>
